@@ -1,6 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/state_manager.dart';
-import 'package:pujapurohit/Models/ImagesModal.dart';
+
+
+import 'package:pujapurohit/Imports.dart';
 
 class ImageController extends GetxController{
   final String? uid;

@@ -1,16 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotted_line/dotted_line.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import 'package:pujapurohit/Models/BookingModal.dart';
-import 'package:pujapurohit/Payments/RazorpayWeb.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'PanditSection/Controllers/BookingController.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class Booking extends StatelessWidget{
   @override

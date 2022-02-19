@@ -1,13 +1,5 @@
-import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class SplashScreen extends StatefulWidget{
   @override
@@ -17,16 +9,16 @@ class SplashScreen extends StatefulWidget{
 class _SplashScreenState extends State<SplashScreen> {
   Future<Timer>loadData() async{
     return Timer(Duration(seconds: 5), onDoneLoading);}
-      onDoneLoading() async {
+  onDoneLoading() async {
     Get.offAndToNamed('/home');
   }
   @override
   void initState() {
-   loadData();
+    loadData();
     super.initState();
   }
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height =  MediaQuery.of(context).size.height;
     return Scaffold(
@@ -44,9 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     Container(
                       height: 100,width: 100,
                       decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/logo.png')
-                        )
+                          image: DecorationImage(
+                              image: AssetImage('assets/images/logo.png')
+                          )
                       ),
                     ),
                     SizedBox(height: 20,),
@@ -69,8 +61,8 @@ class _SplashScreenState extends State<SplashScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: ResponsiveWidget.isSmallScreen(context)?20:30,
-                            child: Image.asset('icons/flags/png/in.png', package: 'country_icons')),
+                              height: ResponsiveWidget.isSmallScreen(context)?20:30,
+                              child: Image.asset('icons/flags/png/in.png', package: 'country_icons')),
                           SizedBox(width: 10,),
                           SelectableText("Made in India",style: GoogleFonts.aBeeZee(fontSize: 16),),
                         ],
@@ -81,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ],
           ),
-          
+
         ],
       ),
     );

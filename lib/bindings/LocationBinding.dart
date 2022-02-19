@@ -1,8 +1,4 @@
-import 'package:get/get.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/controller/LocationController.dart';
-
-
+import 'package:pujapurohit/Imports.dart';
 
 class LocationBinding implements Bindings {
   @override

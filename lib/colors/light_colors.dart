@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class LightColors  {
   static const Color prime = Color(0xffffbd59);

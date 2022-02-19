@@ -1,29 +1,7 @@
-import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotted_line/dotted_line.dart';
+import 'package:pujapurohit/Imports.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import 'package:intl/intl.dart';
-import 'package:otp/otp.dart';
-import 'package:pujapurohit/Functions/ReverseGeocode.dart';
-import 'package:pujapurohit/Models/ItemsModal.dart';
-import 'package:pujapurohit/Models/VenderModal.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:pujapurohit/colors/light_colors.dart';
-import 'package:pujapurohit/controller/LocationController.dart';
-import 'package:pujapurohit/controller/UserController.dart';
 import '../Profile.dart';
 class AddressPage extends StatefulWidget{
 

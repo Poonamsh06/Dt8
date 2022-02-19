@@ -1,16 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:pujapurohit/Functions/ReverseGeocode.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:pujapurohit/controller/LocationController.dart';
-import 'package:pujapurohit/controller/loaderController.dart';
-import 'package:pujapurohit/controller/loginController.dart';
 
+import 'package:pujapurohit/Imports.dart';
 
 class Auth extends StatefulWidget{
 

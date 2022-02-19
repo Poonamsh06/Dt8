@@ -1,33 +1,9 @@
-import 'dart:typed_data';
-import 'dart:ui';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:carousel_slider/carousel_options.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/route_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/SignIn/login.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:pujapurohit/Widgets/YoutubePlayer.dart';
-import 'package:get/get.dart';
-import 'package:pujapurohit/Widgets/newbottombar.dart';
-import 'package:pujapurohit/controller/LocationController.dart';
-import 'package:pujapurohit/controller/loginController.dart';
-import 'package:url_launcher/link.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class BLanding extends StatelessWidget{
+
   @override
   Widget build(BuildContext context) {
     final LocationController locationController = Get.put(LocationController());
@@ -73,15 +49,153 @@ class BLanding extends StatelessWidget{
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
+              Container(
+                height: ResponsiveWidget.isSmallScreen(context)?200:300,
+                width: double.infinity,
+                // decoration: BoxDecoration(
+                //   //color: darkColor.withOpacity(0.66),
+                //   image: DecorationImage(
+                //     colorFilter: ColorFilter.mode(Color(0xFF191923).withOpacity(0.80), BlendMode.dstATop),
+                //     image: const AssetImage("images/puja1.jpg"),
+                //     fit: BoxFit.cover,
+                //   ),
+                // ),
+                child: Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        //color: darkColor.withOpacity(0.66),
+                        image: DecorationImage(
+                          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.60), BlendMode.dstATop),
+                          image: const AssetImage("images/puja1.jpg"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Container(color: Color(0xFF191923).withOpacity(0.36),),
+                    Column(
+                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(height: 10,),
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Row(
+                            children: [
+                              //SizedBox(width: 200,),
+                              SizedBox(width: ResponsiveWidget.isMobileLarge(context)?20:ResponsiveWidget.isMediumScreen(context)?120:200,),
+
+                              InkWell(
+                                onTap:(){},
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.get_app,color: Colors.white,),
+                                    InkWell(
+                                      onTap:(){
+                                        _launchInBrowser(_url);
+                                      },
+                                      child: Text(
+                                        "Get the App",
+                                        style: Theme.of(context).textTheme.headline4!.copyWith(
+                                            fontSize: ResponsiveWidget.isLargeScreen(context)?20:ResponsiveWidget.isMediumScreen(context)?15:5,
+                                            color: Colors.white,
+                                            letterSpacing: 1
+                                        ),
+                                      ),
+                                    ),
+                                    // Text(
+                                    //   "Get the App",
+                                    //   style: Theme.of(context).textTheme.headline4!.copyWith(
+                                    //       fontSize: ResponsiveWidget.isLargeScreen(context)?20:ResponsiveWidget.isMediumScreen(context)?15:5,
+                                    //       color: Colors.white,
+                                    //       letterSpacing: 1
+                                    //   ),
+                                    // ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: ResponsiveWidget.isMobileLarge(context)?150:ResponsiveWidget.isLargeScreen(context)?650:300,),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(width: 30,),
+                                    InkWell(
+                                      onTap:(){
+                                        _key.currentState!.openEndDrawer();
+                                        loginController.signin();
+                                      },
+                                      child: Text(
+                                        "Log In",
+                                        style: Theme.of(context).textTheme.headline4!.copyWith(
+                                            fontSize: ResponsiveWidget.isLargeScreen(context)?20:ResponsiveWidget.isMediumScreen(context)?15:5,
+                                            color: Colors.white,
+                                            letterSpacing: 1
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 40,),
+                                    InkWell(
+                                      onTap:(){
+                                        loginController.signup();
+                                        _key.currentState!.openEndDrawer();
+                                      },
+                                      child: Text(
+                                        "Sign Up",
+                                        style: Theme.of(context).textTheme.headline4!.copyWith(
+                                            fontSize: ResponsiveWidget.isLargeScreen(context)?20:ResponsiveWidget.isMediumScreen(context)?15:5,
+                                            color: Colors.white,
+                                            letterSpacing: 1
+                                        ),
+                                      ),
+                                    ),
+                                    // InkWell(
+                                    //   onTap:(){},
+                                    //   child: Text(
+                                    //     "Sign Up",
+                                    //     style: Theme.of(context).textTheme.headline4!.copyWith(
+                                    //         fontSize: ResponsiveWidget.isLargeScreen(context)?20:ResponsiveWidget.isMediumScreen(context)?15:5,
+                                    //         color: Colors.white,
+                                    //         letterSpacing: 1
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: ResponsiveWidget.isMobileLarge(context)?20:80,),
+                        Center(
+                          child:Text('Puja Purohit',style: GoogleFonts.aclonica(color: Colors.white,
+                              fontSize: ResponsiveWidget.isMediumScreen(context)?40:ResponsiveWidget.isLargeScreen(context)?50:13,
+                              //fontSize: 50,
+                              fontWeight: FontWeight.w500),),
+                        ),
+                        SizedBox(height: ResponsiveWidget.isSmallScreen(context)?10:30,),
+                        Center(
+                          child:SelectableText('Book Puja Online Anywhere, Anytime',
+                            // style: GoogleFonts.aclonica(color: Colors.white,
+                            //   fontSize: ResponsiveWidget.isSmallScreen(context)?25:50,
+                            //   //fontSize: 50,
+                            //   fontWeight: FontWeight.w500),
+                            style: Theme.of(context).textTheme.headline4!.copyWith(
+                                fontSize: ResponsiveWidget.isMobileLarge(context)?25:30,
+                                color: Colors.white,
+                                letterSpacing: 1
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      height: ResponsiveWidget.isMediumScreen(context)?height*0.1:height*0.2,
-                    ),
-                  ),
                   Expanded(
                     flex: 3,
                     child: Padding(
@@ -95,45 +209,46 @@ class BLanding extends StatelessWidget{
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
+
                                 Padding(
                                   padding:  EdgeInsets.only(left:ResponsiveWidget.isMediumScreen(context)?20:40.0,right: ResponsiveWidget.isMediumScreen(context)?20:40),
                                   child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Image.asset("assets/images/logo.png",height:ResponsiveWidget.isMediumScreen(context)? 100:138,width:ResponsiveWidget.isMediumScreen(context)? 120:148,),
-                                      Spacer(),
-                                      InkWell(
-                                        hoverColor: Colors.white,
-                                        onTap: (){
-                                          _key.currentState!.openEndDrawer();
-                                          loginController.signin();
-                                        },
-                                        child: Container(
-                                          margin: EdgeInsets.only(top:ResponsiveWidget.isMediumScreen(context)?20: 40),
-                                          color: Colors.white,
-                                          padding: EdgeInsets.only(left:ResponsiveWidget.isMediumScreen(context)?15:25,right:ResponsiveWidget.isMediumScreen(context)?15: 25,top:ResponsiveWidget.isMediumScreen(context)?5: 10,bottom:ResponsiveWidget.isMediumScreen(context)?5: 10),
-                                          alignment: Alignment.center,
-                                          child: Text1(data: "Login", max: ResponsiveWidget.isMediumScreen(context)?12:14, min: 12,clr: Colors.black,),
-                                        ),
-                                      ),
-                                      InkWell(
-                                        hoverColor: Colors.white,
-                                        onTap: (){
-                                          loginController.signup();
-                                          _key.currentState!.openEndDrawer();
-                                        },
-                                        child: Container(
-                                          margin: EdgeInsets.only(top:ResponsiveWidget.isMediumScreen(context)?20: 40),
-                                          color: Colors.black,
-                                          padding: EdgeInsets.only(left:ResponsiveWidget.isMediumScreen(context)?15:25,right:ResponsiveWidget.isMediumScreen(context)?15: 25,top:ResponsiveWidget.isMediumScreen(context)?5: 10,bottom:ResponsiveWidget.isMediumScreen(context)?5: 10),
-                                          alignment: Alignment.center,
-                                          child: Text1(data: "Sign Up", max: ResponsiveWidget.isMediumScreen(context)?12:14, min: 12,clr: Colors.white),
-                                        ),
-                                      )
+                                      // Image.asset("assets/images/logo.png",height:ResponsiveWidget.isMediumScreen(context)? 100:138,width:ResponsiveWidget.isMediumScreen(context)? 120:148,),
+                                      // Spacer(),
+                                      // InkWell(
+                                      //   hoverColor: Colors.white,
+                                      //   onTap: (){
+                                      //     _key.currentState!.openEndDrawer();
+                                      //     loginController.signin();
+                                      //   },
+                                      //   child: Container(
+                                      //     margin: EdgeInsets.only(top:ResponsiveWidget.isMediumScreen(context)?20: 40),
+                                      //     color: Colors.white,
+                                      //     padding: EdgeInsets.only(left:ResponsiveWidget.isMediumScreen(context)?15:25,right:ResponsiveWidget.isMediumScreen(context)?15: 25,top:ResponsiveWidget.isMediumScreen(context)?5: 10,bottom:ResponsiveWidget.isMediumScreen(context)?5: 10),
+                                      //     alignment: Alignment.center,
+                                      //     child: Text1(data: "Login", max: ResponsiveWidget.isMediumScreen(context)?12:14, min: 12,clr: Colors.black,),
+                                      //   ),
+                                      // ),
+                                      // InkWell(
+                                      //   hoverColor: Colors.white,
+                                      //   onTap: (){
+                                      //     loginController.signup();
+                                      //     _key.currentState!.openEndDrawer();
+                                      //   },
+                                      //   child: Container(
+                                      //     margin: EdgeInsets.only(top:ResponsiveWidget.isMediumScreen(context)?20: 40),
+                                      //     color: Colors.black,
+                                      //     padding: EdgeInsets.only(left:ResponsiveWidget.isMediumScreen(context)?15:25,right:ResponsiveWidget.isMediumScreen(context)?15: 25,top:ResponsiveWidget.isMediumScreen(context)?5: 10,bottom:ResponsiveWidget.isMediumScreen(context)?5: 10),
+                                      //     alignment: Alignment.center,
+                                      //     child: Text1(data: "Sign Up", max: ResponsiveWidget.isMediumScreen(context)?12:14, min: 12,clr: Colors.white),
+                                      //   ),
+                                      // )
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: ResponsiveWidget.isMediumScreen(context)?height*0.01: height*0.1,),
+                                //SizedBox(height: ResponsiveWidget.isMediumScreen(context)?height*0.01: height*0.1,),
                                 Padding(
                                   padding: EdgeInsets.only(left:width*0.04),
                                   child: Column(
@@ -230,7 +345,7 @@ class BLanding extends StatelessWidget{
                                                     width: ResponsiveWidget.isMediumScreen(context)?width*0.1:width*0.07,
                                                     height:ResponsiveWidget.isMediumScreen(context)?height*0.066: height*0.06,
 
-                                                    child: Text1(data: "Find Purohit", max:ResponsiveWidget.isMediumScreen(context)?12:16, min: ResponsiveWidget.isMediumScreen(context)?10:14,clr: Colors.white,weight: FontWeight.bold,),
+                                                    child: Text1(data: "Find Purohit", max:ResponsiveWidget.isMediumScreen(context)?12:16, min: ResponsiveWidget.isMobileLarge(context)?6:ResponsiveWidget.isMediumScreen(context)?10:14,clr: Colors.white,weight: FontWeight.bold,),
                                                   ),
                                                 )
                                               ],
@@ -239,7 +354,7 @@ class BLanding extends StatelessWidget{
                                         ],
                                       ),
                                       SizedBox(height: 20,),
-                                      Text2(data: "    BOOK PUROHIT IN POPULAR CITIES OF INDIA", max: ResponsiveWidget.isMediumScreen(context)?12:18,clr:Colors.black45),
+                                      Text2(data: "    POPULAR CITIES IN INDIA", max: ResponsiveWidget.isMediumScreen(context)?12:18,clr:Colors.black45),
                                       SizedBox(height: 10,),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.start,
@@ -256,7 +371,7 @@ class BLanding extends StatelessWidget{
                                                       children: <TextSpan>[
                                                         TextSpan(text: ' DELHI',
                                                             style: TextStyle(
-                                                                color: Colors.black87, fontSize: ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
+                                                                color: Colors.black87, fontSize: ResponsiveWidget.isMobileLarge(context)?8:ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
                                                             recognizer: TapGestureRecognizer()
                                                               ..onTap = () {
                                                                 Get.toNamed('/location?district=Delhi');
@@ -264,7 +379,7 @@ class BLanding extends StatelessWidget{
                                                         ),
                                                         TextSpan(text: '  BANGLORE',
                                                             style: TextStyle(
-                                                                color: Colors.black54, fontSize: ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
+                                                                color: Colors.black54, fontSize: ResponsiveWidget.isMobileLarge(context)?8:ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
                                                             recognizer: TapGestureRecognizer()
                                                               ..onTap = () {
                                                                 Get.toNamed('/location?district=Bengaluru');
@@ -272,7 +387,7 @@ class BLanding extends StatelessWidget{
                                                         ),
                                                         TextSpan(text: '  MUMBAI',
                                                             style: TextStyle(
-                                                                color: Colors.black87, fontSize: ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
+                                                                color: Colors.black87, fontSize: ResponsiveWidget.isMobileLarge(context)?8:ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
                                                             recognizer: TapGestureRecognizer()
                                                               ..onTap = () {
                                                                 Get.toNamed('/location?district=Mumbai');
@@ -280,7 +395,7 @@ class BLanding extends StatelessWidget{
                                                         ),
                                                         TextSpan(text: '  LUCKNOW',
                                                             style: TextStyle(
-                                                                color: Colors.black54, fontSize: ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
+                                                                color: Colors.black54, fontSize: ResponsiveWidget.isMobileLarge(context)?8:ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
                                                             recognizer: TapGestureRecognizer()
                                                               ..onTap = () {
                                                                 Get.toNamed('/location?district=Lucknow');
@@ -288,7 +403,7 @@ class BLanding extends StatelessWidget{
                                                         ),
                                                         TextSpan(text: '  JAIPUR',
                                                             style: TextStyle(
-                                                                color: Colors.black87, fontSize: ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
+                                                                color: Colors.black87, fontSize: ResponsiveWidget.isMobileLarge(context)?8:ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
                                                             recognizer: TapGestureRecognizer()
                                                               ..onTap = () {
                                                                 // navigate to desired screen
@@ -296,7 +411,7 @@ class BLanding extends StatelessWidget{
                                                         ),
                                                         TextSpan(text: '  VIEW MORE',
                                                             style: TextStyle(
-                                                                color: Colors.black54, fontSize: ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
+                                                                color: Colors.black54, fontSize: ResponsiveWidget.isMobileLarge(context)?8:ResponsiveWidget.isMediumScreen(context)?12:16,fontWeight: FontWeight.w600),
                                                             recognizer: TapGestureRecognizer()
                                                               ..onTap = () {
                                                                 _goToElement(18);
@@ -323,11 +438,11 @@ class BLanding extends StatelessWidget{
                       ),
                     ),
                   ),
-                  SizedBox(width: 10,),
+                  SizedBox(width: ResponsiveWidget.isMobileLarge(context)?6:10,),
                   Expanded(
                     flex: 2,
                     child: Container(
-                        //color: Color(0xffFFEBD3).withOpacity(0.5),
+                      //color: Color(0xffFFEBD3).withOpacity(0.5),
                         margin: EdgeInsets.only(top: Get.height*0.1),
                         alignment: Alignment.center,
                         width: width*0.35,
@@ -354,7 +469,7 @@ class BLanding extends StatelessWidget{
                               children: [
                                 Image.network("https://firebasestorage.googleapis.com/v0/b/flutter-bf503.appspot.com/o/website%2FGroup%207.png?alt=media&token=56d60d23-7a32-47c2-9dc9-f14ff951dd4a",height: ResponsiveWidget.isMediumScreen(context)?120:196,),
                                 SizedBox(height:ResponsiveWidget.isMediumScreen(context)?height*0.03: height*0.05,),
-                                Text2(data: "NOW BOOK PUROHIT ONLINE", max: ResponsiveWidget.isMediumScreen(context)?11:14, clr: Colors.white,),
+                                Text2(data: "BOOK FOR YOUR LOVED ONE", max: ResponsiveWidget.isMediumScreen(context)?11:14, clr: Colors.white,),
                                 SizedBox(height:ResponsiveWidget.isMediumScreen(context)?height*0.03: height*0.05,),
                                 Text2(data: "BOOK PUJA FOR YOURSELF AND YOUR LOVES ONES", max: ResponsiveWidget.isMediumScreen(context)?11:14, clr: Colors.white,),
                               ],
@@ -365,9 +480,9 @@ class BLanding extends StatelessWidget{
                               children: [
                                 Image.network("https://firebasestorage.googleapis.com/v0/b/flutter-bf503.appspot.com/o/website%2FFrame.png?alt=media&token=e8954c1c-86f5-4967-8191-756c09938d1a",height: ResponsiveWidget.isMediumScreen(context)?120:196,),
                                 SizedBox(height:ResponsiveWidget.isMediumScreen(context)?height*0.03: height*0.05,),
-                                Text2(data: "GET PUROHIT NEARBY YOU ",max: ResponsiveWidget.isMediumScreen(context)?11:14, clr: Colors.white,),
+                                Text2(data: "LIVE PUROHIT TRACKING",max: ResponsiveWidget.isMediumScreen(context)?11:14, clr: Colors.white,),
                                 SizedBox(height:ResponsiveWidget.isMediumScreen(context)?height*0.03: height*0.05,),
-                                Text2(data: "TRACK YOUR SURROUNDING PUROHIT WITH OUR LATEST ETA SYSTEM", max: ResponsiveWidget.isMediumScreen(context)?11:14, clr: Colors.white,),
+                                Text2(data: "LIVE TRACK YOUR PUROHIT WITH OUR LATEST ETA SYSTEM", max: ResponsiveWidget.isMediumScreen(context)?11:14, clr: Colors.white,),
                               ],
                             )),
                         Expanded(
@@ -444,6 +559,26 @@ class BLanding extends StatelessWidget{
 
     );
   }
+
+// InkWell buildInkWellButton(BuildContext context,String text,String loc) {
+//   return InkWell(
+//                               onTap:(){
+//                                 if (text=="Log In"){
+//                                   loginController.signup();
+//                                   _key.currentState!.openEndDrawer();
+//                                 }
+//
+//                               },
+//                               child: Text(
+//                                 "$text",
+//                                 style: Theme.of(context).textTheme.headline4!.copyWith(
+//                                     fontSize: ResponsiveWidget.isLargeScreen(context)?20:ResponsiveWidget.isMediumScreen(context)?15:5,
+//                                     color: Colors.white,
+//                                     letterSpacing: 1
+//                                 ),
+//                               ),
+//                             );
+// }
 
 }
 

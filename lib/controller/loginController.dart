@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class LoginController extends GetxController{
 var loginData = LoginData(loginType: "login",otpcomplete: false,closeEndDrawer: false).obs;

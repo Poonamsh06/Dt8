@@ -1,5 +1,5 @@
 
-import 'package:get/get.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class CommonController extends GetxController{
   var common = Common().obs;

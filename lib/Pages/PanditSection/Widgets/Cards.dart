@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:pujapurohit/colors/light_colors.dart';
+
+import 'package:pujapurohit/Imports.dart';
 
 
 class UpcomingListCard extends StatelessWidget {

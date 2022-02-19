@@ -1,17 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-import 'package:pujapurohit/Pages/NewPanditHome.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/pujanVidhiController.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:pujapurohit/Widgets/newbottombar.dart';
-import 'package:pujapurohit/controller/UserController.dart';
-
+import '../../../TopBar.dart';
+import '../../Controllers/pujanVidhiController.dart';
 import 'widgets/category_card.dart';
-
+import 'package:pujapurohit/Imports.dart';
 
 class PujaVidhi extends StatefulWidget {
   @override
@@ -172,10 +162,10 @@ class _PujaVidhiState extends State<PujaVidhi> {
                               GridView.builder(
                                 //physics: NeverScrollableScrollPhysics(),
                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: ResponsiveWidget.isSmallScreen(context)? 2:ResponsiveWidget.isMediumScreen(context)?3:4,
+                                    crossAxisCount: ResponsiveWidget.isSmallScreen(context)? 2:ResponsiveWidget.isMobileLarge(context)?3:4,
                                     crossAxisSpacing: 20,
                                     mainAxisSpacing: 20,
-                                    childAspectRatio: ResponsiveWidget.isSmallScreen(context)? 0.85:ResponsiveWidget.isMediumScreen(context)? 1:1.5
+                                    childAspectRatio: ResponsiveWidget.isSmallScreen(context)? 0.85:ResponsiveWidget.isMobileLarge(context)? 1:1.5
                                 ),
                                 shrinkWrap: true,
                                 itemCount: pujas.length,

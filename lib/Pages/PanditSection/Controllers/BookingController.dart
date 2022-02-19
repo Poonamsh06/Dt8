@@ -1,8 +1,5 @@
+import 'package:pujapurohit/Imports.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
-
-import 'package:pujapurohit/Models/BookingModal.dart';
 
 class BookingController extends GetxController{
    final String? uid;

@@ -1,8 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
-import 'package:pujapurohit/Models/serviceModal.dart';
-import 'package:pujapurohit/Models/servicetop.dart';
 
+import 'package:pujapurohit/Imports.dart';
 
 class ServiceTopController extends GetxController{
   final String uid;

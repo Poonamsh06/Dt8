@@ -67,6 +67,7 @@ dependencies:
   share_plus: ^3.0.0
   js: ^0.6.3
   dio: ^4.0.0
+  excel:
   #flutter_image_slideshow: ^0.1.2
   #flutter_google_places: ^0.3.0
   
@@ -104,7 +105,19 @@ flutter:
     - assets/images/signin2.png
     - assets/images/scooter.png
     - assets/images/google-play-badge.png
+    - assets/images/calander.jpg
+    - assets/images/puja1.jpg
+    - assets/images/facts.png
+    - assets/images/muharat.png
+    - assets/images/calander.png
+    - assets/images/help.png
+    - assets/images/facts.png
+    - assets/images/banner_bg.png
+    - assets/images/m.png
+    - assets/images/f.png
+    - assets/images/rituals.jpg
     - assets/mark.png
+    - assets/Rectangle_30.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

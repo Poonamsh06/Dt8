@@ -1,7 +1,4 @@
-
-
-import 'package:pujapurohit/Models/BModal.dart';
-import 'package:pujapurohit/Pages/Services/firestore.dart';
+import 'package:pujapurohit/Imports.dart';
 
 abstract class Database{
   Stream<List<BModal>> readBData(double latitude,double longitude);

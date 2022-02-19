@@ -1,8 +1,4 @@
-
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:url_launcher/link.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class BottomBar extends StatelessWidget {
   @override
@@ -113,7 +109,7 @@ class BottomBar extends StatelessWidget {
             style: TextStyle(
               color: Colors.blueGrey[300],
               fontSize: 14,
-            ),          
+            ),
           ),
         ],
       ),
@@ -191,57 +187,57 @@ class BottomBarColumn extends StatelessWidget {
             height: 10,
           ),
           Link(
-            uri: Uri.parse('$l1'),
-            target: LinkTarget.blank,
-            builder: (context, followlink) {
-              return InkWell(
-                onTap: followlink,
-                child: AutoSizeText(
-                  s1!,
-                  style: TextStyle(
-                    color: Colors.white,
+              uri: Uri.parse('$l1'),
+              target: LinkTarget.blank,
+              builder: (context, followlink) {
+                return InkWell(
+                  onTap: followlink,
+                  child: AutoSizeText(
+                    s1!,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    maxFontSize: 14,
+                    minFontSize: 14,
                   ),
-                  maxFontSize: 14,
-                  minFontSize: 14,
-                ),
-              );
-            }
+                );
+              }
           ),
           SizedBox(height: 5),
           Link(
-            uri: Uri.parse('$l2'),
-            target: LinkTarget.blank,
-            builder: (context, followlink) {
-              return InkWell(
-                onTap: followlink,
-                child: AutoSizeText(
-                  s2!,
-                  style: TextStyle(
-                    color: Colors.white,
+              uri: Uri.parse('$l2'),
+              target: LinkTarget.blank,
+              builder: (context, followlink) {
+                return InkWell(
+                  onTap: followlink,
+                  child: AutoSizeText(
+                    s2!,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    maxFontSize: 14,
+                    minFontSize: 14,
                   ),
-                  maxFontSize: 14,
-                  minFontSize: 14,
-                ),
-              );
-            }
+                );
+              }
           ),
           SizedBox(height: 5),
           Link(
-            uri: Uri.parse('$l3'),
-            target: LinkTarget.blank,
-            builder: (context, followlink) {
-              return InkWell(
-                onTap: followlink,
-                child: AutoSizeText(
-                  s3!,
-                  style: TextStyle(
-                    color: Colors.white,
+              uri: Uri.parse('$l3'),
+              target: LinkTarget.blank,
+              builder: (context, followlink) {
+                return InkWell(
+                  onTap: followlink,
+                  child: AutoSizeText(
+                    s3!,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    maxFontSize: 14,
+                    minFontSize: 14,
                   ),
-                  maxFontSize: 14,
-                  minFontSize: 14,
-                ),
-              );
-            }
+                );
+              }
           ),
         ],
       ),

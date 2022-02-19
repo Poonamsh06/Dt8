@@ -1,54 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:pujapurohit/Pages/PanditSection/Contest.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/EventController.dart';
-import 'package:pujapurohit/Pages/PanditSection/CustomCIty.dart';
-import 'package:pujapurohit/Pages/PanditSection/Detail.dart';
-import 'package:pujapurohit/Pages/PanditSection/NewLandingPage.dart';
-import 'package:pujapurohit/Pages/PanditSection/Topbar/calender.dart';
-import 'package:pujapurohit/Pages/PanditSection/Topbar/livedarshan.dart';
-import 'package:pujapurohit/Pages/PanditSection/Topbar/muhurat.dart';
-import 'package:pujapurohit/Pages/Services/database.dart';
-import 'package:pujapurohit/Pages/locationChange.dart';
-import 'package:pujapurohit/SignIn/StarterController.dart';
-import 'package:pujapurohit/SignIn/Update.dart';
-import 'package:pujapurohit/Starter/BLanding.dart';
-import 'package:pujapurohit/Starter/Landing.dart';
-import 'package:pujapurohit/Starter/SplashScreen.dart';
-import 'package:pujapurohit/Widgets/YoutubePlayer.dart';
-import 'package:pujapurohit/construction.dart';
-import 'package:pujapurohit/controller/loaderController.dart';
-import 'Pages/NewPanditHome.dart';
-import 'Pages/PanditSection/Account.dart';
-import 'Pages/PanditSection/Event/EventDetail.dart';
-import 'Pages/PanditSection/Event/EventRegistration.dart';
-import 'Pages/PanditSection/Event/Events.dart';
-import 'Pages/PanditSection/Event/ImageView.dart';
+
+import 'package:pujapurohit/Imports.dart';
 import 'Pages/PanditSection/PanditHome.dart';
-import 'Pages/PanditSection/Profile.dart';
-import 'Pages/PanditSection/ServiceDetail.dart';
-import 'Pages/PanditSection/Topbar/PujanVidhi/pujanVidhi.dart';
-import 'Pages/PanditSection/Topbar/PujanVidhi/screens/details_screen.dart';
-import 'Pages/PanditSection/Topbar/article.dart';
-import 'Pages/PanditSection/Topbar/offers.dart';
-import 'Pages/PanditSection/Widgets/ImageView.dart';
-import 'Pages/PanditSection/Topbar/live.dart';
-import 'Pages/PanditSection/Widgets/themes.dart';
-import 'Pages/booking.dart';
-import 'Pages/searchPlaces.dart';
-import 'SignIn/AuthController.dart';
-import 'Widgets/Loader.dart';
-import 'bindings/LocationBinding.dart';
-import 'colors/light_colors.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:get/get.dart';
-import 'controller/LocationController.dart';
-import 'controller/UserController.dart';
-import 'controller/loginController.dart';
+
 void main()async{
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: LightColors.kLightYellow, // navigation bar color

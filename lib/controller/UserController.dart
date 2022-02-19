@@ -1,10 +1,6 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:pujapurohit/Models/User.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
 
+import 'package:pujapurohit/Imports.dart';
 
 class UserController extends GetxController{
 

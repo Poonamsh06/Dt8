@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
+
+import 'package:pujapurohit/Imports.dart';
 
 class Construction extends StatelessWidget{
   @override

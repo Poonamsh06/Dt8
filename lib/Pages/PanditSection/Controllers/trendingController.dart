@@ -1,6 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
-import 'package:pujapurohit/Models/trendingModal.dart';
+
+import 'package:pujapurohit/Imports.dart';
+
 
 class TrendingController extends GetxController{
 Rxn<List<TrendingModal>> trendingList = Rxn<List<TrendingModal>>();

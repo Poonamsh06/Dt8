@@ -1,39 +1,5 @@
-import 'dart:io';
-import 'dart:typed_data';
-import 'package:carousel_slider/carousel_controller.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-import 'package:get/get.dart';
-import 'package:http/http.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:pujapurohit/Pages/NewPanditHome.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/EventController.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/SignIn/login.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:pujapurohit/colors/light_colors.dart';
-import 'package:pujapurohit/controller/UserController.dart';
-import 'package:pujapurohit/controller/loaderController.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:firebase_core/firebase_core.dart' as firebase_core;
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:image_picker/image_picker.dart';
-import 'package:uuid/uuid.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:wc_flutter_share/wc_flutter_share.dart';
+import 'package:pujapurohit/Imports.dart';
 import 'dart:ui' as ui;
-import '../Controllers/panditsController.dart';
-import '../Detail.dart';
 
 class ImageView extends StatefulWidget{
 

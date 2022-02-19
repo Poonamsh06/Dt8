@@ -1,9 +1,6 @@
 @JS()
 library stripe;
-
-import 'package:flutter/material.dart';
-import 'package:js/js.dart';
-import 'package:pujapurohit/Pages/Checkout/constants.dart';
+import 'package:pujapurohit/Imports.dart';
 
 void redirectToCheckout(BuildContext _,int index) async {
   final stripe = Stripe(apiKey);

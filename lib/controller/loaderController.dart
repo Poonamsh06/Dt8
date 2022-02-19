@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class Load{
   bool active = false;

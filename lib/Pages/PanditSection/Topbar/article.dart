@@ -1,18 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:pujapurohit/Imports.dart';
 import 'package:intl/intl.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:pujapurohit/Widgets/newbottombar.dart';
-import 'package:pujapurohit/colors/light_colors.dart';
-
-import '../../NewPanditHome.dart';
+import '../../TopBar.dart';
 
 class Varat extends StatefulWidget {
   @override
@@ -27,10 +16,10 @@ class _VaratState extends State<Varat> {
     String somesnaps =
         'Healty safe cotton motoposatima evergreen samphonisis got healness too the organiyaplanophisis. Update to avagardo ultaplosis';
     return Scaffold(
-     appBar: PreferredSize(preferredSize: Size(width,height*0.099,), 
-      child:TopTabs()
-      
-      
+      appBar: PreferredSize(preferredSize: Size(width,height*0.099,),
+          child:TopTabs()
+
+
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -38,18 +27,18 @@ class _VaratState extends State<Varat> {
           children: [
             Stack(
               children: [
-             
+
                 Container(
                     height: height,
                     width: width,
                     padding: EdgeInsets.only(top: 10, ),
                     //margin: EdgeInsets.only(top: height * 0.15),
                     decoration: BoxDecoration(
-                        // color: Colors.white,
-                        // borderRadius: BorderRadius.only(
-                        //     topLeft: Radius.circular(width * 0.1),
-                        //     topRight: Radius.circular(width * 0.1))
-                            ),
+                      // color: Colors.white,
+                      // borderRadius: BorderRadius.only(
+                      //     topLeft: Radius.circular(width * 0.1),
+                      //     topRight: Radius.circular(width * 0.1))
+                    ),
                     child: StreamBuilder<DocumentSnapshot>(
                         stream: FirebaseFirestore.instance
                             .doc('PujaPurohitFiles/Article')
@@ -60,7 +49,7 @@ class _VaratState extends State<Varat> {
                           }
                           List<dynamic> articles = snapshot.data!.get('articles');
                           articles.sort((a, b) => (b["time"]).compareTo(a["time"]));
-                         // List<dynamic> sortedArticle = articles.);
+                          // List<dynamic> sortedArticle = articles.);
                           return ResponsiveWidget.isSmallScreen(context)?ListView.builder(
                               shrinkWrap: true,
                               //physics: NeverScrollableScrollPhysics(),
@@ -85,40 +74,40 @@ class _VaratState extends State<Varat> {
                                     articles[index]['views']);
                                 //return Text("hi");
                               }):    GridView.builder(
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(  
-                                       crossAxisCount: ResponsiveWidget.isMediumScreen(context)?2:3,
-                                        crossAxisSpacing: 10,
-                                        mainAxisSpacing: 10,
-                                       childAspectRatio: ResponsiveWidget.isMediumScreen(context) ?0.5:0.5,
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: ResponsiveWidget.isMediumScreen(context)?2:3,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: ResponsiveWidget.isMediumScreen(context) ?0.5:0.5,
 
-                                  ),  
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: articles.length,
-                                itemBuilder: (_, index) {
-                                   List<dynamic> content = articles[index]['content'];
-                                List<dynamic> likes = articles[index]['likes'];
-                                  return ArticleCards(
-                                    articles[index],
-                                    likes,
-                                    width,
-                                    height,
-                                    somesnaps,
-                                    articles[index]['img'],
-                                    articles[index]['title'],
-                                    articles[index]['sender'],
-                                    articles[index]['sender_img'],
-                                    content[0]['data'],
-                                    content,
-                                    articles[index]['time'],
-                                    articles[index]['views']);
-                                }, 
-                              );
+                            ),
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: articles.length,
+                            itemBuilder: (_, index) {
+                              List<dynamic> content = articles[index]['content'];
+                              List<dynamic> likes = articles[index]['likes'];
+                              return ArticleCards(
+                                  articles[index],
+                                  likes,
+                                  width,
+                                  height,
+                                  somesnaps,
+                                  articles[index]['img'],
+                                  articles[index]['title'],
+                                  articles[index]['sender'],
+                                  articles[index]['sender_img'],
+                                  content[0]['data'],
+                                  content,
+                                  articles[index]['time'],
+                                  articles[index]['views']);
+                            },
+                          );
                         }))
-              
-              
-              
-              
+
+
+
+
               ],
             ),
           ],
@@ -141,7 +130,7 @@ class _VaratState extends State<Varat> {
       List<dynamic> content,
       Timestamp time,
       var views) {
-    
+
     final ArticleController articleController = Get.put(ArticleController());
     final AuthController authController = Get.put(AuthController());
     DateTime date = time.toDate();
@@ -179,7 +168,7 @@ class _VaratState extends State<Varat> {
           height: height * 0.3,
           width: width * 0.85,
           decoration: BoxDecoration(
-             // boxShadow: [BoxShadow(color: Color(0xFFE6E6E6), blurRadius: 20)],
+            // boxShadow: [BoxShadow(color: Color(0xFFE6E6E6), blurRadius: 20)],
               borderRadius: BorderRadius.all(Radius.circular(10)),
               image: DecorationImage(
                   image: NetworkImage('$image'), fit: BoxFit.contain)),
@@ -213,46 +202,46 @@ class _VaratState extends State<Varat> {
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
 
-                            //  setState(() {
-                            //    dynamic views = articles['views']+1;
-                            //    FirebaseFirestore.instance//ab chala k dekh
-                            //        .doc('PujaPurohitFiles/Article')
-                            //        .update({
-                            //      "articles": FieldValue.arrayUnion([
-                            //        {
-                            //          // 'comments': articles['comments'],//kya hua
-                            //          'img': articles['img'],
-                            //          'content': articles['content'],
-                            //          'likes': articles['likes'],
-                            //          'sender': articles['sender'],
-                            //          'sender_img': articles['sender_img'],
-                            //          'time': articles['time'],
-                            //          'views': views,
-                            //          'title': articles['title']
-                            //        }
-                            //      ])
-                            //    }).
-                            //    whenComplete(() {
-                            //      FirebaseFirestore.instance
-                            //          .doc('PujaPurohitFiles/Article')
-                            //          .update({
-                            //        "articles": FieldValue.arrayRemove([articles])
-                            //      });
-                            //    });
-                            //    articleController.updateSomeData(title, Sender,
-                            //        Sender_img, time, content, views, image,articles['likes'].length);
-                            //    Get.toNamed('/articledetail');
-                            //  });
-                             articleController.updateSomeData(title, Sender,
-                                   Sender_img, time, content, views, image,articles['likes'].length);
-                             
-                             Get.toNamed('/articledetail');
+                              //  setState(() {
+                              //    dynamic views = articles['views']+1;
+                              //    FirebaseFirestore.instance//ab chala k dekh
+                              //        .doc('PujaPurohitFiles/Article')
+                              //        .update({
+                              //      "articles": FieldValue.arrayUnion([
+                              //        {
+                              //          // 'comments': articles['comments'],//kya hua
+                              //          'img': articles['img'],
+                              //          'content': articles['content'],
+                              //          'likes': articles['likes'],
+                              //          'sender': articles['sender'],
+                              //          'sender_img': articles['sender_img'],
+                              //          'time': articles['time'],
+                              //          'views': views,
+                              //          'title': articles['title']
+                              //        }
+                              //      ])
+                              //    }).
+                              //    whenComplete(() {
+                              //      FirebaseFirestore.instance
+                              //          .doc('PujaPurohitFiles/Article')
+                              //          .update({
+                              //        "articles": FieldValue.arrayRemove([articles])
+                              //      });
+                              //    });
+                              //    articleController.updateSomeData(title, Sender,
+                              //        Sender_img, time, content, views, image,articles['likes'].length);
+                              //    Get.toNamed('/articledetail');
+                              //  });
+                              articleController.updateSomeData(title, Sender,
+                                  Sender_img, time, content, views, image,articles['likes'].length);
+
+                              Get.toNamed('/articledetail');
                             })
                     ]),
               ),
               SizedBox(
                 height: 15,
-              ),             
+              ),
               // Row(
               //   children: [
               //     InkWell(
@@ -319,9 +308,9 @@ class _VaratState extends State<Varat> {
               //     ),
               //   ],
               // ),
-              
-              
-              
+
+
+
               SizedBox(height: 50,),
             ],
           ),
@@ -363,14 +352,14 @@ class ArticleData {
       {
         this.likes,
         this.img,
-      this.title,
-      this.sender,
-      this.sender_image,
-      this.time,
-      this.liked,
-      this.totalLikes,
-      this.contents,
-      this.views});
+        this.title,
+        this.sender,
+        this.sender_image,
+        this.time,
+        this.liked,
+        this.totalLikes,
+        this.contents,
+        this.views});
 }
 
 class ArticleDetail extends StatelessWidget {
@@ -380,14 +369,14 @@ class ArticleDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-   // DateTime date = articleController.articleData.value.time!.toDate();
+    // DateTime date = articleController.articleData.value.time!.toDate();
     String somesnaps =
         'Healty safe cotton motoposatima evergreen samphonisis got healness too the organiyaplanophisis. Update to avagardo ultaplosis';
     return Scaffold(
-      appBar:PreferredSize(preferredSize: Size(width,height*0.099,), 
-      child:TopTabs()
-      
-      
+      appBar:PreferredSize(preferredSize: Size(width,height*0.099,),
+          child:TopTabs()
+
+
       ),
       body: Stack(
         children: [
@@ -396,10 +385,10 @@ class ArticleDetail extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 25,),
-               
+
                 Padding(
                   padding:
-                      EdgeInsets.only(top: 20, left: 10, right: width * 0.1),
+                  EdgeInsets.only(top: 20, left: 10, right: width * 0.1),
                   child: SizedBox(
                       width: width * 0.85,
                       child: Obx(() {
@@ -417,7 +406,7 @@ class ArticleDetail extends StatelessWidget {
                           ),
                           subtitle: Text1(
                             data:
-                                "",
+                            "",
                             max: 12,
                             min: 10,
                             clr: Colors.black54,
@@ -469,7 +458,7 @@ class ArticleDetail extends StatelessWidget {
                               ),
                               Text1(
                                 data:
-                                    '${articleController.articleData.value.views}',
+                                '${articleController.articleData.value.views}',
                                 max: 11,
                                 min: 10,
                                 clr: Colors.black,
@@ -479,9 +468,9 @@ class ArticleDetail extends StatelessWidget {
                         ],
                       );
                     })),
-               
-               
-               
+
+
+
                 SizedBox(
                   height: 10,
                 ),
@@ -497,7 +486,7 @@ class ArticleDetail extends StatelessWidget {
                   height: 20,
                 ),
                 Padding(
-                   padding:EdgeInsets.only(left:ResponsiveWidget.isSmallScreen(context)? 10:width*0.1,right:ResponsiveWidget.isSmallScreen(context)? 10:width*0.1),
+                  padding:EdgeInsets.only(left:ResponsiveWidget.isSmallScreen(context)? 10:width*0.1,right:ResponsiveWidget.isSmallScreen(context)? 10:width*0.1),
                   child: Obx(() {
                     return ListView.builder(
                         shrinkWrap: true,
@@ -515,7 +504,7 @@ class ArticleDetail extends StatelessWidget {
                                   .articleData.value.contents![index]['type'],
                               articleController
                                   .articleData.value.contents![index]['bold'],
-                                  context
+                              context
                           );
 
                         });
@@ -528,7 +517,7 @@ class ArticleDetail extends StatelessWidget {
               ],
             ),
           ),
-          
+
         ],
       ),
     );
@@ -541,11 +530,11 @@ class ArticleDetail extends StatelessWidget {
       child: type == 'txt'
           ? Text(data, style: TextStyle(fontSize: ResponsiveWidget.isSmallScreen(context)?14:20,))
           : SizedBox(
-              height: height * 0.25,
-              child: Image.network(
-                '${data}',
-                fit: BoxFit.contain,
-              )),
+          height: height * 0.25,
+          child: Image.network(
+            '${data}',
+            fit: BoxFit.contain,
+          )),
     );
   }
 }

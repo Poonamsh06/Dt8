@@ -1,12 +1,6 @@
 
-import 'dart:async';
+import 'package:pujapurohit/Imports.dart';
 
-import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:pujapurohit/Functions/ReverseGeocode.dart';
 class LocationController extends GetxController{
   var location = LocationData(serviceEnabled: false,ppermision: false,address2: 'Open Map').obs;
   

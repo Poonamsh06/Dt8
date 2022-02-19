@@ -1,13 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-
-import 'package:provider/provider.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/SignIn/login.dart';
-import 'package:pujapurohit/controller/UserController.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class Account extends StatelessWidget{
   AuthController authController = Get.find();

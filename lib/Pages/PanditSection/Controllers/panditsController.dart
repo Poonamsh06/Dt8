@@ -1,8 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
-import 'package:get/get.dart';
-
-import 'package:pujapurohit/Models/BModal.dart';
+import 'package:pujapurohit/Imports.dart';
 
 
 class PanditController extends GetxController{

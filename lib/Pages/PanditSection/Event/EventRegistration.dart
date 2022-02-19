@@ -343,7 +343,8 @@ class _Registration_FormState extends State<Registration_Form> {
                                     registerForm.checkLogin();
                                     if(events[int.parse(indx)]["price"]==0){
                                       if(name==null || _imageFileList ==null || _chosenValue==null || _chosenValueG ==null){
-                                        return Get.snackbar("Info", "Please fill all fields properly",backgroundColor: Colors.white);
+                                        //return Get.snackbar("Info", "Please fill all fields properly",backgroundColor: Colors.white);
+
                                       }
                                       else{
                                         loadController.updateLoad();
@@ -381,7 +382,7 @@ class _Registration_FormState extends State<Registration_Form> {
                                     }
                                     else{                                       
                                       if(name==null || _imageFileList == null || _chosenValue==null || _chosenValueG ==null){
-                                        return Get.snackbar("Info", "Please fill all fields properly",backgroundColor: Colors.white);
+                                        //return Get.snackbar("Info", "Please fill all fields properly",backgroundColor: Colors.white);
                                       }
                                       else{   
                                         loadController.updateLoad();

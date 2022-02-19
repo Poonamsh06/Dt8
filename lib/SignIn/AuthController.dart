@@ -1,15 +1,8 @@
+import 'package:pujapurohit/Imports.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:pujapurohit/Models/User.dart';
-import 'package:pujapurohit/SignIn/login.dart';
-import 'package:pujapurohit/Starter/SplashScreen.dart';
-import 'package:pujapurohit/controller/LocationController.dart';
-import 'package:pujapurohit/controller/loaderController.dart';
-import 'package:pujapurohit/controller/loginController.dart';
 import 'dart:html' as html;
+
+
 
 
 class AuthController extends GetxController {

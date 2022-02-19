@@ -1,20 +1,6 @@
 import 'dart:html';
-import 'dart:ui' as ui;
-import 'dart:convert';
-import 'dart:js';
-//conditional import
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotted_line/dotted_line.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:otp/otp.dart';
-import 'package:pujapurohit/Models/BookingModal.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/BookingController.dart';
 import 'package:pujapurohit/Payments/UiFake.dart' if (dart.library.html) 'dart:ui' as ui;
-import 'package:flutter/material.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:url_launcher/link.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class RazorPayWeb extends StatefulWidget {
   final BookingModal? bookingModal;

@@ -1,16 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:pujapurohit/Functions/ReverseGeocode.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:pujapurohit/colors/light_colors.dart';
-import 'package:pujapurohit/controller/LocationController.dart';
-import 'package:pujapurohit/controller/UserController.dart';
+
 import 'dart:html' as html;
+import 'package:pujapurohit/Imports.dart';
+
 class LocationChange extends StatefulWidget{
   final double? lati;
   final double? longi;

@@ -1,6 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
-import 'package:pujapurohit/Models/CityModal.dart';
+
+
+import 'package:pujapurohit/Imports.dart';
 
 class CitiesController extends GetxController{
   Rx<CityModel> userModel =CityModel().obs;

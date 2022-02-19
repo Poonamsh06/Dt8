@@ -1,6 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
-import 'package:pujapurohit/Models/upcomingEvent.dart';
+
+
+import 'package:pujapurohit/Imports.dart';
 
 class UpcomingEventController extends GetxController{
 Rxn<List<UpcomingEventModel>> upcomingList = Rxn<List<UpcomingEventModel>>();

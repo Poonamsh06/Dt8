@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pujapurohit/Imports.dart';
 
 class ServiceModal {
   String? benefit,detail,samagri,image,keyword,offer,service,serviceId,time,type;
