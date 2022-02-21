@@ -1,5 +1,5 @@
 
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 import 'Pages/PanditSection/PanditHome.dart';
 
 void main()async{

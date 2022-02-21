@@ -1,5 +1,5 @@
 
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class BigScreenDetailPage extends StatelessWidget{
   final DetailSideMenu detailSideMenu = Get.put(DetailSideMenu());

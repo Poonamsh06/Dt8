@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class ServiceDetail extends StatelessWidget{
   @override

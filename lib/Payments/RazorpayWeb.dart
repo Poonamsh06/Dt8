@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'package:pujapurohit/Payments/UiFake.dart' if (dart.library.html) 'dart:ui' as ui;
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class RazorPayWeb extends StatefulWidget {
   final BookingModal? bookingModal;

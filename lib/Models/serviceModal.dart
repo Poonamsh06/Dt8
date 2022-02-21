@@ -1,4 +1,4 @@
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class ServiceModal {
   String? benefit,detail,samagri,image,keyword,offer,service,serviceId,time,type;

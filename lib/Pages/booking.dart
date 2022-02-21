@@ -1,7 +1,9 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
+
+
 
 class Booking extends StatelessWidget{
   @override
@@ -38,59 +40,33 @@ class Booking extends StatelessWidget{
                 children: [
                   Icon(CupertinoIcons.map_pin_ellipse,color: Colors.orangeAccent,),
                   SizedBox(width: 10,),
-                  Text1(data: "Booking requested", max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
+                  Text1(data: bookingString, max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
                   SizedBox(width: 10,),
                   InkWell(
                       onTap: (){
-                        Get.defaultDialog(backgroundColor: Colors.white,title:"Info",middleText: "Booking is requested from your side purohit will update their confirmation within 30 min",middleTextStyle: GoogleFonts.aBeeZee(color: Colors.black54,fontSize: 12,wordSpacing: 1.5));
+                        Get.defaultDialog(backgroundColor: Colors.white,title:"Info",middleText: bookingDialogMessage,middleTextStyle: GoogleFonts.aBeeZee(color: Colors.black54,fontSize: 12,wordSpacing: 1.5));
                       },
                       child: Icon(CupertinoIcons.question_circle,color: Colors.grey,size: 16,))
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left:10.0),
-                child: DottedLine(
-                  direction: Axis.vertical,
-                  lineLength: 30,
-                  lineThickness: 1.5,
-                  dashLength: 2.0,
-                  dashColor: bookingDetailController.bookingModel.value.rejected!?Colors.redAccent:bookingDetailController.bookingModel.value.request!?Colors.orangeAccent:Colors.grey,
-                  dashRadius: 0.0,
-                  dashGapLength: 4.0,
-                  dashGapColor: Colors.transparent,
-                  dashGapRadius: 0.0,
-                ),
-              ),
+              PaddedDottedLine(bookingDetailController: bookingDetailController, dashColorCondition: bookingDetailController.bookingModel.value.rejected),
               Row(
                 children: [
                   Icon(CupertinoIcons.map_pin_ellipse,color: bookingDetailController.bookingModel.value.rejected!?Colors.redAccent:bookingDetailController.bookingModel.value.request!?Colors.orangeAccent:Colors.grey,),
                   SizedBox(width: 10,),
-                  Text1(data: bookingDetailController.bookingModel.value.rejected!?"Declined by purohit":bookingDetailController.bookingModel.value.request!?"Request Accepted":"Pending Status", max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
+                  Text1(data: bookingDetailController.bookingModel.value.rejected!?bookingDecline:bookingDetailController.bookingModel.value.request!?bookingAccept:bookingPending, max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
                   SizedBox(width: 10,),
                   InkWell(
                       onTap: (){
-                        bookingDetailController.bookingModel.value.rejected!?Get.defaultDialog(backgroundColor: Colors.white,title:"Info",middleText: "Booking is declined by purohit he is not available at the given booking time\nSamvad with him or click on help button to contact us.",middleTextStyle: GoogleFonts.aBeeZee(color: Colors.black54,fontSize: 12,wordSpacing: 1.5))
-                        :bookingDetailController.bookingModel.value.request!?Get.defaultDialog(backgroundColor: Colors.white,title:"Info",middleText: "Purohit accepted your booking request. Kindly confirm from your end.",middleTextStyle: GoogleFonts.aBeeZee(color: Colors.black54,fontSize: 12,wordSpacing: 1.5)):
-                        Get.defaultDialog(backgroundColor: Colors.white,title:"Info",middleText: "Waiting for the confirmation from purohit end",middleTextStyle: GoogleFonts.aBeeZee(color: Colors.black54,fontSize: 12,wordSpacing: 1.5))
+                        bookingDetailController.bookingModel.value.rejected!?Get.defaultDialog(backgroundColor: Colors.white,title:"Info",middleText: rejectedBookingMessage,middleTextStyle: GoogleFonts.aBeeZee(color: Colors.black54,fontSize: 12,wordSpacing: 1.5))
+                        :bookingDetailController.bookingModel.value.request!?Get.defaultDialog(backgroundColor: Colors.white,title:"Info",middleText: acceptedBookingMessage,middleTextStyle: GoogleFonts.aBeeZee(color: Colors.black54,fontSize: 12,wordSpacing: 1.5)):
+                        Get.defaultDialog(backgroundColor: Colors.white,title:"Info",middleText: waitingBookingMessage,middleTextStyle: GoogleFonts.aBeeZee(color: Colors.black54,fontSize: 12,wordSpacing: 1.5))
                         ;
                       },
                       child: Icon(CupertinoIcons.question_circle,color: Colors.grey,size: 16,))
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left:10.0),
-                child: DottedLine(
-                  direction: Axis.vertical,
-                  lineLength: 30,
-                  lineThickness: 1.5,
-                  dashLength: 2.0,
-                  dashColor: bookingDetailController.bookingModel.value.request!?Colors.orangeAccent: Colors.grey,
-                  dashRadius: 0.0,
-                  dashGapLength: 4.0,
-                  dashGapColor: Colors.transparent,
-                  dashGapRadius: 0.0,
-                ),
-              ),
+              PaddedDottedLine(bookingDetailController: bookingDetailController, dashColorCondition: bookingDetailController.bookingModel.value.request),
               Row(
                 children: [
                   Icon(CupertinoIcons.map_pin_ellipse,color:bookingDetailController.bookingModel.value.payment!?Colors.orangeAccent: Colors.grey,),
@@ -104,20 +80,7 @@ class Booking extends StatelessWidget{
                       child: Icon(CupertinoIcons.question_circle,color: Colors.grey,size: 16,))
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left:10.0),
-                child: DottedLine(
-                  direction: Axis.vertical,
-                  lineLength: 30,
-                  lineThickness: 1.5,
-                  dashLength: 2.0,
-                  dashColor: bookingDetailController.bookingModel.value.payment!?Colors.orangeAccent:Colors.grey,
-                  dashRadius: 0.0,
-                  dashGapLength: 4.0,
-                  dashGapColor: Colors.transparent,
-                  dashGapRadius: 0.0,
-                ),
-              ),
+              PaddedDottedLine(bookingDetailController: bookingDetailController,dashColorCondition: bookingDetailController.bookingModel.value.payment,),
              bookingDetailController.bookingModel.value.samagri!?Row(
                 children: [
                   Icon(CupertinoIcons.map_pin_ellipse,color: Colors.grey,),
@@ -125,20 +88,7 @@ class Booking extends StatelessWidget{
                   Text1(data: "Samagri Delivery", max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
                 ],
               ):SizedBox(),
-              bookingDetailController.bookingModel.value.samagri!?Padding(
-                padding: const EdgeInsets.only(left:10.0),
-                child: DottedLine(
-                  direction: Axis.vertical,
-                  lineLength: 30,
-                  lineThickness: 1.5,
-                  dashLength: 2.0,
-                  dashColor: Colors.grey,
-                  dashRadius: 0.0,
-                  dashGapLength: 4.0,
-                  dashGapColor: Colors.transparent,
-                  dashGapRadius: 0.0,
-                ),
-              ):SizedBox(),
+              bookingDetailController.bookingModel.value.samagri!?PaddedDottedLine2():SizedBox(),
               Row(
                 children: [
                   Icon(CupertinoIcons.map_pin_ellipse,color: Colors.grey,),
@@ -146,20 +96,7 @@ class Booking extends StatelessWidget{
                   Text1(data: "Completed", max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left:10.0),
-                child: DottedLine(
-                  direction: Axis.vertical,
-                  lineLength: 30,
-                  lineThickness: 1.5,
-                  dashLength: 2.0,
-                  dashColor: Colors.grey,
-                  dashRadius: 0.0,
-                  dashGapLength: 4.0,
-                  dashGapColor: Colors.transparent,
-                  dashGapRadius: 0.0,
-                ),
-              ),
+              PaddedDottedLine2(),
               Row(
                 children: [
                   Icon(CupertinoIcons.map_pin_ellipse,color: Colors.grey,),
@@ -269,17 +206,7 @@ class Booking extends StatelessWidget{
                    ],
                  ),
                  SizedBox(height: 20,),
-                 DottedLine(
-                   direction: Axis.horizontal,
-                   lineLength: double.infinity,
-                   lineThickness: 1.0,
-                   dashLength: 2.0,
-                   dashColor: Colors.grey,
-                   dashRadius: 0.0,
-                   dashGapLength: 4.0,
-                   dashGapColor: Colors.transparent,
-                   dashGapRadius: 0.0,
-                 ),
+                 PaddedDottedLine2(),
                  SizedBox(height: 10,),
                  Buttons(bookingModal)
                ],
@@ -319,27 +246,9 @@ class Booking extends StatelessWidget{
       if(bookingModal.cancel == true){
         return  Row(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Colors.orangeAccent
-                  ),
-                  color: Colors.orangeAccent
-              ),
-              padding: EdgeInsets.all(10),
-              child: Text1(data: "REORDER", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.white,),
-            ),
+            ButtonContainers(data: reorder,color: Colors.orangeAccent,color2: Colors.white,),
             SizedBox(width: 10,),
-            Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Colors.orangeAccent
-                  ),
-                  color: Colors.white
-              ),
-              padding: EdgeInsets.all(10),
-              child: Text1(data: "HELP", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-            )
+            ButtonContainers(data: help,color: Colors.white,color2: Colors.orangeAccent),
           ],
         );
       }
@@ -347,27 +256,9 @@ class Booking extends StatelessWidget{
         if(bookingModal.cancel == true){
           return  Row(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.orangeAccent
-                    ),
-                    color: Colors.orangeAccent
-                ),
-                padding: EdgeInsets.all(10),
-                child: Text1(data: "REORDER", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.white,),
-              ),
+          ButtonContainers(data: reorder,color: Colors.orangeAccent,color2: Colors.white),
               SizedBox(width: 10,),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.orangeAccent
-                    ),
-                    color: Colors.white
-                ),
-                padding: EdgeInsets.all(10),
-                child: Text1(data: "HELP", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-              )
+              ButtonContainers(data: help,color: Colors.white,color2: Colors.orangeAccent),
             ],
           );
         }
@@ -386,52 +277,25 @@ class Booking extends StatelessWidget{
                children: [
                  Icon(CupertinoIcons.chat_bubble_2,color: Colors.orangeAccent,size: 20,),
                  SizedBox(width: 5,),
-                 Text1(data: "SAMVAD", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
+                 Text1(data: samvad, max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
                ],
              ),
            ),
            SizedBox(width: 10,),
-           Container(
-             decoration: BoxDecoration(
-                 border: Border.all(
-                     color: Colors.orangeAccent
-                 ),
-                 color: Colors.orangeAccent
-             ),
-             padding: EdgeInsets.all(10),
-             child: Text1(data: "HELP", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.white,),
-           ),
+           ButtonContainers(data: help,color: Colors.orangeAccent,color2: Colors.white),
          ],
        );
       }
     return
-     Text1(data: "Waiting for purohit confirmation", max: 14, min: 12,clr: Colors.grey,);
+     Text1(data: purohitConformation, max: 14, min: 12,clr: Colors.grey,);
     }
     if(bookingModal.request == true){
         if(bookingModal.cancel == true){
           return  Row(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.orangeAccent
-                    ),
-                    color: Colors.orangeAccent
-                ),
-                padding: EdgeInsets.all(10),
-                child: Text1(data: "REORDER", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.white,),
-              ),
+              ButtonContainers(data: reorder,color: Colors.orangeAccent,color2: Colors.white),
               SizedBox(width: 10,),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.orangeAccent
-                    ),
-                    color: Colors.white
-                ),
-                padding: EdgeInsets.all(10),
-                child: Text1(data: "HELP", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-              )
+              ButtonContainers(data: help,color: Colors.white,color2: Colors.orangeAccent),
             ],
           );
         }
@@ -439,27 +303,9 @@ class Booking extends StatelessWidget{
         if(bookingModal.cancel == true){
           return  Row(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.orangeAccent
-                    ),
-                    color: Colors.orangeAccent
-                ),
-                padding: EdgeInsets.all(10),
-                child: Text1(data: "REORDER", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.white,),
-              ),
+              ButtonContainers(data: reorder,color: Colors.orangeAccent,color2: Colors.white),
               SizedBox(width: 10,),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.orangeAccent
-                    ),
-                    color: Colors.white
-                ),
-                padding: EdgeInsets.all(10),
-                child: Text1(data: "HELP", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-              )
+              ButtonContainers(data: help,color: Colors.white,color2: Colors.orangeAccent),
             ],
           );
         }
@@ -467,64 +313,19 @@ class Booking extends StatelessWidget{
           if(bookingModal.cancel == true){
             return  Row(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Colors.orangeAccent
-                      ),
-                      color: Colors.orangeAccent
-                  ),
-                  padding: EdgeInsets.all(10),
-                  child: Text1(data: "REORDER", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.white,),
-                ),
+                ButtonContainers(data: reorder,color: Colors.orangeAccent,color2: Colors.white),
                 SizedBox(width: 10,),
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Colors.orangeAccent
-                      ),
-                      color: Colors.white
-                  ),
-                  padding: EdgeInsets.all(10),
-                  child: Text1(data: "HELP", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-                )
+                ButtonContainers(data: help,color: Colors.white,color2: Colors.orangeAccent),
               ],
             );
           }
           return Row(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.orangeAccent
-                    ),
-                    color: Colors.orangeAccent
-                ),
-                padding: EdgeInsets.all(10),
-                child: Text1(data: "REORDER", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.white,),
-              ),
+              ButtonContainers(data: reorder,color: Colors.orangeAccent,color2: Colors.white),
               SizedBox(width: 10,),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.orangeAccent
-                    ),
-                    color: Colors.white
-                ),
-                padding: EdgeInsets.all(10),
-                child: Text1(data: "HELP", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-              ),
+              ButtonContainers(data: help,color: Colors.white,color2: Colors.orangeAccent),
               Spacer(),
-             bookingModal.rating!?SizedBox():Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.orangeAccent
-                    ),
-                    color: Colors.white
-                ),
-                padding: EdgeInsets.all(10),
-                child: Text1(data: "RATE PUROHIT", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-              ),
+             bookingModal.rating!?SizedBox():ButtonContainers(data: ratePurohit,color: Colors.white,color2: Colors.orangeAccent),
             ],
           );
         }
@@ -532,16 +333,7 @@ class Booking extends StatelessWidget{
           children: [
             Text1(data: "PUROHIT OTP : ${bookingModal.otp}", max: 14, min: 12,clr: Colors.redAccent,),
             Spacer(),
-            Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Colors.orangeAccent
-                  ),
-                  color: Colors.white
-              ),
-              padding: EdgeInsets.all(10),
-              child: Text1(data: "CANCEL", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-            )
+            ButtonContainers(data: cancel,color: Colors.white,color2: Colors.orangeAccent),
           ],
         );
       }
@@ -550,7 +342,7 @@ class Booking extends StatelessWidget{
           InkWell(
             onTap: (){
               Get.to(
-                
+
                 RazorPayWeb(
                 bookingId: bookingModal.bookingId,
                 uid: bookingModal.clientuid,
@@ -558,16 +350,7 @@ class Booking extends StatelessWidget{
               ));
               //Get.to(WebViewTest());
             },
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Colors.orangeAccent
-                  ),
-                  color: Colors.orangeAccent
-              ),
-              padding: EdgeInsets.all(10),
-              child: Text1(data: "PAY ONLINE", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.white,),
-            ),
+            child: ButtonContainers(data: payOnline,color: Colors.orangeAccent,color2: Colors.white),
           ),
           SizedBox(width: 10,),
           InkWell(
@@ -578,55 +361,19 @@ class Booking extends StatelessWidget{
                   bookingModal: bookingModal,cod:true
               ));
             },
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Colors.orangeAccent
-                  ),
-                  color: Colors.white
-              ),
-              padding: EdgeInsets.all(10),
-              child: Text1(data: "CAH", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-            ),
+            child: ButtonContainers(data: "CAH",color: Colors.white,color2: Colors.orangeAccent),
           ),
           Spacer(),
-          Container(
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.orangeAccent
-                ),
-                color: Colors.white
-            ),
-            padding: EdgeInsets.all(10),
-            child: Text1(data: "CANCEL", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-          )
+          ButtonContainers(data: cancel,color: Colors.white,color2: Colors.orangeAccent),
         ],
       );
     }
 
       return  Row(
         children: [
-          Container(
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.orangeAccent
-                ),
-                color: Colors.orangeAccent
-            ),
-            padding: EdgeInsets.all(10),
-            child: Text1(data: "REORDER", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.white,),
-          ),
+          ButtonContainers(data: reorder,color: Colors.orangeAccent,color2: Colors.white),
           SizedBox(width: 10,),
-          Container(
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.orangeAccent
-                ),
-                color: Colors.white
-            ),
-            padding: EdgeInsets.all(10),
-            child: Text1(data: "HELP", max: 12, min: 10,weight: FontWeight.w600,clr: Colors.orangeAccent,),
-          )
+          ButtonContainers(data: help,color: Colors.white,color2: Colors.orangeAccent),
         ],
       );
 
@@ -635,4 +382,6 @@ class Booking extends StatelessWidget{
   }
 
 }
+
+
 

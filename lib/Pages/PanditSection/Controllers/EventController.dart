@@ -1,6 +1,6 @@
 
 
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class EventController extends GetxController{
   var eventData = EventData().obs;

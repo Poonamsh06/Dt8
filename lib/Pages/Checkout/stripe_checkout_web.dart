@@ -1,6 +1,6 @@
 @JS()
 library stripe;
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 void redirectToCheckout(BuildContext _,int index) async {
   final stripe = Stripe(apiKey);

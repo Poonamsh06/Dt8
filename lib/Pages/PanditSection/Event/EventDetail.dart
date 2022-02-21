@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import '../Account.dart';
 import '../Controllers/panditsController.dart';
 import '../Detail.dart';
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class EventDetail extends StatefulWidget{
   @override

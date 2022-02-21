@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 import 'PanditSection/Controllers/upcomigEvent.dart';
 import 'TopBar.dart';
 import 'Topbar_items.dart';
@@ -16,23 +16,30 @@ class _NewPanditHomeState extends State<NewPanditHome> {
   DateTime _currentdate = DateTime.now();
 
 
-
   @override
   Widget build(BuildContext context) {
     String _formatdate = DateFormat.yMMMd().format(_currentdate);
-    double height= MediaQuery.of(context).size.height;
-    double width= MediaQuery.of(context).size.width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     AuthController authController = Get.find();
     UserController userController = Get.put(UserController());
     LoginController loginController = Get.put(LoginController());
     GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
-    var ScreenSize= MediaQuery.of(context).size;
+    var ScreenSize = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
         body:
         GetX<DateController>(
           init: Get.put(DateController()),
-          builder: (DateController dateController){
-            if(dateController.userModel.value.background!=null){
+          builder: (DateController dateController) {
+            if (dateController.userModel.value.background != null) {
               return
                 SingleChildScrollView(
                   scrollDirection: Axis.vertical,
@@ -51,46 +58,74 @@ class _NewPanditHomeState extends State<NewPanditHome> {
                           child: Column(
                             children: [
                               SizedBox(height: 20,),
-                              HeadingText(width: width,text: feature,),
+                              HeadingText(width: width, text: feature,),
                               SizedBox(height: 20,),
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Padding(
-                                  padding: EdgeInsets.only(left:ResponsiveWidget.isMediumScreen(context)? 0:width*0.15,right:ResponsiveWidget.isMediumScreen(context)? 0: width*0.2,),
+                                  padding: EdgeInsets.only(
+                                    left: ResponsiveWidget.isMediumScreen(
+                                        context) ? 0 : width * 0.15,
+                                    right: ResponsiveWidget.isMediumScreen(
+                                        context) ? 0 : width * 0.2,),
                                   child: Row(
-                                    children:List.generate(topBarItem.length, (index) => Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: TopBarItemCard(topBarItem: topBarItem[index],),
-                                    )),
+                                    children: List.generate(
+                                        topBarItem.length, (index) =>
+                                        Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: TopBarItemCard(
+                                            topBarItem: topBarItem[index],),
+                                        )),
                                   ),
                                 ),
                               ),
 
 
                               SizedBox(height: 20,),
-                              HeadingText(width: width,text: events,),
+                              HeadingText(width: width, text: events,),
                               Container(
                                 //color: Color(0xffFFFAF3),
-                                padding: EdgeInsets.only(left:ResponsiveWidget.isMediumScreen(context)? 0:width*0.15,right:ResponsiveWidget.isMediumScreen(context)? 0: width*0.2,),
+                                padding: EdgeInsets.only(left: ResponsiveWidget
+                                    .isMediumScreen(context) ? 0 : width * 0.15,
+                                  right: ResponsiveWidget.isMediumScreen(
+                                      context) ? 0 : width * 0.2,),
                                 //padding: EdgeInsets.all(10),
-                                height:ResponsiveWidget.isSmallScreen(context)?height*0.3: height*0.4,
+                                height: ResponsiveWidget.isSmallScreen(context)
+                                    ? height * 0.3
+                                    : height * 0.4,
                                 width: width,
                                 child: GetX<UpcomingEventController>(
-                                  init: Get.put<UpcomingEventController>(UpcomingEventController()),
-                                  builder: (UpcomingEventController upcomingController) {
-                                    if (upcomingController != null && upcomingController.upcomings != null) {
+                                  init: Get.put<UpcomingEventController>(
+                                      UpcomingEventController()),
+                                  builder: (
+                                      UpcomingEventController upcomingController) {
+                                    if (upcomingController != null &&
+                                        upcomingController.upcomings != null) {
                                       return SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Row(
-                                          children:List.generate(upcomingController.upcomingList.value!.length, (index) => Padding(
-                                            padding: const EdgeInsets.all(10),
-                                            child: scollImage(upcomingController.upcomings![index].link!,width,height,upcomingController.upcomings![index].image!,upcomingController.upcomings![index].name!,context),
-                                          )),
+                                          children: List.generate(
+                                              upcomingController.upcomingList
+                                                  .value!.length, (index) =>
+                                              Padding(
+                                                padding: const EdgeInsets.all(
+                                                    10),
+                                                child: scollImage(
+                                                    upcomingController
+                                                        .upcomings![index]
+                                                        .link!, width, height,
+                                                    upcomingController
+                                                        .upcomings![index]
+                                                        .image!,
+                                                    upcomingController
+                                                        .upcomings![index]
+                                                        .name!, context),
+                                              )),
                                         ),
                                       );
                                     } else {
                                       return Center(child: SizedBox(
-                                          height: 50,width: 50,
+                                          height: 50, width: 50,
                                           child: Loader()));
                                     }
                                   },
@@ -98,56 +133,61 @@ class _NewPanditHomeState extends State<NewPanditHome> {
                               ),
 
                               SizedBox(height: 20,),
-                              HeadingText(width: width,text: panditHeading,),
+                              HeadingText(width: width, text: panditHeading,),
                               SizedBox(height: 30,),
                               Padding(
-                                padding: EdgeInsets.only(left:ResponsiveWidget.isSmallScreen(context)? 0: width*0.1,right: ResponsiveWidget.isSmallScreen(context)? 0:width*0.1,bottom: 40),
+                                padding: EdgeInsets.only(left: ResponsiveWidget
+                                    .isSmallScreen(context) ? 0 : width * 0.1,
+                                    right: ResponsiveWidget.isSmallScreen(
+                                        context) ? 0 : width * 0.1,
+                                    bottom: 40),
                                 child: GetX<PanditController>(
-                                  init: Get.put<PanditController>(PanditController(lat: double.parse('${userController.userModel.value.lat}'),lng: double.parse('${userController.userModel.value.lng}'))),
+                                  init: Get.put<PanditController>(
+                                      PanditController(lat: double.parse(
+                                          '${userController.userModel.value
+                                              .lat}'),
+                                          lng: double.parse(
+                                              '${userController.userModel.value
+                                                  .lng}'))),
                                   builder: (PanditController panditController) {
-                                    if (panditController != null && panditController.pandits != null) {
-                                      return ResponsiveWidget.isSmallScreen(context) ?Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: ListView.builder(
-                                          physics: NeverScrollableScrollPhysics(),
-                                          shrinkWrap: true,
-                                          itemCount: panditController.panditList.value!.length,
-                                          itemBuilder: (_, index) {
-                                            return Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: NewPanditCard(bModal: panditController.pandits![index]),
-                                            );
-                                          },
-                                        ),
-                                      ):
-                                      GridView.builder(
+                                    if (panditController != null &&
+                                        panditController.pandits != null) {
+                                      return GridView.builder(
                                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: ResponsiveWidget.isMediumScreen(context)?2:4,
-                                          crossAxisSpacing: 20,
-                                          mainAxisSpacing: 20,
+                                          crossAxisCount: ResponsiveWidget
+                                              .isMediumScreen(context) ? 2 : 4,
+                                          crossAxisSpacing: 15,
+                                          mainAxisSpacing: 15,
                                           //childAspectRatio: ResponsiveWidget.isTablet(context)?1.5:1,
 
                                         ),
                                         physics: NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
-                                        itemCount: panditController.panditList.value!.length,
+                                        itemCount: panditController.panditList
+                                            .value!.length,
                                         itemBuilder: (_, index) {
-                                          return NewPanditCard(bModal: panditController.pandits![index]);
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: NewPanditCard(
+                                                bModal: panditController
+                                                    .pandits![index]),
+                                          );
                                         },
                                       );
-
                                     } else {
                                       return Center(child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: SizedBox(
-                                            height: 50,width: 40,
+                                            height: 50, width: 40,
                                             child: Loader()),
                                       ));
                                     }
                                   },
                                 ),
                               ),
-                              ResponsiveWidget.isSmallScreen(context)?MobileBottomBar():NewBottomBar()
+                              ResponsiveWidget.isSmallScreen(context)
+                                  ? MobileBottomBar()
+                                  : NewBottomBar()
                             ],
                           ),
                         ),
@@ -156,7 +196,7 @@ class _NewPanditHomeState extends State<NewPanditHome> {
                   ),
                 );
             }
-            else{
+            else {
               return Center(child: Text(loading),);
             }
           },
@@ -166,42 +206,13 @@ class _NewPanditHomeState extends State<NewPanditHome> {
   }
 
 
-  // Widget slideroffers(BuildContext context, double height, double width,String link,String img) {
-  //   return Link(
-  //     target:LinkTarget.blank,
-  //     uri: Uri.parse('$link'),
-  //     builder: (_,followlink){
-  //       return InkWell(
-  //         hoverColor: Colors.white,
-  //         onTap: followlink,
-  //         child:  Row(
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: [
-  //             Container(
-  //               //margin:EdgeInsets.all(ResponsiveWidget.isSmallScreen(context)?20:40),
-  //               height:ResponsiveWidget.isMobile(context)?height*0.25:ResponsiveWidget.isTablet(context)?height*0.4: height*0.5,
-  //               width: ResponsiveWidget.isDesktop(context)?width*0.7 :width*0.8,
-  //               decoration: BoxDecoration(
-  //                   borderRadius: BorderRadius.circular(10),
-  //                   image: DecorationImage(image: NetworkImage('$img'),
-  //                       fit: BoxFit.fill
-  //                   )),
-  //             ),
-  //           ],
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-
-
-  Widget scollImage(String link,double width,double height,String image,String name,BuildContext context) {
-
+  Widget scollImage(String link, double width, double height, String image,
+      String name, BuildContext context) {
     return Link(
       //ri: Uri.parse('http://localhost:50183/#/detail?detail=$link'),
         uri: Uri.parse('http://pujapurohit.in/#/detail?id=$link'),
         target: LinkTarget.blank,
-        builder: (context,followlink){
+        builder: (context, followlink) {
           return InkWell(
             onTap: followlink,
             child: Row(
@@ -214,27 +225,35 @@ class _NewPanditHomeState extends State<NewPanditHome> {
                           color: Color(0xffFCAB29),
                           blurRadius: 1.0,
                           spreadRadius: 0.0,
-                          offset: Offset(2.0, 2.0), //shadow direction: bottom right
+                          offset: Offset(
+                              2.0, 2.0), //shadow direction: bottom right
                         )
                       ],
                       color: Color(0xffFFFAF4),
                       borderRadius: BorderRadius.circular(20)
                   ),
-                  height: ResponsiveWidget.isSmallScreen(context)?190:270,
-                  width: ResponsiveWidget.isSmallScreen(context)?190: 270,
+                  height: ResponsiveWidget.isSmallScreen(context) ? 190 : 270,
+                  width: ResponsiveWidget.isSmallScreen(context) ? 190 : 270,
                   //padding: EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      SizedBox(height: ResponsiveWidget.isSmallScreen(context)?15:20,),
+                      SizedBox(height: ResponsiveWidget.isSmallScreen(context)
+                          ? 15
+                          : 20,),
                       Container(
-                          height: ResponsiveWidget.isSmallScreen(context)?130:210,
+                          height: ResponsiveWidget.isSmallScreen(context)
+                              ? 130
+                              : 210,
                           //child: Image.network(image,)
-                          decoration: BoxDecoration(image:DecorationImage(
+                          decoration: BoxDecoration(image: DecorationImage(
                             image: NetworkImage(image),
                           ),)
                       ),
-                      SizedBox(height: ResponsiveWidget.isSmallScreen(context)?8:10,),
-                      Icon(Icons.keyboard_arrow_down,color: Colors.orangeAccent,)
+                      SizedBox(height: ResponsiveWidget.isSmallScreen(context)
+                          ? 8
+                          : 10,),
+                      Icon(
+                        Icons.keyboard_arrow_down, color: Colors.orangeAccent,)
                     ],
                   ),
                 ),
@@ -243,79 +262,7 @@ class _NewPanditHomeState extends State<NewPanditHome> {
           );
         });
   }
-
-  // Padding customHeading(BuildContext context,String txt1,String txt2) {
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(horizontal: 10),
-  //     child: RichText(
-  //       text: TextSpan(
-  //         style: Theme.of(context).textTheme.headline5!.copyWith(
-  //             fontWeight: FontWeight.bold,
-  //             color: Colors.white
-  //         ),
-  //         children: [
-  //           TextSpan(text: "$txt1\n",),
-  //           TextSpan(
-  //               text: "$txt2",
-  //               style: TextStyle(
-  //                 fontWeight: FontWeight.bold,
-  //               ))
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 }
-
-// class PujaAroundYou extends StatelessWidget {
-//   const PujaAroundYou({
-//     Key? key,
-//     required this.width,
-//   }) : super(key: key);
-//
-//   final double width;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return cityClass();
-//   }
-// }
-
-// class cityClass extends StatelessWidget {
-//   late final BMModal bmModal;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//           padding: EdgeInsets.only(left:ResponsiveWidget.isMobile(context)? 0: MediaQuery.of(context).size.width*0.1,
-//           right:ResponsiveWidget.isMobile(context)? 0: MediaQuery.of(context).size.width*0.1),
-//           //child: customHeading(context,'Purohit','Near you...'),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           SelectableText("Purohit",
-//             style: ResponsiveWidget.isDesktop(context)? Theme.of(context).textTheme.headline5!.copyWith(
-//                 fontWeight: FontWeight.bold,
-//                 color: Colors.black87
-//             ):Theme.of(context).textTheme.headline6!.copyWith(
-//                 fontWeight: FontWeight.bold,
-//                 color: Colors.black87
-//             ),
-//           ),
-//           SelectableText("Near you...",
-//             style: ResponsiveWidget.isDesktop(context)? Theme.of(context).textTheme.headline4!.copyWith(
-//                 fontWeight: FontWeight.bold,
-//                 color: Colors.black87
-//             ):Theme.of(context).textTheme.headline5!.copyWith(
-//                 fontWeight: FontWeight.bold,
-//                 color: Colors.black87
-//             ),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class NewPanditCard extends StatelessWidget{
   final String? name;
@@ -343,7 +290,7 @@ class NewPanditCard extends StatelessWidget{
           padding: EdgeInsets.all(10),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color(0xffFFFAF3),
+              color: Colors.white,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(color: Colors.white),
               boxShadow: [
@@ -369,8 +316,8 @@ class NewPanditCard extends StatelessWidget{
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          height: ResponsiveWidget.isMobileLarge(context)?90:ResponsiveWidget.isMediumScreen(context)?180:150,
-                          width: ResponsiveWidget.isMobileLarge(context)?120:ResponsiveWidget.isMediumScreen(context)?180:150,
+                          height: ResponsiveWidget.isMobileLarge(context)?70:ResponsiveWidget.isMobileLarge(context)?90:ResponsiveWidget.isMediumScreen(context)?180:150,
+                          width:  ResponsiveWidget.isMobileLarge(context)?80:ResponsiveWidget.isMobileLarge(context)?120:ResponsiveWidget.isMediumScreen(context)?180:150,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
@@ -404,7 +351,7 @@ class NewPanditCard extends StatelessWidget{
                         //SizedBox(width:10),
                         Icon(Icons.circle,color: Colors.black54,size: 2,),
                         //SizedBox(width:10),
-                        Text1(max: 10, data: '${bModal.city}', min: 10,clr: Colors.black54,),
+                        Text1(max: 10, data: '${bModal.city}', min: 6,clr: Colors.black54,),
                         //SizedBox(width:10),
                         Icon(Icons.circle,color: Colors.black54,size: 2,),
                         //SizedBox(width:10),
@@ -412,6 +359,7 @@ class NewPanditCard extends StatelessWidget{
                         //SizedBox(width:10),
                         Icon(Icons.circle,color: Colors.black54,size: 2,),
                         //SizedBox(width:10),
+                        if (!ResponsiveWidget.isMobileLarge(context))
                         Text1(max: 10, data: '${(distanceInMeters/1000).toStringAsFixed(2)} KM', min: 10,clr: Colors.black54,),
                       ],
                     ),
@@ -419,13 +367,31 @@ class NewPanditCard extends StatelessWidget{
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        RaisedButton(
-                          color: Colors.orangeAccent,
-                          onPressed: (){
+                        // RaisedButton(
+                        //   color: Colors.orangeAccent,
+                        //   onPressed: (){
+                        //     Get.toNamed('/profile?puid=${bModal.uid}');
+                        //   },
+                        //   child: Text("Book",style: TextStyle(
+                        //       color: Colors.white,
+                        //       fontSize: ResponsiveWidget.isSmallScreen(context)?5:10,
+                        //   ),),
+                        // ),
+                        InkWell(
+                          onTap: (){
                             Get.toNamed('/profile?puid=${bModal.uid}');
                           },
-                          child: Text("Book",style: TextStyle(color: Colors.white),),
-                        ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.orangeAccent,
+                              borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Text("Book",style: TextStyle(color: Colors.white,),),
+                            ),
+                          ),
+                        )
                       ],
                     )
                   ],
@@ -436,202 +402,6 @@ class NewPanditCard extends StatelessWidget{
           ),
         ),
       ),
-      // child: HoverWidget(
-      //   onHover: (event){},
-      //   hoverChild: Expanded(
-      //     child: Container(
-      //       padding: EdgeInsets.all(10),
-      //       alignment: Alignment.center,
-      //       decoration: BoxDecoration(
-      //           color: Colors.white,
-      //           borderRadius: BorderRadius.circular(20),
-      //           border: Border.all(color: Color(0xff181c2c)),
-      //           boxShadow: [
-      //             BoxShadow(
-      //             color: Color(0xffFCAB29),
-      //             blurRadius: 1.0,
-      //             spreadRadius: 0.0,
-      //             offset: Offset(2.0, 2.0), //shadow direction: bottom right
-      //           )
-      //           ]
-      //       ),
-      //
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //         children: [
-      //           Padding(
-      //             padding: const EdgeInsets.all(8),
-      //             child: Column(
-      //               mainAxisSize: MainAxisSize.min,
-      //               crossAxisAlignment: CrossAxisAlignment.start,
-      //               children: [
-      //                 Row(
-      //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //                   children: [
-      //                     Container(
-      //                       height: ResponsiveWidget.isMobileLarge(context)?100:ResponsiveWidget.isMediumScreen(context)?200:150,
-      //                       width: ResponsiveWidget.isMobileLarge(context)?150:ResponsiveWidget.isMediumScreen(context)?200:150,
-      //                       decoration: BoxDecoration(
-      //                           borderRadius: BorderRadius.circular(20),
-      //                           boxShadow: [
-      //                             BoxShadow(color: Colors.white,blurRadius: 10)],
-      //                           color: Colors.white,
-      //                           shape: BoxShape.rectangle,
-      //                           image: DecorationImage(
-      //                               image: NetworkImage('${bModal.image}'),
-      //                               fit: BoxFit.fill
-      //                           )
-      //                       ),
-      //                     ),
-      //                   ],
-      //                 ),
-      //
-      //                 //SizedBox(height: 10,),
-      //                 Padding(
-      //                   padding: const EdgeInsets.all(8.0),
-      //                   child: Row(
-      //                     children: [
-      //                       Text1(max: 12, data: '${bModal.name}', min: 12,weight: FontWeight.w600,),
-      //                       SizedBox(width:10),
-      //                       bModal.verified?Icon(Icons.verified,size: 13,color: Color(0xff34B7F1),):SizedBox()
-      //                     ],),
-      //                 ),
-      //                 //SizedBox(height:5),
-      //                 Row(
-      //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //                   children: [
-      //                     rating(),
-      //                     //SizedBox(width:10),
-      //                     Icon(Icons.circle,color: Colors.black54,size: 2,),
-      //                     //SizedBox(width:10),
-      //                     Text1(max: 10, data: '${bModal.city}', min: 10,clr: Colors.black54,),
-      //                     //SizedBox(width:10),
-      //                     Icon(Icons.circle,color: Colors.black54,size: 2,),
-      //                     //SizedBox(width:10),
-      //                     Text1(max: 10, data: '${bModal.state}', min: 10,clr: Colors.black54,),
-      //                     //SizedBox(width:10),
-      //                     Icon(Icons.circle,color: Colors.black54,size: 2,),
-      //                     //SizedBox(width:10),
-      //                     Text1(max: 10, data: '${(distanceInMeters/1000).toStringAsFixed(2)} KM', min: 10,clr: Colors.black54,),
-      //                   ],
-      //                 ),
-      //                 Row(
-      //                   mainAxisAlignment: MainAxisAlignment.end,
-      //                   crossAxisAlignment: CrossAxisAlignment.end,
-      //                   children: [
-      //                     RaisedButton(
-      //                       color: Colors.orangeAccent,
-      //                         onPressed: (){
-      //                           Get.toNamed('/profile?puid=${bModal.uid}');
-      //                         },
-      //                         child: Text("Book",style: TextStyle(color: Colors.white),),
-      //                     ),
-      //                   ],
-      //                 )
-      //               ],
-      //             ),
-      //           ),
-      //
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      //   child: Expanded(
-      //     child: Container(
-      //       decoration: BoxDecoration(
-      //         color: Colors.white,
-      //         borderRadius: BorderRadius.circular(20),
-      //           boxShadow: [
-      //             BoxShadow(
-      //               color: Color(0xffFCAB29),
-      //               blurRadius: 1.0,
-      //               spreadRadius: 0.0,
-      //               offset: Offset(2.0, 2.0), //shadow direction: bottom right
-      //             )
-      //           ]
-      //
-      //       ),
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //         children: [
-      //           Padding(
-      //             padding: const EdgeInsets.all(8),
-      //             child: Column(
-      //               mainAxisSize: MainAxisSize.min,
-      //               crossAxisAlignment: CrossAxisAlignment.start,
-      //               children: [
-      //
-      //                 Row(
-      //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //                   children: [
-      //                     Container(
-      //                       height: ResponsiveWidget.isMobileLarge(context)?100:ResponsiveWidget.isMediumScreen(context)?200:150,
-      //                       width: ResponsiveWidget.isMobileLarge(context)?150:ResponsiveWidget.isMediumScreen(context)?200:150,
-      //                       decoration: BoxDecoration(
-      //                           borderRadius: BorderRadius.circular(20),
-      //                           boxShadow: [BoxShadow(color: Colors.white,blurRadius: 20)],
-      //                           color: Colors.white,
-      //                           shape: BoxShape.rectangle,
-      //                           image: DecorationImage(
-      //                               image: NetworkImage('${bModal.image}'),
-      //                               fit: BoxFit.fill
-      //                           )
-      //                       ),
-      //                     ),
-      //                   ],
-      //                 ),
-      //
-      //                 //SizedBox(height: 15,),
-      //                 Padding(
-      //                   padding: const EdgeInsets.all(8.0),
-      //                   child: Row(
-      //                     children: [
-      //                       Text1(max: 12, data: '${bModal.name}', min: 12,weight: FontWeight.w600,),
-      //                       SizedBox(width:10),
-      //                       bModal.verified?Icon(Icons.verified,size: 13,color: Color(0xff34B7F1),):SizedBox()
-      //                     ],),
-      //                 ),
-      //                 //SizedBox(height:10),
-      //                 Row(
-      //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //                   children: [
-      //                     rating(),
-      //                     //SizedBox(width:10),
-      //                     Icon(Icons.circle,color: Colors.black54,size: 2,),
-      //                     //SizedBox(width:10),
-      //                     Text1(max: 10, data: '${bModal.city}', min: 10,clr: Colors.black54,),
-      //                     //SizedBox(width:10),
-      //                     Icon(Icons.circle,color: Colors.black54,size: 2,),
-      //                     //SizedBox(width:10),
-      //                     Text1(max: 10, data: '${bModal.state}', min: 10,clr: Colors.black54,),
-      //                     //SizedBox(width:10),
-      //                     Icon(Icons.circle,color: Colors.black54,size: 2,),
-      //                     //SizedBox(width:10),
-      //                     Text1(max: 10, data: '${(distanceInMeters/1000).toStringAsFixed(2)} KM', min: 10,clr: Colors.black54,),
-      //                   ],
-      //                 ),
-      //                 Row(
-      //                   mainAxisAlignment: MainAxisAlignment.end,
-      //                   crossAxisAlignment: CrossAxisAlignment.end,
-      //                   children: [
-      //                     RaisedButton(
-      //                       color: Colors.orangeAccent,
-      //                       onPressed: (){
-      //                         Get.toNamed('/profile?puid=${bModal.uid}');
-      //                       },
-      //                       child: Text("Book",style: TextStyle(color: Colors.white),),
-      //                     ),
-      //                   ],
-      //                 )
-      //               ],
-      //             ),
-      //           ),
-      //
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
   Widget rating(){
@@ -673,67 +443,3 @@ class NewPanditCard extends StatelessWidget{
 
 
 
-class TopBarItemCard extends StatelessWidget {
-  const TopBarItemCard({
-    Key? key,
-    required this.topBarItem,
-  }) : super(key: key);
-
-  final TopBarItem topBarItem;
-
-  @override
-  Widget build(BuildContext context) {
-    double width= MediaQuery.of(context).size.width;
-    return Link(
-        uri: Uri.parse('http://pujapurohit.in/#/${topBarItem.tap}'),
-        target: LinkTarget.blank,
-        builder: (context,followlink){
-          return InkWell(
-            onTap: followlink,
-            child:Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0xffFCAB29),
-                    blurRadius: 1.0,
-                    spreadRadius: 0.0,
-                    offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                  )
-                ],
-                  color: Color(0xffFFFAF4),
-                borderRadius: BorderRadius.circular(20)
-              ),
-              height: ResponsiveWidget.isSmallScreen(context)?130:200,
-              width: ResponsiveWidget.isSmallScreen(context)?130: 200,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    //Text(topBarItem.name),
-                    SizedBox(height: ResponsiveWidget.isSmallScreen(context)?8:10,),
-                    Container(
-                      height: ResponsiveWidget.isSmallScreen(context)?80:100,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(topBarItem.image),
-                          )
-                      ),
-                      //child: Image.asset(topBarItem.image)
-                    ),
-                    SizedBox(height: ResponsiveWidget.isSmallScreen(context)?8:10,),
-                    Text(
-                        topBarItem.name,
-                        style:Theme.of(context).textTheme.headline6!.copyWith(
-                          //fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width >= 800?20:ResponsiveWidget.isSmallScreen(context)?10:15,
-                          color: Colors.black,
-                        )
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        });
-  }
-}

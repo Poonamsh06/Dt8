@@ -2,7 +2,7 @@
 
 import 'Controllers/panditsController.dart';
 import 'PanditHome.dart';
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 class CustomCity extends StatelessWidget{
   @override
   Widget build(BuildContext context) {

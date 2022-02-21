@@ -1,4 +1,6 @@
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
+
+import 'Topbar_items.dart';
 
 class Topbar2 extends StatelessWidget {
   AuthController authController = Get.find();
@@ -45,13 +47,18 @@ class Topbar2 extends StatelessWidget {
                   child: TextFormField(
                     decoration: InputDecoration(
                       hintText: searchPujaText,
-                      hintStyle: TextStyle(color: Colors.orangeAccent,fontSize: ResponsiveWidget.isLargeScreen(context)?20:ResponsiveWidget.isMediumScreen(context)?15:0),
+                      hintStyle: TextStyle(color: Colors.black45,fontSize: ResponsiveWidget.isLargeScreen(context)?20:ResponsiveWidget.isMediumScreen(context)?15:0),
                       prefix: SizedBox(width: 20,),
                       suffixIcon: InkWell(
-                        child: Icon(
-                          Icons.search,
-                          color: Colors.orangeAccent,
-                          size: ResponsiveWidget.isLargeScreen(context)?30:ResponsiveWidget.isMediumScreen(context)?20:10,),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.orangeAccent
+                          ),
+                          child: Icon(
+                            Icons.search,
+                            color: Colors.white,
+                            size: ResponsiveWidget.isLargeScreen(context)?30:ResponsiveWidget.isMediumScreen(context)?20:10,),
+                        ),
                         onTap: (){},
                       ),
                     ),
@@ -256,7 +263,7 @@ class TopTabs extends StatelessWidget{
                 onTap: (){
                   Get.toNamed('/account');
                 },
-                child: ModifiedTextIcon(iconColor: Color(0xffB10060),icondata: LineIcons.user, max: 12, data: '${authController.user!.displayName}', min: 8,color: Color(0xffB10060),weight: FontWeight.bold))
+                child: ResponsiveWidget.isSmallScreen(context)?Icon(Icons.person,color: Color(0xffB10060),):ModifiedTextIcon(iconColor: Color(0xffB10060),icondata: LineIcons.user, max: 12, data: '${authController.user!.displayName}', min: 8,color: Color(0xffB10060),weight: FontWeight.bold))
                 :
             InkWell(
               onTap: (){
@@ -339,4 +346,68 @@ class TopBar extends StatelessWidget{
     );
   }
 
+}
+class TopBarItemCard extends StatelessWidget {
+  const TopBarItemCard({
+    Key? key,
+    required this.topBarItem,
+  }) : super(key: key);
+
+  final TopBarItem topBarItem;
+
+  @override
+  Widget build(BuildContext context) {
+    double width= MediaQuery.of(context).size.width;
+    return Link(
+        uri: Uri.parse('http://pujapurohit.in/#/${topBarItem.tap}'),
+        target: LinkTarget.blank,
+        builder: (context,followlink){
+          return InkWell(
+            onTap: followlink,
+            child:Container(
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xffFCAB29),
+                      blurRadius: 1.0,
+                      spreadRadius: 0.0,
+                      offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                    )
+                  ],
+                  color: Color(0xffFFFAF4),
+                  borderRadius: BorderRadius.circular(20)
+              ),
+              height: ResponsiveWidget.isSmallScreen(context)?130:200,
+              width: ResponsiveWidget.isSmallScreen(context)?130: 200,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    //Text(topBarItem.name),
+                    SizedBox(height: ResponsiveWidget.isSmallScreen(context)?8:10,),
+                    Container(
+                      height: ResponsiveWidget.isSmallScreen(context)?80:100,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(topBarItem.image),
+                          )
+                      ),
+                      //child: Image.asset(topBarItem.image)
+                    ),
+                    SizedBox(height: ResponsiveWidget.isSmallScreen(context)?8:10,),
+                    Text(
+                        topBarItem.name,
+                        style:Theme.of(context).textTheme.headline6!.copyWith(
+                          //fontWeight: FontWeight.bold,
+                          fontSize: MediaQuery.of(context).size.width >= 800?20:ResponsiveWidget.isSmallScreen(context)?10:15,
+                          color: Colors.black,
+                        )
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
 }

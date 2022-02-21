@@ -1,6 +1,6 @@
 
 
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class UpcomingEventController extends GetxController{
 Rxn<List<UpcomingEventModel>> upcomingList = Rxn<List<UpcomingEventModel>>();

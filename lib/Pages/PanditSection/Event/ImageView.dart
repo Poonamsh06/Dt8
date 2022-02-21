@@ -1,4 +1,4 @@
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 import 'dart:ui' as ui;
 
 class ImageView extends StatefulWidget{
