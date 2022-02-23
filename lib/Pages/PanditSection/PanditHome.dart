@@ -1,6 +1,6 @@
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 import 'package:intl/intl.dart';
-import '../TopBar.dart';
+import '../top_bar.dart';
 import 'Controllers/upcomigEvent.dart';
 
 class PanditHome extends StatefulWidget{

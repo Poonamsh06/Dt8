@@ -1,4 +1,4 @@
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 import 'dart:html' as html;
 

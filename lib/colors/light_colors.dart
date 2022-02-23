@@ -1,4 +1,4 @@
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class LightColors  {
   static const Color prime = Color(0xffffbd59);

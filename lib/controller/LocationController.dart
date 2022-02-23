@@ -1,5 +1,5 @@
 
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class LocationController extends GetxController{
   var location = LocationData(serviceEnabled: false,ppermision: false,address2: 'Open Map').obs;

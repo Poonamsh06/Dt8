@@ -1,7 +1,7 @@
 
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
-const kGoogleApiKey = "AIzaSyCHlPJMsHXuk5Khs0FbOhGavgKy2BPV5m8";
+
 
 class SearchPlaces extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _SearchPlacesState extends State<SearchPlaces> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                'Address autocomplete',
+                addressAutocomplete,
               ),
               FlutterGooglePlacesWeb(
                 apiKey: kGoogleApiKey,

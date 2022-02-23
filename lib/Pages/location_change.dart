@@ -1,6 +1,6 @@
 
 import 'dart:html' as html;
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class LocationChange extends StatefulWidget{
   final double? lati;
@@ -119,7 +119,7 @@ class _LocationChangeState extends State<LocationChange> {
                           SizedBox(width:10),
                            Expanded(
                              flex: 1,
-                                                      child: SizedBox(
+                       child: SizedBox(
                        height: 35,width: 35,
                        child: FloatingActionButton(
                         backgroundColor: Colors.white,
@@ -150,11 +150,6 @@ class _LocationChangeState extends State<LocationChange> {
             ),
               ),
                ),
-               
-
-
-
-
               Expanded(
                 flex: 5,
                       child: Container(
@@ -171,14 +166,8 @@ class _LocationChangeState extends State<LocationChange> {
               )
             
             ),
+              ),         ]
               ),
-                
-                
-             
-               
-            ]
-              ),
-          
       );
   }
    

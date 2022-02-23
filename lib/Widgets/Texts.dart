@@ -1,5 +1,5 @@
 
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class Text1 extends StatelessWidget{
   final String data;

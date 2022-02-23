@@ -1,4 +1,4 @@
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class StarterController extends GetxController{
    Rx<bool> skip= false.obs;

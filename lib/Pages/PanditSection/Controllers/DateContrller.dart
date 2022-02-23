@@ -1,6 +1,6 @@
 
 import  'package:intl/intl.dart';
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class DateController extends GetxController{
   Rx<HinduDateModel> userModel = HinduDateModel().obs;

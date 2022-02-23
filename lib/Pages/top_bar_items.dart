@@ -10,7 +10,7 @@ final List<TopBarItem> topBarItem = [
       tap:'calender',
   ),
   TopBarItem(
-    image:"images/rituals.jpg",
+    image:"images/pujan_vidhi.png",
     name:'Pujan Vidhi',
     tap:'pujanvidhi',
   ),

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
-import '../TopBar.dart';
+import '../top_bar.dart';
 import 'Controllers/ImagesController.dart';
 class Profile extends StatelessWidget{
   @override

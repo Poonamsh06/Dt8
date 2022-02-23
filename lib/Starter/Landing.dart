@@ -1,5 +1,5 @@
 
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class Landing extends StatelessWidget{
   LoginController loginController = Get.put(LoginController());

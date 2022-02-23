@@ -16,7 +16,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:pujapurohit/Pages/Checkout/stripe_checkout_web.dart';
-import 'package:pujapurohit/Pages/NewPanditHome.dart';
+import 'package:pujapurohit/Pages/new_pandit_home.dart';
 import 'package:pujapurohit/Pages/PanditSection/Controllers/EventController.dart';
 import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
 import 'package:pujapurohit/SignIn/AuthController.dart';

@@ -1,6 +1,6 @@
 
 
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class CitiesController extends GetxController{
   Rx<CityModel> userModel =CityModel().obs;

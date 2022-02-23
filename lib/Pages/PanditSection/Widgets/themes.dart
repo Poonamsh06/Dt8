@@ -1,5 +1,5 @@
 
-import 'package:pujapurohit/Imports.dart';
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class Themes {
   static final light = ThemeData.light().copyWith(
