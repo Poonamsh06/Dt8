@@ -1,9 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-
-import '../constants.dart';
-
+import 'package:pujapurohit/Utils/Imports.dart';
 
 class CategoryCard extends StatelessWidget {
   final String? svgSrc;
@@ -19,7 +14,7 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double heioght = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
     return ClipRRect(
       borderRadius: BorderRadius.circular(13),
       child: Container(
@@ -40,7 +35,7 @@ class CategoryCard extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: GestureDetector(
-            onTap: (){
+            onTap: () {
               press!();
             },
             child: Padding(
@@ -49,10 +44,19 @@ class CategoryCard extends StatelessWidget {
                 children: <Widget>[
                   Spacer(),
                   SizedBox(
-                      height: heioght*0.15,
-                      child: Image.network(svgSrc!,fit: BoxFit.fill,)),
+                      height: height * 0.15,
+                      child: Image.network(
+                        svgSrc!,
+                        fit: BoxFit.fill,
+                      )),
                   Spacer(),
-                  Text1(data: title!, max: 12, min: 10,clr: Colors.black54,weight: FontWeight.w600,)
+                  Text1(
+                    data: title!,
+                    max: 12,
+                    min: 10,
+                    clr: Colors.black54,
+                    weight: FontWeight.w600,
+                  )
                 ],
               ),
             ),

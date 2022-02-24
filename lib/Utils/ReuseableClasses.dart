@@ -79,3 +79,233 @@ class PaddedDottedLine extends StatelessWidget {
     );
   }
 }
+
+class ArticleCard extends StatelessWidget {
+  final dynamic article;
+  final List<dynamic> likes;
+  final double width;
+  final double height;
+  final String somesnaps;
+  final String image;
+  final String title;
+  final sender;
+
+  final senderImg;
+  final String firstpara;
+  final List<dynamic> content;
+  final Timestamp time;
+  final views;
+
+  ArticleCard(
+      {required this.article,
+      required this.likes,
+      required this.width,
+      required this.height,
+      required this.somesnaps,
+      required this.image,
+      required this.title,
+      required this.sender,
+      required this.senderImg,
+      required this.firstpara,
+      required this.content,
+      required this.time,
+      required this.views});
+
+  ArticleCard.fromArticle({required this.article, required this.width, required this.height})
+      : this.likes = article['likes'],
+        this.somesnaps = article,
+        this.image = article['img'],
+        this.title = article['title'],
+        this.sender = article['sender'],
+        this.senderImg = article['sender_img'],
+        this.firstpara = article['content'][0]['data'],
+        this.content = article['content'],
+        this.time = article['time'],
+        this.views = article['views'];
+
+  @override
+  Widget build(BuildContext context) {
+    final ArticleController articleController = Get.put(ArticleController());
+    final AuthController authController = Get.put(AuthController());
+    DateTime date = time.toDate();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SizedBox(
+            //width: width * 0.9,
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.white,
+                backgroundImage: NetworkImage('$senderImg'),
+              ),
+              title: Text1(
+                data: "$sender",
+                max: 14,
+                min: 12,
+                weight: FontWeight.bold,
+              ),
+              subtitle: Text1(
+                data: "${DateFormat.yMMMEd().format(date)},${DateFormat.jm().format(date)}",
+                max: 12,
+                min: 10,
+                clr: Colors.black54,
+              ),
+              // trailing: Icon(
+              //   Icons.more_vert_outlined,
+              //   color: Colors.black54,
+              // ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: height * .01,
+        ),
+        Container(
+          height: height * 0.3,
+          width: width * 0.85,
+          decoration: BoxDecoration(
+              // boxShadow: [BoxShadow(color: Color(0xFFE6E6E6), blurRadius: 20)],
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              image: DecorationImage(image: NetworkImage('$image'), fit: BoxFit.contain)),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 30.0, right: 20),
+          child: Column(
+            children: [
+              Text(
+                '$title',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RichText(
+                text: TextSpan(
+                    text: "${firstpara.substring(0, 100)}... ",
+                    style: GoogleFonts.aBeeZee(fontSize: 12, color: Colors.black54),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: 'View more',
+                          style: GoogleFonts.aBeeZee(fontSize: 11, color: LightColors.color5, decoration: TextDecoration.underline),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              //  setState(() {
+                              //    dynamic views = articles['views']+1;
+                              //    FirebaseFirestore.instance//ab chala k dekh
+                              //        .doc('PujaPurohitFiles/Article')
+                              //        .update({
+                              //      "articles": FieldValue.arrayUnion([
+                              //        {
+                              //          // 'comments': articles['comments'],//kya hua
+                              //          'img': articles['img'],
+                              //          'content': articles['content'],
+                              //          'likes': articles['likes'],
+                              //          'sender': articles['sender'],
+                              //          'sender_img': articles['sender_img'],
+                              //          'time': articles['time'],
+                              //          'views': views,
+                              //          'title': articles['title']
+                              //        }
+                              //      ])
+                              //    }).
+                              //    whenComplete(() {
+                              //      FirebaseFirestore.instance
+                              //          .doc('PujaPurohitFiles/Article')
+                              //          .update({
+                              //        "articles": FieldValue.arrayRemove([articles])
+                              //      });
+                              //    });
+                              //    articleController.updateSomeData(title, Sender,
+                              //        Sender_img, time, content, views, image,articles['likes'].length);
+                              //    Get.toNamed('/articledetail');
+                              //  });
+                              articleController.updateSomeData(title, sender, senderImg, time, content, views, image, article['likes'].length);
+
+                              Get.toNamed('/articledetail');
+                            })
+                    ]),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              // Row(
+              //   children: [
+              //     InkWell(
+              //         onTap: () {
+              //           FirebaseFirestore.instance
+              //               .doc('PujaPurohitFiles/Article')
+              //               .update({
+              //             "articles": FieldValue.arrayRemove([articles])
+              //           }).whenComplete(() {
+              //             List<dynamic> likees = articles['likes'];
+              //             likes.contains('${authController.user!.uid}')?likees.remove('${authController.user!.uid}'):likees.add('${authController.user!.uid}');
+              //             FirebaseFirestore.instance//ab chala k dekh
+              //                 .doc('PujaPurohitFiles/Article')
+              //                 .update({
+              //               "articles": FieldValue.arrayUnion([
+              //                 {
+              //                   // 'comments': articles['comments'],//kya hua
+              //                   'img': articles['img'],
+              //                   'content': articles['content'],
+              //                   'likes': likees,
+              //                   'sender': articles['sender'],
+              //                   'sender_img': articles['sender_img'],
+              //                   'time': articles['time'],
+              //                   'views': articles['views'],
+              //                   'title': articles['title']
+              //                 }
+              //               ])
+              //             });
+              //           });
+              //         },
+              //         child: Icon(
+              //           CupertinoIcons.heart_fill,
+              //           color: likes.contains('${authController.user!.uid}')
+              //               ? LightColors.buttonColor
+              //               : Colors.black54,
+              //           size: 16,
+              //         )),
+              //     SizedBox(
+              //       width: 5,
+              //     ),
+              //     Text1(
+              //       data: '${likes.length}',
+              //       max: 11,
+              //       min: 10,
+              //       clr: Colors.black,
+              //     ),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     Icon(
+              //       CupertinoIcons.eye_fill,
+              //       color: Colors.black54,
+              //       size: 16,
+              //     ),
+              //     SizedBox(
+              //       width: 5,
+              //     ),
+              //     Text1(
+              //       data: '$views',
+              //       max: 11,
+              //       min: 10,
+              //       clr: Colors.black,
+              //     ),
+              //   ],
+              // ),
+
+              SizedBox(
+                height: 50,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
