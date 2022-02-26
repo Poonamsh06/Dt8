@@ -1,6 +1,4 @@
 import 'package:pujapurohit/Utils/Imports.dart';
-import '../../top_bar.dart';
-import '../Controllers/EventController.dart';
 
 
 class Events extends StatelessWidget{
@@ -81,7 +79,6 @@ class Events extends StatelessWidget{
                                     InkWell(
                                       hoverColor: Colors.transparent,
                                       onTap: (){
-
                                         eventController.updateupcoming(map[index]["bigS"],map[index]["youtube"],map[index]["puja"],map[index]["price"],map[index]["note"],map[index]["age"],map[index]["gender"], map[index]["place"],map[index]["status"],map[index]["image"], map[index]["name"], map[index]["about"], map[index]["duration"], map[index]["total_days"],map[index]["participants"],map[index]["terms"]);
                                         Get.toNamed('/eventDetail?event=$index');
                                       },

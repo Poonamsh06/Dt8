@@ -519,3 +519,4 @@ class BottomBarColumn extends StatelessWidget {
     );
   }
 }
+

@@ -1,8 +1,6 @@
 
 import 'package:pujapurohit/Utils/Imports.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
-import '../profile.dart';
 class AddressPage extends StatefulWidget{
 
   @override
@@ -15,7 +13,7 @@ class _AddressPageState extends State<AddressPage> {
   GoogleMapController? googleMapController;
   BitmapDescriptor? mapMarker;
   String addresss = "Open Map";
-  String? alternate_no;
+  String? alternateNo;
   String? name;
   String? lati;
   String? long;
@@ -146,7 +144,7 @@ class _AddressPageState extends State<AddressPage> {
                        child: Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                          children: [
-                           Expanded(flex: 1,child: Text1(data: "Name:", max: 12, min: 11)),
+                           Expanded(flex: 1,child: Text1(data: "Name", max: 12, min: 11)),
                            Expanded(
                              flex: 2,
                              child: TextFormField(
@@ -156,7 +154,7 @@ class _AddressPageState extends State<AddressPage> {
                                decoration: new InputDecoration(
 
                                  hintStyle: GoogleFonts.aBeeZee(color:Colors.black54,fontSize:12,),
-                                 hintText: "Your Name",
+                                 hintText: yourName,
                                ),
                               onChanged: (value){
                                  setState(() {
@@ -186,7 +184,7 @@ class _AddressPageState extends State<AddressPage> {
                                ),
                               onChanged: (value){
                                  setState(() {
-                                   alternate_no = value;
+                                   alternateNo = value;
                                  });
                               },
                              ),
@@ -200,7 +198,7 @@ class _AddressPageState extends State<AddressPage> {
                        child: Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                          children: [
-                           Expanded(flex: 1,child: Text1(data: "Pick Booking Time: ", max: 12, min: 11)),
+                           Expanded(flex: 1,child: Text1(data: pickBookingTime, max: 12, min: 11)),
                            Expanded(
                              flex: 2,
                              child: Row(
@@ -220,7 +218,7 @@ class _AddressPageState extends State<AddressPage> {
                        child: Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                          children: [
-                           Expanded(flex: 1,child: Text1(data: "Pick Booking Date: ", max: 12, min: 11)),
+                           Expanded(flex: 1,child: Text1(data: pickBookingDate, max: 12, min: 11)),
                            Expanded(
                                flex: 2,
                                child: Row(
@@ -240,7 +238,7 @@ class _AddressPageState extends State<AddressPage> {
                        child: Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                          children: [
-                           Expanded(flex: 1,child: Text1(data: "Pick Address: ", max: 12, min: 11)),
+                           Expanded(flex: 1,child: Text1(data: pickAddress, max: 12, min: 11)),
                            Expanded(
                                flex: 2,
                                child: InkWell(
@@ -302,16 +300,16 @@ class _AddressPageState extends State<AddressPage> {
                  }
 
                  else{
-                   if(alternate_no == null){
+                   if(alternateNo == null){
                      Get.defaultDialog(title: "Number Missing",middleText: "Please add your alternate number");
                    }
                    else{
-                     fare.address(locationController.location.value.blat,locationController.location.value.blat,addresss, _formatdate, _timeformat,name==null?authController.user!.displayName:name, authController.user!.photoURL, authController.user!.phoneNumber,alternate_no,authController.user!.uid);
+                     fare.address(locationController.location.value.blat,locationController.location.value.blat,addresss, _formatdate, _timeformat,name==null?authController.user!.displayName:name, authController.user!.photoURL, authController.user!.phoneNumber,alternateNo,authController.user!.uid);
                      Get.toNamed('/samagri?keyword=${Get.parameters['keyword']}');
                    }
                  }
                },
-               child:Text('Next')
+               child:Text(next)
            ),
          ),
        ],
@@ -417,7 +415,7 @@ class Samagri extends StatelessWidget{
                                scrollDirection: Axis.vertical,
                                shrinkWrap: true,
                                itemCount: samagriController.panditList.value!.length, itemBuilder: (BuildContext context, int index) {
-                             return VendorsTile(samagriController.pandits![index],samagriController,authController);
+                             return vendorsTile(samagriController.pandits![index],samagriController,authController);
                            }
                            ),
                          ),
@@ -461,9 +459,9 @@ class Samagri extends StatelessWidget{
                      Padding(
                        padding: const EdgeInsets.only(left:12.0,right: 12),
                        child: samagriController.panditList.value!.isEmpty?
-                       Text1(data: "Notice:\nBook your purohit and kindly arrange samgari by your own as listed in the samagri detail section.\n*Sorry for inconvenience no vendor is currently available in your locality, so you can not avail this facility as of now. We are working on it.\nTeam Puja Purohit\nClick on 'Skip' and continue your purohit booking.", max: 12, min: 11,clr: Colors.black54,)
+                       Text1(data: arrangeSamagriDetailSection, max: 12, min: 11,clr: Colors.black54,)
                            :
-                       Text1(data: "Don't waste your time on market to find samagri.\nWe are here to deliver it to your home.", max: 12, min: 11,clr: Colors.black54,),
+                       Text1(data: dontWasteTimeFindSamagri, max: 12, min: 11,clr: Colors.black54,),
                      ),
                      SizedBox(height:20),
                      Row(
@@ -490,7 +488,7 @@ class Samagri extends StatelessWidget{
                      elevation: 0,
                      onPressed:(){
                        Get.toNamed('/booking?samagri=false');},
-                     child: Text('Skip')
+                     child: Text(skip)
                    ),
                  ),
                  Padding(
@@ -563,7 +561,7 @@ class Samagri extends StatelessWidget{
                      );
   }
 
-  Widget VendorsTile(VendorModal vendorModal,SamagriController samagriController,AuthController authController){
+  Widget vendorsTile(VendorModal vendorModal,SamagriController samagriController,AuthController authController){
     String keyword = '#${Get.parameters['keyword']}';
     final UserController userController = Get.put(UserController());
     GeoPoint geoPoint = vendorModal.location!['geopoint'];
@@ -572,7 +570,7 @@ class Samagri extends StatelessWidget{
       stream: FirebaseFirestore.instance.collection('Vendors/${vendorModal.uid}/services').doc('$keyword').snapshots(),
       builder: (context, snapshot) {
         if(snapshot.data == null){
-          return Center(child: Text1(data: "Loading", max: 12, min: 11,clr: Colors.grey,),);
+          return Center(child: Text1(data: loading1, max: 12, min: 11,clr: Colors.grey,),);
         }
         if(snapshot.data!.exists){
           var disc=snapshot.data!.get('userDiscount');
@@ -621,7 +619,7 @@ class Samagri extends StatelessWidget{
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text1(data: "Offering ${snapshot.data!.get('userDiscount')}% discount in rates",max: 10,min: 9,clr: Colors.green,),
-                    Text1(data: "Fully Customizable samagri",max: 10,min: 9,clr: Colors.black54,),
+                    Text1(data: fullyCustomizeSamagri,max: 10,min: 9,clr: Colors.black54,),
                   ],
                 ),
                 trailing: Column(
@@ -650,7 +648,7 @@ class Samagri extends StatelessWidget{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text1(data: "Offering ${vendorModal.userDiscount*10}% discount in rates",max: 10,min: 9,clr: Colors.grey,),
-                  Text1(data: "Currently unavailable",max: 10,min: 9,clr: Colors.grey,),
+                  Text1(data: currentlyUnavailable,max: 10,min: 9,clr: Colors.grey,),
                 ],
               ),
               trailing: Column(
@@ -678,7 +676,7 @@ class Samagri extends StatelessWidget{
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text1(data: "Offering ${vendorModal.userDiscount*10}% discount in rates",max: 10,min: 9,clr: Colors.grey,),
-                Text1(data: "Not in Stock",max: 10,min: 9,clr: Colors.redAccent,),
+                Text1(data: notInStock,max: 10,min: 9,clr: Colors.redAccent,),
               ],
             ),
             trailing: Column(
@@ -782,13 +780,13 @@ class ItemsController extends GetxController{
  final String? Vendoruid;
  final String? keyword;
  ItemsController({this.Vendoruid,this.keyword});
-  var samagri_total = 0.0.obs;
+  var samagriTotal = 0.0.obs;
   Rxn<List<ItemsModel>> itemsList = Rxn<List<ItemsModel>>();
   final AuthController authController = Get.find();
   List<ItemsModel>? get items => itemsList.value;
 
   total(var total_price){
-    samagri_total.update((val) {
+    samagriTotal.update((val) {
       val = total_price;
     });
   }
@@ -850,7 +848,7 @@ class SamagriCustomization extends StatelessWidget{
                               SizedBox(height:5),
                               Text1(data: "${vendorController.userModel.value.district}, ${vendorController.userModel.value.state}", max: 11, min: 10,),
                               SizedBox(height:5),
-                              Text1(data: "Offering:${fareBreakup.fare_data.value.userDiscount}% dicount", max: 11, min: 10,),
+                              Text1(data: "Offering:${fareBreakup.fareData.value.userDiscount}% dicount", max: 11, min: 10,),
                             ]
                         ),
                       ),
@@ -895,9 +893,9 @@ class SamagriCustomization extends StatelessWidget{
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text1(data: "Fare breakup :", max: 14, min: 12,clr: Colors.grey,weight: FontWeight.bold,),
+                          Text1(data: fareBreakup1, max: 14, min: 12,clr: Colors.grey,weight: FontWeight.bold,),
                           SizedBox(height: 15,),
-                          Text1(data: "Note: Swipe left to remove any samagri", max: 11, min: 10,clr: Colors.grey),
+                          Text1(data: swipeLeftToRemoveSamagri, max: 11, min: 10,clr: Colors.grey),
                         ],
                       ),
                     ],
@@ -921,7 +919,7 @@ class SamagriCustomization extends StatelessWidget{
                             });
                           });
                         });
-                      }, icon: Icon(Icons.refresh,size: 10,color: Colors.grey,), label: Text1(data: "Refresh list", max: 10, min: 9,clr: Colors.grey,),
+                      }, icon: Icon(Icons.refresh,size: 10,color: Colors.grey,), label: Text1(data: refreshList, max: 10, min: 9,clr: Colors.grey,),
                         style: ElevatedButton.styleFrom(primary: Colors.white,shape: StadiumBorder()),
                       ),
                     ],
@@ -929,7 +927,7 @@ class SamagriCustomization extends StatelessWidget{
                   SizedBox(height: 15,),
                   Container(
 
-                    child: samagrilist()
+                    child: samagriList()
                   ),
                 ],
               ),
@@ -940,7 +938,7 @@ class SamagriCustomization extends StatelessWidget{
       )
     );
   }
-  Widget samagrilist(){
+  Widget samagriList(){
    // FareBreakup fareBreakup = Get.put(FareBreakup());
     double height = Get.height;
     return StreamBuilder<QuerySnapshot>(
@@ -1067,51 +1065,51 @@ class SamagriCustomization extends StatelessWidget{
 }
 
 class FareBreakup extends GetxController{
-  var fare_data = FareBreakupData(loader: false).obs;
+  var fareData = FareBreakupData(loader: false).obs;
   addVendor(String vendor,String name,var discount,var userDiscount,String token,double distance){
-    fare_data.update((val) {
+    fareData.update((val) {
       val!.vendorUid =  vendor;
-      val.vendor_name =name;
+      val.vendorName =name;
       val.discount = discount;
       val.userDiscount = userDiscount;
-      val.vendor_token = token;
-      val.vdistance = distance;
+      val.vendorToken = token;
+      val.vDistance = distance;
     });
   }
   updateLoader(){
-    fare_data.update((val) {
-      val!.loader= fare_data.value.loader?false:true;
+    fareData.update((val) {
+      val!.loader= fareData.value.loader?false:true;
     });
   }
   pandit(String panditpic,String panditName,String panditcontact,String pandittoken,String panditId,double distance){
-    fare_data.update((val) {
+    fareData.update((val) {
       val!.panditPic = panditpic;
       val.panditName = panditName;
       val.panditContact = panditcontact;
       val.panditToken = pandittoken;
       val.panditId = panditId;
-      val.pdistance = distance;
+      val.pDistance = distance;
     });
   }
-  service(double service_cahrge,String serviceId,String service,String image,var np){
-    fare_data.update((val) {
-      val!.service_cahrge = service_cahrge;
+  service(double serviceCharge,String serviceId,String service,String image,var np){
+    fareData.update((val) {
+      val!.serviceCharge = serviceCharge;
       val.service = service;
-      val.service_id = service;
-      val.service_image = image;
+      val.serviceId = service;
+      val.serviceImage = image;
       val.np = np;
     });
   }
-  address(double? lat, double? lng,String? booking_address, String? date,String? time,String? Username,String? Userpic,String? UserContact,String? UserAContact,String? UserId){
-    fare_data.update((val) {
-      val!.booking_address = booking_address;
+  address(double? lat, double? lng,String? bookingAddress, String? date,String? time,String? userName,String? userPic,String? userContact,String? userAContact,String? userId){
+    fareData.update((val) {
+      val!.bookingAddress = bookingAddress;
       val.time = time;
       val.date = date;
-      val.Username = Username;
-      val.Userpic = Userpic;
-      val.UserContact = UserContact;
-      val.UserAContact = UserAContact;
-      val.UserId = UserId;
+      val.userName = userName;
+      val.userPic = userPic;
+      val.userContact = userContact;
+      val.userAContact = userAContact;
+      val.userId = userId;
       val.lat = lat;
       val.lng = lng;
 
@@ -1125,34 +1123,34 @@ class FareBreakupData{
   String? panditContact;
   String? panditToken;
   String? panditId;
-  double? pdistance;
+  double? pDistance;
 
-  double? service_cahrge;
+  double? serviceCharge;
   var np;
-  String? service_id;
+  String? serviceId;
   String? service;
-  String? service_image;
+  String? serviceImage;
 
   String? vendorUid;
-  String? vendor_name;
-  String? vendor_token;
-  double? vdistance;
+  String? vendorName;
+  String? vendorToken;
+  double? vDistance;
   var discount;
   var userDiscount;
 
-  String? booking_address;
+  String? bookingAddress;
   double? lat;
   double? lng;
   String? date;
   String? time;
-  String? Username;
-  String? Userpic;
-  String? UserContact;
-  String? UserAContact;
-  String? UserId;
+  String? userName;
+  String? userPic;
+  String? userContact;
+  String? userAContact;
+  String? userId;
 
   bool loader;
-  FareBreakupData({required this.loader,this.vendor_token,this.panditId,this.panditPic,this.panditName,this.panditContact,this.panditToken,this.service_cahrge,this.service_id,this.service,this.service_image,this.vendorUid});
+  FareBreakupData({required this.loader,this.vendorToken,this.panditId,this.panditPic,this.panditName,this.panditContact,this.panditToken,this.serviceCharge,this.serviceId,this.service,this.serviceImage,this.vendorUid});
 }
 
 class BookingFinish extends StatelessWidget{
@@ -1180,21 +1178,21 @@ class BookingFinish extends StatelessWidget{
         init: Get.put(FareBreakup()),
         builder: (FareBreakup farebreakup){
           //____________________________ Without Samagri Calculation ____________________//
-          double convineance_fee = farebreakup.fare_data.value.service_cahrge!*0.05;
-          double total_no_samagri = farebreakup.fare_data.value.service_cahrge!+convineance_fee;
+          double convineance_fee = farebreakup.fareData.value.serviceCharge!*0.05;
+          double total_no_samagri = farebreakup.fareData.value.serviceCharge!+convineance_fee;
           // double ntransaction = total_no_samagri *0.0225;
           // double nbenefit_online = convineance_fee - ntransaction;
           // double ncompany_benefit = nbenefit_online*0.2;
           // double npandit_benefit = nbenefit_online*0.8;
 
           //____________________________  Samagri Calculation ____________________//
-          var userDiscount = samagri=="true"?farebreakup.fare_data.value.userDiscount:0;
-          var discount = samagri=="true"?farebreakup.fare_data.value.discount:0;
+          var userDiscount = samagri=="true"?farebreakup.fareData.value.userDiscount:0;
+          var discount = samagri=="true"?farebreakup.fareData.value.discount:0;
           var give_discount =samagri=="true"?samagri_price*userDiscount/100:0.0;
           var give_vdiscount =samagri=="true"?vendor_price*userDiscount/100:0.0;
           var samagri_after_dicount = samagri=="true"?samagri_price-give_discount:0.0;
           var vendor_after_dicount = samagri=="true"?vendor_price-give_vdiscount:0.0;
-          var total_with_samagri = farebreakup.fare_data.value.service_cahrge!+samagri_after_dicount;
+          var total_with_samagri = farebreakup.fareData.value.serviceCharge!+samagri_after_dicount;
          // var transaction = total_with_samagri*0.0225;
 
 
@@ -1213,11 +1211,11 @@ class BookingFinish extends StatelessWidget{
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children:[
-                                Text1(data: "Confirm Booking", max: 18, min: 16,weight: FontWeight.bold),
+                                Text1(data: confirmBooking, max: 18, min: 16,weight: FontWeight.bold),
                                 SizedBox(height:5),
-                                Text1(data: "Service: ${farebreakup.fare_data.value.service}", max: 11, min: 10,),
+                                Text1(data: "Service: ${farebreakup.fareData.value.service}", max: 11, min: 10,),
                                 SizedBox(height:5),
-                                Text1(data: "By: ${farebreakup.fare_data.value.panditName}", max: 11, min: 10,),
+                                Text1(data: "By: ${farebreakup.fareData.value.panditName}", max: 11, min: 10,),
                               ]
                           ),
                         ),
@@ -1233,7 +1231,7 @@ class BookingFinish extends StatelessWidget{
                                     color: Colors.white,
                                     shape: BoxShape.rectangle,
                                     image: DecorationImage(
-                                        image: NetworkImage('${farebreakup.fare_data.value.service_image}'),
+                                        image: NetworkImage('${farebreakup.fareData.value.serviceImage}'),
                                         fit: BoxFit.fill
                                     )
                                 ),
@@ -1262,7 +1260,7 @@ class BookingFinish extends StatelessWidget{
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text1(data: "Booking Info", max: 11, min: 10,clr: Colors.grey,),),
+                          child: Text1(data: bookingInfo, max: 11, min: 10,clr: Colors.grey,),),
                         Expanded(
                           flex:2,
                           child: DottedLine(
@@ -1286,13 +1284,13 @@ class BookingFinish extends StatelessWidget{
                         children: [
                           Expanded(
                               flex: 1,
-                              child:MiniBox(icon: true, FirstText: 'Date', SecondText: "${farebreakup.fare_data.value.date}",iconData: CupertinoIcons.calendar_badge_plus,)),
+                              child:MiniBox(icon: true, FirstText: date, SecondText: "${farebreakup.fareData.value.date}",iconData: CupertinoIcons.calendar_badge_plus,)),
                           Expanded(
                               flex: 1,
-                              child: MiniBox(icon: true, FirstText: "Time", SecondText: "${farebreakup.fare_data.value.time}",iconData: Icons.watch_later_outlined,)),
+                              child: MiniBox(icon: true, FirstText: time, SecondText: "${farebreakup.fareData.value.time}",iconData: Icons.watch_later_outlined,)),
                           Expanded(
                               flex: 1,
-                              child: MiniBox(icon: true, FirstText: "Samagri", SecondText: "${samagri=='true'?"Yes":"No"}",iconData: Icons.shopping_bag_outlined,)),
+                              child: MiniBox(icon: true, FirstText: samagri, SecondText: "${samagri=='true'?"Yes":"No"}",iconData: Icons.shopping_bag_outlined,)),
 
                         ],
                       ),
@@ -1303,7 +1301,7 @@ class BookingFinish extends StatelessWidget{
                         children: [
                           Expanded(
                               flex: 1,
-                              child:MiniBox(icon: true, FirstText: 'Location', SecondText: "${farebreakup.fare_data.value.booking_address}",iconData: CupertinoIcons.home,)),
+                              child:MiniBox(icon: true, FirstText: location, SecondText: "${farebreakup.fareData.value.bookingAddress}",iconData: CupertinoIcons.home,)),
                         ],
                       ),
                     ),
@@ -1327,7 +1325,7 @@ class BookingFinish extends StatelessWidget{
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text1(data: "Fare Breakup", max: 11, min: 10,clr: Colors.grey,),),
+                          child: Text1(data: fareBreakup, max: 11, min: 10,clr: Colors.grey,),),
                         Expanded(
                           flex:2,
                           child: DottedLine(
@@ -1351,23 +1349,23 @@ class BookingFinish extends StatelessWidget{
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text1(data: "Normal Rate", max: 12, min: 11,clr: Colors.grey,),
+                            Text1(data: normalRate, max: 12, min: 11,clr: Colors.grey,),
                             SizedBox(height: 10,),
-                            Text1(data: "Puja Purohit Special Rate", max: 12, min: 11,clr: Colors.grey,),
+                            Text1(data: specialRate, max: 12, min: 11,clr: Colors.grey,),
                             SizedBox(height: 10,),
-                            samagri=='true'?SizedBox(height: 0.0,):Text1(data: "Convenience Fee", max: 12, min: 11,clr: Colors.grey,),
+                            samagri=='true'?SizedBox(height: 0.0,):Text1(data: convienceFee, max: 12, min: 11,clr: Colors.grey,),
                             SizedBox(height: 10,),
-                            samagri=='true'?Text1(data: "Samagri Charge", max: 12, min: 11,clr: Colors.grey,):SizedBox(),
+                            samagri=='true'?Text1(data: samagriCharge, max: 12, min: 11,clr: Colors.grey,):SizedBox(),
                             SizedBox(height: 3,),
-                            samagri=='true'?Text1(data: "Applied ${farebreakup.fare_data.value.userDiscount}% discount", max: 8, min: 7,clr: Colors.redAccent,):SizedBox(),
+                            samagri=='true'?Text1(data: "Applied ${farebreakup.fareData.value.userDiscount}% discount", max: 8, min: 7,clr: Colors.redAccent,):SizedBox(),
                           ],
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text("\₹ ${farebreakup.fare_data.value.np!.roundToDouble().toStringAsFixed(2)}",style: GoogleFonts.aBeeZee(fontSize: 12,color: Colors.grey,decoration: TextDecoration.lineThrough),),
+                            Text("\₹ ${farebreakup.fareData.value.np!.roundToDouble().toStringAsFixed(2)}",style: GoogleFonts.aBeeZee(fontSize: 12,color: Colors.grey,decoration: TextDecoration.lineThrough),),
                             SizedBox(height: 10,),
-                            Text1(data: "\₹ ${farebreakup.fare_data.value.service_cahrge!.roundToDouble().toStringAsFixed(2)}", max: 12, min: 11,clr: Colors.grey,),
+                            Text1(data: "\₹ ${farebreakup.fareData.value.serviceCharge!.roundToDouble().toStringAsFixed(2)}", max: 12, min: 11,clr: Colors.grey,),
                             SizedBox(height: 10,),
                             samagri=='true'?SizedBox(height: 0.0,):Text1(data: "\₹ ${convineance_fee.roundToDouble().toStringAsFixed(2)}", max: 12, min: 11,clr: Colors.grey,),
                             SizedBox(height: 10,),
@@ -1401,7 +1399,7 @@ class BookingFinish extends StatelessWidget{
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text1(data: "Total", max: 12, min: 11,clr: Colors.grey,weight: FontWeight.bold,),
+                            Text1(data: total, max: 12, min: 11,clr: Colors.grey,weight: FontWeight.bold,),
                           ],
                         ),
                         Column(
@@ -1413,7 +1411,7 @@ class BookingFinish extends StatelessWidget{
                       ],
                     ),
                     SizedBox(height: 15,),
-                    Text1(data: "Note>\nHere you are requesting booking according to our purohit availability he will accept your booking within 30 min.", max: 11, min: 11,clr: Colors.black54,)
+                    Text1(data: requestingBookingAccordingPurohitAvailability, max: 11, min: 11,clr: Colors.black54,)
                   ],
                 ),
               ),
@@ -1425,18 +1423,18 @@ class BookingFinish extends StatelessWidget{
                     children: [
                       ElevatedButton(onPressed: ()async{
                        farebreakup.updateLoader();
-                        await FirebaseFirestore.instance.doc('punditUsers/${farebreakup.fare_data.value.panditId}/notification/$randomNumber').set({
-                          'token':farebreakup.fare_data.value.panditToken,
+                        await FirebaseFirestore.instance.doc('punditUsers/${farebreakup.fareData.value.panditId}/notification/$randomNumber').set({
+                          'token':farebreakup.fareData.value.panditToken,
                           'utoken':'${userController.userModel.value.token}',
                           'clientuid':'${userController.userModel.value.id}',
                           'sender':"Booking Request by ${userController.userModel.value.name}",
                           'image':'${userController.userModel.value.photo}',
-                          'content':"Booking for ${farebreakup.fare_data.value.service}",
+                          'content':"Booking for ${farebreakup.fareData.value.service}",
                         });
-                        await FirebaseFirestore.instance.doc('punditUsers/${farebreakup.fare_data.value.panditId}/bookingrequest/$randomNumber').set({
-                          'pdistance':farebreakup.fare_data.value.pdistance,
-                          'vdistance':farebreakup.fare_data.value.vdistance,
-                          'discount':samagri=='true'?farebreakup.fare_data.value.userDiscount:0.0,
+                        await FirebaseFirestore.instance.doc('punditUsers/${farebreakup.fareData.value.panditId}/bookingrequest/$randomNumber').set({
+                          'pdistance':farebreakup.fareData.value.pDistance,
+                          'vdistance':farebreakup.fareData.value.vDistance,
+                          'discount':samagri=='true'?farebreakup.fareData.value.userDiscount:0.0,
                           'companybenefit':0.0,
                           'panditbenefit':0.0,
                           'refundmoney':0.0,
@@ -1446,33 +1444,33 @@ class BookingFinish extends StatelessWidget{
                           'samagri_price':samagri_after_dicount.roundToDouble(),
                           'vendor_price':samagri=="true"?vendor_after_dicount.roundToDouble():0.0,
                           'benefit':0.0,
-                          'panditpic':farebreakup.fare_data.value.panditPic,
+                          'panditpic':farebreakup.fareData.value.panditPic,
                           'timestrap':FieldValue.serverTimestamp(),
                           'dt':FieldValue.serverTimestamp(),
-                          'date':farebreakup.fare_data.value.date,
-                          'time':farebreakup.fare_data.value.time,
+                          'date':farebreakup.fareData.value.date,
+                          'time':farebreakup.fareData.value.time,
                           'transaction':0.0,
-                          'puja_charge':farebreakup.fare_data.value.service_cahrge!.roundToDouble(),
+                          'puja_charge':farebreakup.fareData.value.serviceCharge!.roundToDouble(),
                           'contact':userController.userModel.value.phone,
-                          'alternate_contact':farebreakup.fare_data.value.UserAContact,
+                          'alternate_contact':farebreakup.fareData.value.userAContact,
                           'samagri':samagri=="true"?true:false,
                           'otp':code,
-                          'pandituid':farebreakup.fare_data.value.panditId,
-                          'serviceId':farebreakup.fare_data.value.service_id,
-                          'service_image':farebreakup.fare_data.value.service_image,
-                          'btoken':farebreakup.fare_data.value.panditToken,
+                          'pandituid':farebreakup.fareData.value.panditId,
+                          'serviceId':farebreakup.fareData.value.serviceId,
+                          'service_image':farebreakup.fareData.value.serviceImage,
+                          'btoken':farebreakup.fareData.value.panditToken,
                           'utoken':userController.userModel.value.token,
                           'clientuid':userController.userModel.value.id,
-                          'Location':farebreakup.fare_data.value.booking_address,
+                          'Location':farebreakup.fareData.value.bookingAddress,
                           'lat':"",
                           'lng':"",
                           'client':userController.userModel.value.name,
                           'email':userController.userModel.value.email,
                           'Link':'selectedPlace.url',
                           'pic':userController.userModel.value.photo ,
-                          'service':farebreakup.fare_data.value.service,
+                          'service':farebreakup.fareData.value.service,
                           'bookingId':randomNumber,
-                          'pandit':farebreakup.fare_data.value.panditName,
+                          'pandit':farebreakup.fareData.value.panditName,
                           'Due':samagri=="true"?total_with_samagri.roundToDouble():total_no_samagri.roundToDouble(),
                           'convineancefee':samagri=="true"?0.0:convineance_fee.roundToDouble(),
                           'cancel':false,
@@ -1485,13 +1483,13 @@ class BookingFinish extends StatelessWidget{
                           'rating':false,
                           'swastik':0.0,
                           'status':'Requested',
-                          'vendor_uid':samagri=='true'?farebreakup.fare_data.value.vendorUid:'',
-                          'vendor_token':samagri=='true'?farebreakup.fare_data.value.vendorUid:'',
+                          'vendor_uid':samagri=='true'?farebreakup.fareData.value.vendorUid:'',
+                          'vendor_token':samagri=='true'?farebreakup.fareData.value.vendorUid:'',
                         });
-                        await FirebaseFirestore.instance.doc('users/${farebreakup.fare_data.value.UserId}/bookings/$randomNumber').set({
-                          'pdistance':farebreakup.fare_data.value.pdistance,
-                          'vdistance':farebreakup.fare_data.value.vdistance,
-                          'discount':samagri=='true'?farebreakup.fare_data.value.userDiscount:0.0,
+                        await FirebaseFirestore.instance.doc('users/${farebreakup.fareData.value.userId}/bookings/$randomNumber').set({
+                          'pdistance':farebreakup.fareData.value.pDistance,
+                          'vdistance':farebreakup.fareData.value.vDistance,
+                          'discount':samagri=='true'?farebreakup.fareData.value.userDiscount:0.0,
                           'companybenefit':0.0,
                           'panditbenefit':0.0,
                           'refundmoney':0.0,
@@ -1501,33 +1499,33 @@ class BookingFinish extends StatelessWidget{
                           'samagri_price':samagri_after_dicount.roundToDouble(),
                           'vendor_price':samagri=="true"?vendor_after_dicount.roundToDouble():0.0,
                           'benefit':0.0,
-                          'panditpic':farebreakup.fare_data.value.panditPic,
+                          'panditpic':farebreakup.fareData.value.panditPic,
                           'timestrap':FieldValue.serverTimestamp(),
                           'dt':FieldValue.serverTimestamp(),
-                          'date':farebreakup.fare_data.value.date,
-                          'time':farebreakup.fare_data.value.time,
+                          'date':farebreakup.fareData.value.date,
+                          'time':farebreakup.fareData.value.time,
                           'transaction':0.0,
-                          'puja_charge':farebreakup.fare_data.value.service_cahrge!.roundToDouble(),
+                          'puja_charge':farebreakup.fareData.value.serviceCharge!.roundToDouble(),
                           'contact':userController.userModel.value.phone,
-                          'alternate_contact':farebreakup.fare_data.value.UserAContact,
+                          'alternate_contact':farebreakup.fareData.value.userAContact,
                           'samagri':samagri=="true"?true:false,
                           'otp':code,
-                          'pandituid':farebreakup.fare_data.value.panditId,
-                          'serviceId':farebreakup.fare_data.value.service_id,
-                          'service_image':farebreakup.fare_data.value.service_image,
-                          'btoken':farebreakup.fare_data.value.panditToken,
+                          'pandituid':farebreakup.fareData.value.panditId,
+                          'serviceId':farebreakup.fareData.value.serviceId,
+                          'service_image':farebreakup.fareData.value.serviceImage,
+                          'btoken':farebreakup.fareData.value.panditToken,
                           'utoken':userController.userModel.value.token,
                           'clientuid':userController.userModel.value.id,
-                          'Location':farebreakup.fare_data.value.booking_address,
+                          'Location':farebreakup.fareData.value.bookingAddress,
                           'lat':"",
                           'lng':"",
                           'client':userController.userModel.value.name,
                           'email':userController.userModel.value.email,
                          'Link':'selectedPlace.url',
                           'pic':userController.userModel.value.photo ,
-                          'service':farebreakup.fare_data.value.service,
+                          'service':farebreakup.fareData.value.service,
                           'bookingId':randomNumber,
-                          'pandit':farebreakup.fare_data.value.panditName,
+                          'pandit':farebreakup.fareData.value.panditName,
                           'Due':samagri=="true"?total_with_samagri.roundToDouble():total_no_samagri.roundToDouble(),
                           'convineancefee':samagri=="true"?0.0:convineance_fee.roundToDouble(),
                           'cancel':false,
@@ -1540,13 +1538,13 @@ class BookingFinish extends StatelessWidget{
                           'rating':false,
                           'swastik':0.0,
                           'status':'Requested',
-                          'vendor_uid':samagri=='true'?farebreakup.fare_data.value.vendorUid:'',
-                          'vendor_token':samagri=='true'?farebreakup.fare_data.value.vendorUid:''
+                          'vendor_uid':samagri=='true'?farebreakup.fareData.value.vendorUid:'',
+                          'vendor_token':samagri=='true'?farebreakup.fareData.value.vendorUid:''
                         });
                         await FirebaseFirestore.instance.doc('RBOOKING/$randomNumber').set({
-                          'pdistance':farebreakup.fare_data.value.pdistance,
-                          'vdistance':farebreakup.fare_data.value.vdistance,
-                          'discount':samagri=='true'?farebreakup.fare_data.value.userDiscount:0.0,
+                          'pdistance':farebreakup.fareData.value.pDistance,
+                          'vdistance':farebreakup.fareData.value.vDistance,
+                          'discount':samagri=='true'?farebreakup.fareData.value.userDiscount:0.0,
                           'companybenefit':0.0,
                           'panditbenefit':0.0,
                           'refundmoney':0.0,
@@ -1556,32 +1554,32 @@ class BookingFinish extends StatelessWidget{
                           'samagri_price':samagri_after_dicount.roundToDouble(),
                           'vendor_price':samagri=="true"?vendor_after_dicount.roundToDouble():0.0,
                           'benefit':0.0,
-                          'panditpic':farebreakup.fare_data.value.panditPic,
+                          'panditpic':farebreakup.fareData.value.panditPic,
                           'timestrap':FieldValue.serverTimestamp(),
-                          'date':farebreakup.fare_data.value.date,
-                          'time':farebreakup.fare_data.value.time,
+                          'date':farebreakup.fareData.value.date,
+                          'time':farebreakup.fareData.value.time,
                           'transaction':0.0,
-                          'puja_charge':farebreakup.fare_data.value.service_cahrge!.roundToDouble(),
+                          'puja_charge':farebreakup.fareData.value.serviceCharge!.roundToDouble(),
                           'contact':userController.userModel.value.phone,
-                          'alternate_contact':farebreakup.fare_data.value.UserAContact,
+                          'alternate_contact':farebreakup.fareData.value.userAContact,
                           'samagri':samagri=="true"?true:false,
                           'otp':code,
-                          'pandituid':farebreakup.fare_data.value.panditId,
-                          'serviceId':farebreakup.fare_data.value.service_id,
-                          'service_image':farebreakup.fare_data.value.service_image,
-                          'btoken':farebreakup.fare_data.value.panditToken,
+                          'pandituid':farebreakup.fareData.value.panditId,
+                          'serviceId':farebreakup.fareData.value.serviceId,
+                          'service_image':farebreakup.fareData.value.serviceImage,
+                          'btoken':farebreakup.fareData.value.panditToken,
                           'utoken':userController.userModel.value.token,
                           'clientuid':userController.userModel.value.id,
-                          'Location':farebreakup.fare_data.value.booking_address,
+                          'Location':farebreakup.fareData.value.bookingAddress,
                           'lat':"",
                           'lng':"",
                           'client':userController.userModel.value.name,
                           'email':userController.userModel.value.email,
                          'Link':'selectedPlace.url',
                           'pic':userController.userModel.value.photo ,
-                          'service':farebreakup.fare_data.value.service,
+                          'service':farebreakup.fareData.value.service,
                           'bookingId':randomNumber,
-                          'pandit':farebreakup.fare_data.value.panditName,
+                          'pandit':farebreakup.fareData.value.panditName,
                           'Due':samagri=="true"?total_with_samagri.roundToDouble():total_no_samagri.roundToDouble(),
                           'convineancefee':samagri=="true"?0.0:convineance_fee.roundToDouble(),
                           'cancel':false,
@@ -1594,26 +1592,26 @@ class BookingFinish extends StatelessWidget{
                           'rating':false,
                           'swastik':0.0,
                           'status':'Requested',
-                          'vendor_uid':samagri=='true'?farebreakup.fare_data.value.vendorUid:'',
-                          'vendor_token':samagri=='true'?farebreakup.fare_data.value.vendorUid:''
+                          'vendor_uid':samagri=='true'?farebreakup.fareData.value.vendorUid:'',
+                          'vendor_token':samagri=='true'?farebreakup.fareData.value.vendorUid:''
                         }).whenComplete(() {
                           farebreakup.updateLoader();
                           Get.back();
                           Get.back();
                           Get.back();
                         }).whenComplete(() => Get.snackbar("Booking", "Booking successfully requested"));
-                      }, child:Text1(data: "Request Booking", max: 12, min: 11,clr: Colors.white,),style: ElevatedButton.styleFrom(shape: StadiumBorder(),primary: Colors.orangeAccent),),
+                      }, child:Text1(data: requestBooking, max: 12, min: 11,clr: Colors.white,),style: ElevatedButton.styleFrom(shape: StadiumBorder(),primary: Colors.orangeAccent),),
                       SizedBox(width: 15,),
                       ElevatedButton(onPressed: (){
                         Get.back();
                         Get.back();
                         Get.back();
-                      }, child:Text1(data: "Cancel", max: 12, min: 11),style: ElevatedButton.styleFrom(shape: StadiumBorder(),primary: Colors.black54),),
+                      }, child:Text1(data: cancel, max: 12, min: 11),style: ElevatedButton.styleFrom(shape: StadiumBorder(),primary: Colors.black54),),
                     ],
                   )
                 ],
               ),
-              farebreakup.fare_data.value.loader?Container(
+              farebreakup.fareData.value.loader?Container(
                 color: Colors.transparent,
                 alignment: Alignment.center,
                 height: height,

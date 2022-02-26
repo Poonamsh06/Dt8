@@ -1,6 +1,7 @@
 
 import 'package:pujapurohit/Utils/Imports.dart';
 import 'Pages/PanditSection/pandit_home.dart';
+import 'SignIn/Update.dart';
 
 void main()async{
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget{
          GetPage(name: '/event', page: ()=>Events()),
         GetPage(name:'/eventDetail',page:()=>EventDetail()),
         GetPage(name: '/imageview', page:()=>ImageView()),
-        GetPage(name: '/registration', page:()=> Registration_Form() ),
+        GetPage(name: '/registration', page:()=> RegistrationForm() ),
          GetPage(name: '/success', page:()=> SuccessPage()),
       ],
     );

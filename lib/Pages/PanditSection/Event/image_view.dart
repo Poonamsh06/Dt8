@@ -89,7 +89,7 @@ class _ImageViewState extends State<ImageView> {
                             }, icon: Icon(Icons.close,color: Color(0xff181c2c),size: 20,)),
                             Spacer(),
                             IconButton(
-                                tooltip: "Share",
+                                tooltip: share,
                                 onPressed: (){
                                   Share.share('Visit the link and vote ${snapshot.data!.get("name")} pujapurohit.in/#/imageview?id=${snapshot.data!.get("id")}&vote=$vote&name=$name', subject: 'Puja Purohit Contest');
                                   //_saveScreen();
@@ -191,7 +191,7 @@ class _ImageViewState extends State<ImageView> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text1(data: "List of Voters :", max: 20, min: 18,clr: Colors.black54,),
+                            Text1(data: listVoters, max: 20, min: 18,clr: Colors.black54,),
                           ],
                         ),
                         SizedBox(

@@ -1,5 +1,4 @@
 
-
 import 'package:pujapurohit/Utils/Imports.dart';
 
 class EventController extends GetxController{
@@ -108,7 +107,7 @@ class EventController extends GetxController{
       val.BigS = BigS;
     });
   }
-  updateparticipants(List<dynamic> p){
+  updateParticipants(List<dynamic> p){
     eventData.value.participants1 = p;
   }
 }
@@ -137,7 +136,7 @@ class EventData{
 class EventControllerPayment extends GetxController{
   var paymentData = EventPaymentData().obs;
 
-  updatePayemnt(String name, String age, String image, String gender, String event,int num,String puja,List<dynamic> participant1){
+  updatePayment(String name, String age, String image, String gender, String event,int num,String puja,List<dynamic> participant1){
       paymentData.update((val) {
         val!.name = name;
         val.age = age;

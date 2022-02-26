@@ -1,9 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
 
-import '../account.dart';
-import '../Controllers/panditsController.dart';
-import '../detail.dart';
 import 'package:pujapurohit/Utils/Imports.dart';
 
 class EventDetail extends StatefulWidget{
@@ -112,7 +109,7 @@ class _EventDetailState extends State<EventDetail> {
                                 alignment: Alignment.center,
                                 padding: EdgeInsets.all(15),
 
-                                child: Text1(data:"Login", max: 14, min: 12,clr: Colors.white,),
+                                child: Text1(data:login, max: 14, min: 12,clr: Colors.white,),
                               ),
                             ),
                           ],
@@ -124,7 +121,7 @@ class _EventDetailState extends State<EventDetail> {
                           ],
                         ),
                         SizedBox(height: 20,),
-                        Text1(data: "About", max: 24, min: 20,clr: Color(0xff181c2c),),
+                        Text1(data: about, max: 24, min: 20,clr: Color(0xff181c2c),),
                         SizedBox(height: 20,),
                         Text1(data: "${events[int.parse(indx)]["about"]}", max: 14, min: 12,clr: Colors.black54,),
                         SizedBox(height: 20,),
@@ -158,7 +155,7 @@ class _EventDetailState extends State<EventDetail> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20,),
-          Text1(data: "Terms and Condition", max: 24, min: 20,clr: Color(0xff181c2c),),
+          Text1(data: termsConditions, max: 24, min: 20,clr: Color(0xff181c2c),),
 
           ListView.builder(
               itemCount: events[int.parse(indx)]["terms"]!.length,
@@ -182,7 +179,7 @@ class _EventDetailState extends State<EventDetail> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text1(data: "Vote participants", max: 24, min: 20),
+                Text1(data: voteParticipants, max: 24, min: 20),
               ],
             ),
           ),
@@ -200,7 +197,7 @@ class _EventDetailState extends State<EventDetail> {
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: snaps.length,
                     itemBuilder: (_,index){
-                      return VotersCard(snaps, index,height);
+                      return votersCard(snaps, index,height);
                     }): GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: ResponsiveWidget.isMediumScreen(context)?2:4,
@@ -213,7 +210,7 @@ class _EventDetailState extends State<EventDetail> {
                   shrinkWrap: true,
                   itemCount: snaps.length,
                   itemBuilder: (_, index) {
-                    return VotersCard(snaps, index,height);
+                    return votersCard(snaps, index,height);
                   },
                 );
               }
@@ -223,7 +220,7 @@ class _EventDetailState extends State<EventDetail> {
     }
     return Column(
       children: [
-        Text1(data: "Top 3", max: 28, min: 24,weight: FontWeight.bold,),
+        Text1(data: top3, max: 28, min: 24,weight: FontWeight.bold,),
         SizedBox(height: 10,),
         SizedBox(
           height: height*0.2,
@@ -257,7 +254,7 @@ class _EventDetailState extends State<EventDetail> {
     );
   }
 
-  Column VotersCard(List<dynamic> snaps, int index,double height) {
+  Column votersCard(List<dynamic> snaps, int index,double height) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -286,7 +283,7 @@ class _EventDetailState extends State<EventDetail> {
                   stream: FirebaseFirestore.instance.doc("PujaPurohitFiles/events").snapshots(),
                   builder: (context, snapshot) {
                     if(snapshot.data==null){
-                      return Text1(data: "Loading...", max: 12, min: 11);
+                      return Text1(data: loading, max: 12, min: 11);
                     }
                     return Padding(
                       padding:  EdgeInsets.only(right:ResponsiveWidget.isSmallScreen(context)?0.0:40.0),
@@ -387,7 +384,7 @@ class _EventDetailState extends State<EventDetail> {
           alignment: Alignment.center,
           padding: EdgeInsets.all(15),
           //margin: EdgeInsets.only(left:width*0.01,right:width*0.1 ),
-          child: Text1(data: "Winner Announced", max: 14, min: 12,clr: Colors.white,),
+          child: Text1(data: winnerAnnounced, max: 14, min: 12,clr: Colors.white,),
         ),
       );
     }
@@ -402,7 +399,7 @@ class _EventDetailState extends State<EventDetail> {
           alignment: Alignment.center,
           padding: EdgeInsets.all(15),
           //margin: EdgeInsets.only(left:width*0.01,right:width*0.1 ),
-          child: Text1(data: "Vote Participants", max: 14, min: 12,clr: Colors.white,),
+          child: Text1(data: voteParticipants, max: 14, min: 12,clr: Colors.white,),
         ),
       );
     }

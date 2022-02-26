@@ -1,48 +1,14 @@
+import 'package:pujapurohit/Utils/Imports.dart';
 
 import 'dart:io';
-import 'dart:typed_data';
-import 'package:carousel_slider/carousel_controller.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-import 'package:get/get.dart';
-import 'package:http/http.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:pujapurohit/Pages/Checkout/stripe_checkout_web.dart';
-import 'package:pujapurohit/Pages/new_pandit_home.dart';
-import 'package:pujapurohit/Pages/PanditSection/Controllers/EventController.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/responsive.dart';
-import 'package:pujapurohit/SignIn/AuthController.dart';
-import 'package:pujapurohit/Widgets/Loader.dart';
-import 'package:pujapurohit/Widgets/Texts.dart';
-import 'package:pujapurohit/colors/light_colors.dart';
-import 'package:pujapurohit/controller/UserController.dart';
-import 'package:pujapurohit/controller/loaderController.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:image_picker/image_picker.dart';
-import 'package:uuid/uuid.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:wc_flutter_share/wc_flutter_share.dart';
-import 'dart:ui' as ui;
-import '../Controllers/panditsController.dart';
-import '../detail.dart';
-import 'dart:html' as html;
-import 'dart:convert';
-import 'dart:js';
 
 
-class Registration_Form extends StatefulWidget{
+
+
+class RegistrationForm extends StatefulWidget{
   @override
-  _Registration_FormState createState() => _Registration_FormState();
+  _RegistrationFormState createState() => _RegistrationFormState();
 }
 enum AppState {
   free,
@@ -50,10 +16,10 @@ enum AppState {
   cropped,
 }
 
-class _Registration_FormState extends State<Registration_Form> {
-  final RegistraionField registerForm = Get.put(RegistraionField());
-  late AppState appstate;
-  File? SelectImageFile;
+class _RegistrationFormState extends State<RegistrationForm> {
+  final RegistrationField registerForm = Get.put(RegistrationField());
+  late AppState appState;
+  File? selectImageFile;
   File? imageFile;
   String indx = Get.parameters["id"]!;
   List<XFile>? _imageFileList;
@@ -88,7 +54,7 @@ class _Registration_FormState extends State<Registration_Form> {
         customMetadata: {'picked-file-path': _imageFileList![0].path});
     if(kIsWeb){
       firebase_storage.UploadTask task = firebaseStorage.putData(await _imageFileList![0].readAsBytes(),metadata);
-      var dowurl = await (await task.whenComplete(() {print("url downloaded");})).ref.getDownloadURL();
+      var dowurl = await (await task.whenComplete(() {print(urlDownload);})).ref.getDownloadURL();
       String url = dowurl.toString();
       task.then((value)async{
         setState(() {
@@ -97,7 +63,7 @@ class _Registration_FormState extends State<Registration_Form> {
       });
     }
     firebase_storage.UploadTask task = firebaseStorage.putFile(imageFile!,metadata);
-    var dowurl = await (await task.whenComplete(() => print("Task Completed"))).ref.getDownloadURL();
+    var dowurl = await (await task.whenComplete(() => print(taskCompleted))).ref.getDownloadURL();
     String url = dowurl.toString();
     task.then((value)async{
       setState(() {
@@ -231,7 +197,7 @@ class _Registration_FormState extends State<Registration_Form> {
                                               BoxShadow(color: LightColors.shadowColor,blurRadius: 20)
                                             ]
                                         ),
-                                        child: Text1(data: "Pick Image", max: 12, min: 11),
+                                        child: Text1(data: pickImage, max: 12, min: 11),
                                       ),
                                     )
                                   ],
@@ -290,7 +256,7 @@ class _Registration_FormState extends State<Registration_Form> {
                                            );
                                          }).toList(),
                                          hint:Text(
-                                           "Age",
+                                           age,
                                            style: TextStyle(
                                                color: Colors.grey,
                                                fontSize: 14,
@@ -318,7 +284,7 @@ class _Registration_FormState extends State<Registration_Form> {
                                            );
                                          }).toList(),
                                          hint:Text(
-                                           "Gender",
+                                           gender,
                                            style: TextStyle(
                                                color: Colors.grey,
                                                fontSize: 14,
@@ -388,7 +354,7 @@ class _Registration_FormState extends State<Registration_Form> {
                                         loadController.updateLoad();
                                         uploadImage(context);  
                                             Future.delayed(Duration(seconds: 10),()async{
-                                              eventControllerPayment.updatePayemnt('$name','$_chosenValue','$photoUrl','$_chosenValueG','${events[int.parse(indx)]["name"]}',events[int.parse(indx)]["participants"]!.length,'${events[int.parse(indx)]["puja"]}',snapshot.data!.get("${events[int.parse(indx)]["name"]}P"));
+                                              eventControllerPayment.updatePayment('$name','$_chosenValue','$photoUrl','$_chosenValueG','${events[int.parse(indx)]["name"]}',events[int.parse(indx)]["participants"]!.length,'${events[int.parse(indx)]["puja"]}',snapshot.data!.get("${events[int.parse(indx)]["name"]}P"));
                                             }).whenComplete((){
                                                      redirectToCheckout(context,int.parse(indx));
                                                     // Get.toNamed('/success?id=$indx');
@@ -396,7 +362,7 @@ class _Registration_FormState extends State<Registration_Form> {
                                             });                                                                                      
                                       }
                                     }
-                                  }, child: Text1(data: "Register", max: 20, min: 18,weight: FontWeight.w300,),style: ElevatedButton.styleFrom(
+                                  }, child: Text1(data: register, max: 20, min: 18,weight: FontWeight.w300,),style: ElevatedButton.styleFrom(
                                       primary: Color(0xff181c2c),
                                       shape: StadiumBorder()
                                   ),);
@@ -407,7 +373,7 @@ class _Registration_FormState extends State<Registration_Form> {
                             ),
                           )),
                   SizedBox(height: 10,),
-                      Text1(data: "Note :", max: 24, min: 20,clr: Colors.black54,weight: FontWeight.w600,),
+                      Text1(data:note1 , max: 24, min: 20,clr: Colors.black54,weight: FontWeight.w600,),
                       SizedBox(height: 10,),
                       Text1(data: "${events[int.parse(indx)]["note"]}", max: 16, min: 12,clr: Colors.black54,)
                     ],
@@ -422,7 +388,7 @@ class _Registration_FormState extends State<Registration_Form> {
   }
 }
 
-class RegistraionField extends GetxController{
+class RegistrationField extends GetxController{
   final GlobalKey<FormState>loginFormKey=GlobalKey<FormState>();
   late TextEditingController passwordController;
   late TextEditingController emailContrller;
@@ -456,23 +422,23 @@ class RegistraionField extends GetxController{
   }
   String? validatePassword(String value){
     if(value.length<6){
-      return "Not valid phoneNumber";
+      return notValidPhonenumber;
     }
     return null;
   }
-  String? validateemail(String value){
+  String? validateEmail(String value){
     if(!GetUtils.isEmail(value)){
-      return "Not valid email";
+      return notValidEmail;
     }
   }
-  String? validataddress(String value){
+  String? validatAddress(String value){
     if(value.length<5){
-      return "Not valid address";
+      return notVaidAddress;
     }
   }
-  String? validatename(String value){
+  String? validateName(String value){
     if(value.length>15 && value.length<1){
-      return "Enter Shopname in less than 15 letter's";
+      return enterShopname;
     }
   }
   void checkLogin(){
