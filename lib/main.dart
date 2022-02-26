@@ -1,6 +1,6 @@
 
 import 'package:pujapurohit/Utils/Imports.dart';
-import 'Pages/PanditSection/PanditHome.dart';
+import 'Pages/PanditSection/pandit_home.dart';
 
 void main()async{
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

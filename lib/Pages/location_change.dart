@@ -109,7 +109,7 @@ class _LocationChangeState extends State<LocationChange> {
                      decoration:InputDecoration(
                          prefixIcon: Icon(Icons.location_on,size: 12,),
                          hintStyle: GoogleFonts.aBeeZee(color:Colors.black54,fontSize: 12),
-                     hintText: 'Search for area',
+                     hintText: searchArea,
                      border: InputBorder.none
                      )
                      ),
@@ -145,7 +145,7 @@ class _LocationChangeState extends State<LocationChange> {
                   html.window.location.reload();
                 });
               
-                }, child: Text1(data: "Continue",max: 12,min: 11,clr: Colors.white,),style: ElevatedButton.styleFrom(primary:Colors.orangeAccent,shape: StadiumBorder()), )
+                }, child: Text1(data:continued,max: 12,min: 11,clr: Colors.white,),style: ElevatedButton.styleFrom(primary:Colors.orangeAccent,shape: StadiumBorder()), )
               ],
             ),
               ),

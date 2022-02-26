@@ -27,7 +27,7 @@ class _SearchPlacesState extends State<SearchPlaces> {
               ),
               FlutterGooglePlacesWeb(
                 apiKey: kGoogleApiKey,
-                proxyURL: 'https://cors-anywhere.herokuapp.com/',
+                proxyURL: herokuAPP,
                 required: true,
               ),
               TextButton(
@@ -40,7 +40,7 @@ class _SearchPlacesState extends State<SearchPlaces> {
                     test = FlutterGooglePlacesWeb.value['name'] ?? '';
                   });
                 },
-                child: Text('Press to test'),
+                child: Text(pressText),
               ),
               Text(test),
             ],

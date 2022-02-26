@@ -11,7 +11,7 @@ class Loader extends StatelessWidget {
           color: Colors.transparent,
             height: 100,
             width: 100,
-            child: FlareActor("assets/images/loader_floating.flr",animation: "Loading",)
+            child: FlareActor("assets/images/loader_floating.flr",animation: loading,)
         ),
       ),
     );

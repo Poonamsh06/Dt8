@@ -124,9 +124,9 @@ class BigScreenDetailPage extends StatelessWidget{
                                                             MiniBox(icon: true, FirstText: "${swastik<=0?'0':overall_rate}", SecondText: "${panditDetailContrller.userModel.value.raters} Ratings",iconData: Icons.star,),
                                                             Container(height:50,width: 1,color: Colors.white54,),
 
-                                                            MiniBox(icon: false, FirstText: "${panditDetailContrller.userModel.value.experience==null?'Not Updated':panditDetailContrller.userModel.value.experience}", SecondText: "Experience",iconData: Icons.star,),
+                                                            MiniBox(icon: false, FirstText: "${panditDetailContrller.userModel.value.experience==null?notUpdated:panditDetailContrller.userModel.value.experience}", SecondText: experience,iconData: Icons.star,),
                                                             Container(height:50,width: 1,color: Colors.white54,),
-                                                            MiniBox(icon: false, FirstText: "${panditDetailContrller.userModel.value.language==null?'Not Updated':panditDetailContrller.userModel.value.language}", SecondText: "Language",iconData: Icons.star,),
+                                                            MiniBox(icon: false, FirstText: "${panditDetailContrller.userModel.value.language==null?notUpdated:panditDetailContrller.userModel.value.language}", SecondText: language,iconData: Icons.star,),
 
                                                           ],
                                                         )
@@ -144,7 +144,7 @@ class BigScreenDetailPage extends StatelessWidget{
                                                   children:[
                                                     Row(
                                                       children: [
-                                                        Text1(data:"OFFER",max: 12,min: 10,clr: Colors.white,),
+                                                        Text1(data:offer,max: 12,min: 10,clr: Colors.white,),
                                                         SizedBox(width:5),
                                                         Container(width:width*0.15,height:1,color:Colors.white54)
                                                       ],
@@ -159,9 +159,9 @@ class BigScreenDetailPage extends StatelessWidget{
                                                               width:1,height:height*0.18,color:Colors.white54),
                                                           Column(
                                                               children:[
-                                                                offers(width,"20% of on all orders up to ₹1000"),
+                                                                offers(width,discountOffer),
                                                                 SizedBox(height:20),
-                                                                offers(width,"20% of upto INR 125/- with Kotak Credit or Debit Cards | Use Code KOTAK125"),
+                                                                offers(width,kotakOffer),
 
                                                               ]
                                                           )
@@ -198,7 +198,7 @@ class BigScreenDetailPage extends StatelessWidget{
                                           decoration:InputDecoration(
                                               prefixIcon: Icon(LineIcons.search,size:16,color: Colors.black54),
                                               border:InputBorder.none,
-                                              hintText:"Search Puja",
+                                              hintText:searchPuja,
                                               hintStyle:GoogleFonts.aBeeZee(color:Colors.black54,fontSize:12)
                                           )
                                       ),
@@ -272,14 +272,14 @@ class BigScreenDetailPage extends StatelessWidget{
                                                         children: [
                                                           InkWell(
                                                               onTap: (){
-                                                                detailSideMenu1.updateSelected("Physical");
+                                                                detailSideMenu1.updateSelected(physical);
                                                               },
-                                                              child: Obx((){return  Text1(max: 16,min: 14,data: "Physical",clr:detailSideMenu1.select.value.selected=="Physical"?Colors.orangeAccent:Colors.black54,weight: FontWeight.bold,);})),
+                                                              child: Obx((){return  Text1(max: 16,min: 14,data: physical,clr:detailSideMenu1.select.value.selected=="Physical"?Colors.orangeAccent:Colors.black54,weight: FontWeight.bold,);})),
                                                           InkWell(
                                                               onTap: (){
                                                                 detailSideMenu1.updateSelected("Online");
                                                               },
-                                                              child: Obx((){return  Text1(max: 16,min: 14,data: "Online",clr:detailSideMenu1.select.value.selected=="Online"?Colors.orangeAccent:Colors.black54,weight: FontWeight.bold,);})),
+                                                              child: Obx((){return  Text1(max: 16,min: 14,data: online,clr:detailSideMenu1.select.value.selected=="Online"?Colors.orangeAccent:Colors.black54,weight: FontWeight.bold,);})),
                                                         ],
                                                       ),
                                                       SizedBox(height:5),
@@ -287,13 +287,13 @@ class BigScreenDetailPage extends StatelessWidget{
                                                       SizedBox(height:20),
                                                       Obx((){
                                                         return StreamBuilder<QuerySnapshot>(
-                                                            stream: detailSideMenu.select.value.selected=="All"?FirebaseFirestore.instance.collection("Avaliable_pundit/${Get.parameters['id2']}/puja_offering").where("offer" , isEqualTo:"${detailSideMenu1.select.value.selected}").snapshots():
+                                                            stream: detailSideMenu.select.value.selected==all?FirebaseFirestore.instance.collection("Avaliable_pundit/${Get.parameters['id2']}/puja_offering").where("offer" , isEqualTo:"${detailSideMenu1.select.value.selected}").snapshots():
                                                             FirebaseFirestore.instance.collection("Avaliable_pundit/${Get.parameters['id2']}/puja_offering").where("type" , isEqualTo:"${detailSideMenu.select.value.selected}").where("offer" , isEqualTo:"${detailSideMenu1.select.value.selected}").snapshots(),
                                                             builder: (context, snapshot) {
 
 
                                                               if(snapshot.data == null){
-                                                                return Center(child:Text("Loading serices"));
+                                                                return Center(child:Text(loadingSeries));
                                                               }
                                                               final servicess = snapshot.data!.docs.reversed;
 
@@ -399,7 +399,7 @@ class BigScreenDetailPage extends StatelessWidget{
                           SizedBox(width:5),
                           Icon(Icons.star,size: 13,color: Colors.orangeAccent,),
                           SizedBox(width:5),
-                          Text1(max: 13,min: 13,data: "BestSeller",clr:Colors.orangeAccent,),
+                          Text1(max: 13,min: 13,data: bestSeller,clr:Colors.orangeAccent,),
                         ],
                       ),
                       SizedBox(height:10),
@@ -451,11 +451,11 @@ class BigScreenDetailPage extends StatelessWidget{
                                         color: Colors.white,
                                         boxShadow: [BoxShadow(color:Colors.grey,blurRadius:10)]
                                     ),
-                                    child: Text1(max: 11,min: 10,data: "Book Now",clr:Colors.green)
+                                    child: Text1(max: 11,min: 10,data: bookNow,clr:Colors.green)
                                 ),
                               ),
 
-                              Text1(max: 9,min: 7,data: "Samagri in stock",clr:Colors.black54),
+                              Text1(max: 9,min: 7,data: samagriStock,clr:Colors.black54),
 
                             ]
                         ),
@@ -500,38 +500,11 @@ class PanditDetailController extends GetxController{
 
 }
 
-class MiniBox extends StatelessWidget{
-  final IconData? iconData;
-  final bool icon;
-  final String FirstText;
-  final String SecondText;
-  MiniBox({ this.iconData, required this.icon,required this.FirstText,required this.SecondText});
-  @override
-  Widget build(BuildContext context) {
-    return  Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-
-              icon?Icon(iconData,size:12,color:Colors.white):SizedBox(),
-
-              icon?SizedBox(width:5):SizedBox(),
-              Text1(data: "$FirstText",max: 12,min: 8,clr: Colors.white,weight: FontWeight.w600,),
-            ],),
-          SizedBox(height:5),
-          Text1(data: "$SecondText",max: 10,min: 8,clr: Colors.white54,weight: FontWeight.w100),
-        ]
-    );
-  }
-
-}
 
 class DetailSideMenu extends GetxController{
   // final String value;
   // DetailSideMenu({required this.value});
-  var select = DetailSelectedItem(selected: "All",item: 0).obs;
+  var select = DetailSelectedItem(selected: all,item: 0).obs;
   var items = 0.obs;
   updateSelected(String value){
     select.update((val) {
@@ -548,7 +521,7 @@ class DetailSideMenu extends GetxController{
 
 
 class DetailSelectedItem {
-  String selected = "All";
+  String selected = all;
   int? item;
   DetailSelectedItem({required this.selected, this.item});
 }
@@ -556,7 +529,7 @@ class DetailSelectedItem {
 class DetailSideMenu1 extends GetxController{
   // final String value;
   // DetailSideMenu({required this.value});
-  var select = DetailSelectedItem(selected: "Physical",item: 0).obs;
+  var select = DetailSelectedItem(selected: physical,item: 0).obs;
   var items = 0.obs;
   updateSelected(String value){
     select.update((val) {

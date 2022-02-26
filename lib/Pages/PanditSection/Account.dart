@@ -4,7 +4,7 @@ import 'package:pujapurohit/Utils/Imports.dart';
 class Account extends StatelessWidget{
   AuthController authController = Get.find();
   void launcher()async{
-    var url = 'https://play.google.com/store/apps/details?id=com.pujapurohit.android.infopujapurohit';
+    var url = playstoreLink;
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -59,7 +59,7 @@ class Account extends StatelessWidget{
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('${userController.userModel.value.phone}',style: TextStyle(color: Colors.black54,)),
-                                Text('Update Detail',style: TextStyle(color: Colors.orangeAccent,fontSize: 12),)
+                                Text(updateDetails,style: TextStyle(color: Colors.orangeAccent,fontSize: 12),)
                               ],
                             ),
                             trailing: CircleAvatar(
@@ -74,53 +74,53 @@ class Account extends StatelessWidget{
 
                           },
                           leading: Icon(CupertinoIcons.heart,color: Colors.black),
-                          title: Text('Favourite',style: TextStyle(color: Colors.black,)),
+                          title: Text(fav,style: TextStyle(color: Colors.black,)),
                         ),
                         ListTile(
                           onTap: (){
                               Get.toNamed('/bookings');
                           },
                           leading: Icon(Icons.shopping_basket,color: Colors.black),
-                          title: Text('Bookings',style: TextStyle(color: Colors.black,)),
+                          title: Text(booking,style: TextStyle(color: Colors.black,)),
                         ),
                         ListTile(
                           onTap: (){
 
                           },
                           leading: Icon(Icons.policy,color: Colors.black),
-                          title: Text('Terms and Policies',style: TextStyle(color: Colors.black,)),
+                          title: Text(termsPolicies,style: TextStyle(color: Colors.black,)),
                         ),
                         ListTile(
                           onTap: (){
 
                           },
                           leading: Icon(Icons.support_agent_outlined,color: Colors.black),
-                          title: Text('Support Chat',style: TextStyle(color: Colors.black,)),
+                          title: Text(supportChat,style: TextStyle(color: Colors.black,)),
                         ),
                         ListTile(
                           onTap: (){
 
                           },
                           leading: Icon(CupertinoIcons.question_circle,color: Colors.black),
-                          title: Text('About',style: TextStyle(color: Colors.black,)),
+                          title: Text(about,style: TextStyle(color: Colors.black,)),
                         ),
                         ListTile(
                           onTap: (){
                             sendlauncher();
                           },
-                          title: Text('Send Feedback',style: TextStyle(color: Colors.black,)),
+                          title: Text(sendFeedback,style: TextStyle(color: Colors.black,)),
                         ),
                         ListTile(
                           onTap: (){
                             launcher();
                           },
-                          title: Text('Download the App Now',style: TextStyle(color: Colors.black,)),
+                          title: Text(downloadNow,style: TextStyle(color: Colors.black,)),
                         ),
                         ListTile(
                           onTap: (){
                             authController.signOut();
                           },
-                          title: Text('Log Out',style: TextStyle(color: Colors.black,)),
+                          title: Text(logOut,style: TextStyle(color: Colors.black,)),
                         )
                       ],
                     ),

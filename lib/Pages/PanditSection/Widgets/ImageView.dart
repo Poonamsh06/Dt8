@@ -2,7 +2,7 @@
 import 'package:pujapurohit/Utils/Imports.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import '../Profile.dart';
+import '../profile.dart';
 class AddressPage extends StatefulWidget{
 
   @override

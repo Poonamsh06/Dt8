@@ -1,7 +1,7 @@
 
 
-import 'Controllers/panditsController.dart';
-import 'PanditHome.dart';
+
+import 'pandit_home.dart';
 import 'package:pujapurohit/Utils/Imports.dart';
 class CustomCity extends StatelessWidget{
   @override
@@ -65,7 +65,7 @@ class CustomCity extends StatelessWidget{
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          Text2(data: "Where we find some popular puja", max: ResponsiveWidget.isMediumScreen(context)? 24:28,clr: Colors.black87,weight: FontWeight.w600,),
+                          Text2(data: popularPujas, max: ResponsiveWidget.isMediumScreen(context)? 24:28,clr: Colors.black87,weight: FontWeight.w600,),
                           SizedBox(height: 20,),
                           Row(
                             //mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,3 +1,5 @@
+import 'package:pujapurohit/Utils/constantStrings.dart';
+
 class TopBarItem{
   final String name,image,tap;
   TopBarItem({required this.image, required this.name, required this.tap});
@@ -5,24 +7,24 @@ class TopBarItem{
 
 final List<TopBarItem> topBarItem = [
   TopBarItem(
-      image:"images/calander.png",
-      name:'Calender',
-      tap:'calender',
+      image:calenderLink,
+      name:calender,
+      tap:smallcalender,
   ),
   TopBarItem(
     image:"images/pujan_vidhi.png",
-    name:'Pujan Vidhi',
-    tap:'pujanvidhi',
+    name:pujanVidhiLang1,
+    tap:pujanVidhi1,
   ),
   TopBarItem(
     image:"images/f.png",
-    name:'Facts/Article',
-    tap:'article',
+    name:factsArtical,
+    tap:artical,
   ),
   TopBarItem(
     image:"images/m.png",
-    name:'Muhurat',
-    tap:'muhurat',
+    name:muhurat,
+    tap:smallMuhurat,
   )
 
 ];

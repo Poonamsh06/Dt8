@@ -54,9 +54,9 @@ class ServiceDetail extends StatelessWidget{
                                   SizedBox(height:5),
                                   Text1(data: "by : ${Get.parameters['pandit']}", max: 11, min: 10,),
                                   SizedBox(height:5),
-                                  Text1(data: "Pujan Vidhi", max: 11, min: 10,),
+                                  Text1(data: pujanVidhi, max: 11, min: 10,),
                                   SizedBox(height:5),
-                                  Text1(data: "Samagri Detail", max: 11, min: 10,),
+                                  Text1(data: samagerDetail, max: 11, min: 10,),
                                 ]
                             ),
                           ),
@@ -138,11 +138,11 @@ class ServiceDetail extends StatelessWidget{
                         dashGapRadius: 0.0,
                       ),
                       SizedBox(height: 10,),
-                      Text1(data: "Benefit ***Claimed by Purohit***", max: 12, min: 11,clr: Colors.grey,weight: FontWeight.bold,),
+                      Text1(data: benifit, max: 12, min: 11,clr: Colors.grey,weight: FontWeight.bold,),
                       SizedBox(height: 5,),
                       Text1(data: "${serviceDetailController.userModel.value.benefit}", max: 12, min: 11,clr:Colors.grey),
                       SizedBox(height: 10,),
-                      Text1(data: "Additional Detail", max: 12, min: 11,clr:Colors.grey,weight: FontWeight.bold,),
+                      Text1(data: additionalDetail, max: 12, min: 11,clr:Colors.grey,weight: FontWeight.bold,),
                       SizedBox(height: 5,),
                       Text1(data: "${serviceDetailController.userModel.value.detail}", max: 12, min: 11,clr:Colors.grey),
                       SizedBox(height:15),
@@ -158,7 +158,7 @@ class ServiceDetail extends StatelessWidget{
                         dashGapRadius: 0.0,
                       ),
                       SizedBox(height:15),
-                      Text1(data: "Note:\nWe are commited to provide transparency between our purohits and yajman.\nLearn how to book :- ", max: 12, min: 11,clr:Colors.grey,),
+                      Text1(data: note, max: 12, min: 11,clr:Colors.grey,),
                       SizedBox(height: 10,),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -166,10 +166,10 @@ class ServiceDetail extends StatelessWidget{
                           children: [
                             Expanded(
                                 flex: 1,
-                                child:MiniBox(icon: true, FirstText: "Learn", SecondText: "Written Steps",iconData: CupertinoIcons.book,)),
+                                child:MiniBox(icon: true, FirstText: learn, SecondText: writtenStep,iconData: CupertinoIcons.book,)),
                             Expanded(
                                 flex: 1,
-                                child: MiniBox(icon: true, FirstText: "Watch", SecondText: "Explained Video",iconData: Icons.tv,)),
+                                child: MiniBox(icon: true, FirstText: watch, SecondText: explanedVideo,iconData: Icons.tv,)),
                           ],
                         ),
                       ),
@@ -187,7 +187,7 @@ class ServiceDetail extends StatelessWidget{
                         print(keyword);
                         if(authController.user==null){
                           Get.toNamed('/account');
-                          Get.snackbar("Login", "Please Login to proceed booking",backgroundColor: Colors.white,padding: EdgeInsets.all(20),colorText: Colors.grey,duration:Duration(seconds: 3));
+                          Get.snackbar("Login", processNote,backgroundColor: Colors.white,padding: EdgeInsets.all(20),colorText: Colors.grey,duration:Duration(seconds: 3));
 
                         }
                         else{
@@ -204,7 +204,7 @@ class ServiceDetail extends StatelessWidget{
                             color: Colors.orangeAccent,
                             borderRadius: BorderRadius.circular(20)
                         ),
-                        child: Text1(data: "Proceed Booking", max: 14, min: 12,clr: Colors.white,weight: FontWeight.w600,),
+                        child: Text1(data: proceeedBooking, max: 14, min: 12,clr: Colors.white,weight: FontWeight.w600,),
                       ),
                     )
                 )

@@ -6,7 +6,7 @@ class NewBottomBar extends StatelessWidget{
   Widget build(BuildContext context) {
     double height  = MediaQuery.of(context).size.height;
     double width  = MediaQuery.of(context).size.width;
-    const _url = 'https://play.google.com/store/apps/details?id=com.pujapurohit.android.infopujapurohit';
+    const _url = playstoreLink;
     Future<void> _launchInBrowser(String url) async {
       if (await canLaunch(url)) {
         await launch(
@@ -45,9 +45,9 @@ class NewBottomBar extends StatelessWidget{
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text1(data: "COMPANY", max: 24, min: 20,clr: Colors.black87,weight: FontWeight.bold,space: 2.0,),
+                  Text1(data:company, max: 24, min: 20,clr: Colors.black87,weight: FontWeight.bold,space: 2.0,),
                   SizedBox(height: 15,),
-                  bottom_tabs("WHO WE ARE"),
+                  bottom_tabs(whoWEARE),
                   SizedBox(height: 10,),
                   bottom_tabs("Blog"),
                   SizedBox(height: 10,),

@@ -302,10 +302,220 @@ class ArticleCard extends StatelessWidget {
               SizedBox(
                 height: 50,
               ),
+
+              
             ],
           ),
         ),
       ],
+    );
+  }
+}
+
+
+class MiniBox extends StatelessWidget{
+  final IconData? iconData;
+  final bool icon;
+  final String FirstText;
+  final String SecondText;
+  MiniBox({ this.iconData, required this.icon,required this.FirstText,required this.SecondText});
+  @override
+  Widget build(BuildContext context) {
+    return  Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+
+              icon?Icon(iconData,size:12,color:Colors.grey,):SizedBox(),
+
+              icon?SizedBox(width:5):SizedBox(),
+              Expanded(child: Text1(data: "$FirstText",max: ResponsiveWidget.isSmallScreen(context)?10:12,min: 8,clr: Colors.grey,weight: FontWeight.w600,),flex: 1,)
+            ],),
+          SizedBox(height:5),
+          Text1(data: "$SecondText",max: ResponsiveWidget.isSmallScreen(context)?10:8,min: 7,clr: Colors.grey,weight: FontWeight.w100),
+        ]
+    );
+  }
+
+}
+
+class MainButton extends StatelessWidget{
+  final String? title;
+  final VoidCallback? tapEvent;
+  final Color? clr;
+  MainButton({
+    this.title,this.tapEvent,this.clr
+  });
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(onPressed: tapEvent, child: Text1(data: "$title", max: 12, min: 11,clr: Colors.white,
+    ),
+        style: ElevatedButton.styleFrom(primary: clr,shape: StadiumBorder())
+    );
+  }
+
+}
+
+class ModifiedTextIcon extends StatelessWidget{
+  String data;
+  double max;
+  Color? color;
+  double min;
+  FontWeight? weight;
+  IconData icondata;
+  Color? iconColor;
+  ModifiedTextIcon({this.iconColor, required this.icondata,required this.max,required this.data,required this. min,this.color,this.weight});
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Icon(icondata,color: iconColor,),
+        SizedBox(width:5),
+        AutoSizeText('$data',maxFontSize: max,minFontSize: min,style: GoogleFonts.aBeeZee(color: color,fontWeight: weight,letterSpacing: 1),),
+      ],
+    );
+  }
+
+}
+
+
+class DetailSelectedItem {
+  String selected = all;
+  int? item;
+  DetailSelectedItem({required this.selected, this.item});
+}
+
+
+class InfoText extends StatelessWidget {
+  final String? type;
+  final String? text;
+
+  InfoText({this.type, this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        AutoSizeText(
+          '$type: ',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+          maxFontSize: 16,
+          minFontSize: 16,
+        ),
+        AutoSizeText(
+          text!,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
+          maxFontSize: 16,
+          minFontSize: 16,
+        )
+      ],
+    );
+  }
+}
+
+
+
+class BottomBarColumn extends StatelessWidget {
+  final String? heading;
+  final String? s1;
+  final String? s2;
+  final String? s3;
+  final String? l1;
+  final String? l2;
+  final String? l3;
+
+  BottomBarColumn({
+    this.heading,
+    this.s1,
+    this.s2,
+    this.s3,
+    this.l1,
+    this.l2,
+    this.l3
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AutoSizeText(
+            heading!,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+            maxFontSize: 18,
+            minFontSize: 18,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Link(
+              uri: Uri.parse('$l1'),
+              target: LinkTarget.blank,
+              builder: (context, followlink) {
+                return InkWell(
+                  onTap: followlink,
+                  child: AutoSizeText(
+                    s1!,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    maxFontSize: 14,
+                    minFontSize: 14,
+                  ),
+                );
+              }
+          ),
+          SizedBox(height: 5),
+          Link(
+              uri: Uri.parse('$l2'),
+              target: LinkTarget.blank,
+              builder: (context, followlink) {
+                return InkWell(
+                  onTap: followlink,
+                  child: AutoSizeText(
+                    s2!,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    maxFontSize: 14,
+                    minFontSize: 14,
+                  ),
+                );
+              }
+          ),
+          SizedBox(height: 5),
+          Link(
+              uri: Uri.parse('$l3'),
+              target: LinkTarget.blank,
+              builder: (context, followlink) {
+                return InkWell(
+                  onTap: followlink,
+                  child: AutoSizeText(
+                    s3!,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    maxFontSize: 14,
+                    minFontSize: 14,
+                  ),
+                );
+              }
+          ),
+        ],
+      ),
     );
   }
 }
