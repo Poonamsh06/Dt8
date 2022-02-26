@@ -1,5 +1,4 @@
-import 'package:pujapurohit/Pages/PanditSection/Topbar/calender.dart';
-import 'package:pujapurohit/Pages/PanditSection/Widgets/ImageView.dart';
+
 
 const bannerMainText = "BOOK YOUR PUJA \nAT YOUR PLACE NOW";
 const bannerSecondText = "Perform Your Puja With Verified Pandits";
