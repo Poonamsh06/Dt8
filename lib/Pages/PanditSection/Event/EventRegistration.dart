@@ -34,7 +34,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'dart:ui' as ui;
 import '../Controllers/panditsController.dart';
-import '../Detail.dart';
+import '../detail.dart';
 import 'dart:html' as html;
 import 'dart:convert';
 import 'dart:js';

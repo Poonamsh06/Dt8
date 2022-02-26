@@ -221,28 +221,6 @@ class BannerText extends StatelessWidget {
   }
 }
 
-class ModifiedTextIcon extends StatelessWidget{
-  String data;
-  double max;
-  Color? color;
-  double min;
-  FontWeight? weight;
-  IconData icondata;
-  Color? iconColor;
-  ModifiedTextIcon({this.iconColor, required this.icondata,required this.max,required this.data,required this. min,this.color,this.weight});
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Icon(icondata,color: iconColor,),
-        SizedBox(width:5),
-        AutoSizeText('$data',maxFontSize: max,minFontSize: min,style: GoogleFonts.aBeeZee(color: color,fontWeight: weight,letterSpacing: 1),),
-      ],
-    );
-  }
-
-}
 
 class ModifiedTextIcon_2 extends StatelessWidget{
   String data;

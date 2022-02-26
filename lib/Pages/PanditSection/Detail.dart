@@ -8,7 +8,7 @@ class Detail extends StatelessWidget{
     double height = MediaQuery.of(context).size.height;
     double width =  MediaQuery.of(context).size.width;
     String detail = '#${Get.parameters['id']!}';
-    var language = 'detailEnglish'.obs;
+    var language = obs;
     final AuthController authController = Get.find();
     LocationController locationController = Get.put(LocationController());
     return Scaffold(
@@ -26,7 +26,7 @@ class Detail extends StatelessWidget{
                     return Center(child:Loader());
                   }
                   List<Widget> para = [];
-                  for(var i in snapshot.data!.get('detailEnglish')){
+                  for(var i in snapshot.data!.get(detailEnglish)){
                     final String textdata = i;
                     final txt = Container(
                       margin: EdgeInsets.all(20),
@@ -81,10 +81,10 @@ class Detail extends StatelessWidget{
                                               children: [
                                                 Expanded(
                                                     flex: 1,
-                                                    child: MiniBox(icon: true, FirstText: "${snapshot.data!.get('begin')}", SecondText: "Tithi begin",iconData: CupertinoIcons.clock,)),
+                                                    child: MiniBox(icon: true, FirstText: "${snapshot.data!.get('begin')}", SecondText: tithi,iconData: CupertinoIcons.clock,)),
                                                 Expanded(
                                                     flex: 1,
-                                                    child: MiniBox(icon: true, FirstText: "${snapshot.data!.get('end')}", SecondText: "Tithi End",iconData: CupertinoIcons.clock,)),
+                                                    child: MiniBox(icon: true, FirstText: "${snapshot.data!.get('end')}", SecondText: tithiEnd,iconData: CupertinoIcons.clock,)),
 
 
                                               ],
@@ -104,7 +104,7 @@ class Detail extends StatelessWidget{
                                         children:[
                                           Row(
                                             children: [
-                                              Text1(data:"OFFER",max: 12,min: 10,clr: Colors.white,),
+                                              Text1(data:offer,max: 12,min: 10,clr: Colors.white,),
                                               SizedBox(width:5),
                                               Container(width:width*0.15,height:1,color:Colors.white54)
                                             ],
@@ -122,7 +122,7 @@ class Detail extends StatelessWidget{
                                                   padding: const EdgeInsets.all(8.0),
                                                   child: Column(
                                                       children:[
-                                                        Text1(data: "No offers right now", max: 12, min: 11,clr: Colors.white,),
+                                                        Text1(data: noOffer, max: 12, min: 11,clr: Colors.white,),
                                                         // offers(width,"20% of on all orders up to ₹1000"),
                                                         SizedBox(height:20),
                                                         // offers(width,"20% of upto INR 125/- with Kotak Credit or Debit Cards | Use Code KOTAK125"),
@@ -387,7 +387,7 @@ class PanditNewCard extends StatelessWidget{
                           CommonController commonController = Get.put(CommonController());
                           commonController.updatePandit(bmModal!.uid!);
                           Get.toNamed('/profile?puid=${bmModal!.uid}');
-                        }, child: Text1(data: 'Book now',max: ResponsiveWidget.isSmallScreen(context)?10:15,min: 8,clr: Colors.white),style: ElevatedButton.styleFrom(primary: Color(0xff181c2c),shape: StadiumBorder()),),
+                        }, child: Text1(data: bookNow,max: ResponsiveWidget.isSmallScreen(context)?10:15,min: 8,clr: Colors.white),style: ElevatedButton.styleFrom(primary: Color(0xff181c2c),shape: StadiumBorder()),),
                       ],
                     ),
                   ),
@@ -470,7 +470,7 @@ class PanditNewCard extends StatelessWidget{
                           CommonController commonController = Get.put(CommonController());
                           commonController.updatePandit(bmModal!.uid!);
                           Get.toNamed('/profile?puid=${bmModal!.uid}');
-                        }, child: Text1(data: 'Book now',max:ResponsiveWidget.isSmallScreen(context)?10:15,min: 8,clr: Colors.white),style: ElevatedButton.styleFrom(primary: Color(0xff181c2c),shape: StadiumBorder()),),
+                        }, child: Text1(data: bookNow,max:ResponsiveWidget.isSmallScreen(context)?10:15,min: 8,clr: Colors.white),style: ElevatedButton.styleFrom(primary: Color(0xff181c2c),shape: StadiumBorder()),),
                       ],
                     ),
                   ),

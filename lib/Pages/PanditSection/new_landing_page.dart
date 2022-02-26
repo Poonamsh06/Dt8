@@ -41,7 +41,7 @@ class NewLandingPage extends StatelessWidget{
                                 children: [
                                   //  ResponsiveWidget.isSmallScreen(context)?Expanded(child: Text1(max: 9, data: "${locationController.location.value.address}", min: 8, clr: Colors.black54,)):Text1(max: 9, data: "${locationController.location.value.address}", min: 8, clr: Colors.black54,),
                                   //SizedBox(width:5),
-                                  Text1(max: 12, data: "India", min: 11,weight:FontWeight.bold,clr:Colors.black),
+                                  Text1(max: 12, data: india, min: 11,weight:FontWeight.bold,clr:Colors.black),
                                   SizedBox(width:5),
                                   Icon(Icons.home,color:LightColors.kDarkYellow,size:12)
                                 ],
@@ -64,7 +64,7 @@ class NewLandingPage extends StatelessWidget{
                 ],):Row(
                   children: [
                     SizedBox(width: 20,),
-                    ModifiedTextIcon(iconColor: Colors.black54,icondata: LineIcons.search, max: 12, data: 'Search', min: 8,color: Colors.black54,weight: FontWeight.bold,),
+                    ModifiedTextIcon(iconColor: Colors.black54,icondata: LineIcons.search, max: 12, data: search, min: 8,color: Colors.black54,weight: FontWeight.bold,),
                     SizedBox(width: 20,),
                     InkWell(
                       onTap: (){
@@ -72,7 +72,7 @@ class NewLandingPage extends StatelessWidget{
                         Get.to(Account());
 
                       },
-                      child: ModifiedTextIcon(iconColor: Colors.black54,icondata: LineIcons.user, max: 12, data: 'Sign In', min: 8,color: Colors.black54,weight: FontWeight.bold),
+                      child: ModifiedTextIcon(iconColor: Colors.black54,icondata: LineIcons.user, max: 12, data: signIn, min: 8,color: Colors.black54,weight: FontWeight.bold),
                     ),
 
                     SizedBox(width: 20,),
@@ -108,13 +108,13 @@ class NewLandingPage extends StatelessWidget{
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ShadowContainer('700+','Active Pandits',context),
+                  ShadowContainer('700+',activePandit,context),
                   SizedBox(height:20),
-                  ShadowContainer('200+','Vendors',context),
+                  ShadowContainer('200+',vendors,context),
                   SizedBox(height:20),
-                  ShadowContainer('100+','Puja Variety',context),
+                  ShadowContainer('100+',pujaVariety,context),
                   SizedBox(height:20),
-                  ShadowContainer('1 k+','Served',context),
+                  ShadowContainer('1 k+',sarved,context),
                 ],
               ):
 
@@ -123,10 +123,10 @@ class NewLandingPage extends StatelessWidget{
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ShadowContainer('700+','Active Pandits',context),
-                    ShadowContainer('200+','Vendors',context),
-                    ShadowContainer('100+','Puja Variety',context),
-                    ShadowContainer('1 k+','Served',context),
+                    ShadowContainer('700+',activePandit,context),
+                    ShadowContainer('200+',vendors,context),
+                    ShadowContainer('100+',pujaVariety,context),
+                    ShadowContainer('1 k+',sarved,context),
 
 
                   ],
@@ -192,12 +192,12 @@ class Jumbotron extends StatelessWidget {
                     crossAxisAlignment: !isMobile(context) ? CrossAxisAlignment.start:CrossAxisAlignment.center,
                     children: <Widget>[
                       if (isMobile(context))
-                        Image.network('https://firebasestorage.googleapis.com/v0/b/flutter-bf503.appspot.com/o/Landing%20Page%2F1.png?alt=media&token=5c564a9e-21ea-4b99-8dee-c1c4d1d5c6f6',height: size.height * 0.3,),
+                        Image.network(firebaseImage,height: size.height * 0.3,),
                       RichText(
                           text: TextSpan(
                               children: [
                                 TextSpan(
-                                    text: 'Discover the\n',
+                                    text: discover,
                                     style: TextStyle(
                                         fontSize: isDesktop(context) ? 60 : 32,
                                         fontWeight: FontWeight.w800,
@@ -205,7 +205,7 @@ class Jumbotron extends StatelessWidget {
                                     )
                                 ),
                                 TextSpan(
-                                    text: "Best Purohits",
+                                    text: bestPurohit,
                                     style: TextStyle(
                                         fontSize: isDesktop(context) ? 60 : 32,
                                         fontWeight: FontWeight.w800,
@@ -217,7 +217,7 @@ class Jumbotron extends StatelessWidget {
                       ),
 
                       SelectableText(
-                        'Around You',
+                        aroundYou,
                         style: TextStyle(
                             fontSize: isDesktop(context) ? 60 : 32,
                             fontWeight: FontWeight.w800
@@ -236,7 +236,7 @@ class Jumbotron extends StatelessWidget {
                       SizedBox(height: 10),
 
                       SelectableText(
-                        'Help us in reviving the Sanatan Culture in every heart.',
+                        heart,
                         textAlign: isMobile(context) ? TextAlign.center:TextAlign.start,
                         style: TextStyle(
                             fontSize: isDesktop(context) ? 32 : 18,
@@ -250,7 +250,7 @@ class Jumbotron extends StatelessWidget {
                         runSpacing: 10,
                         children: <Widget>[
                           MainButton(
-                            title: 'GET STARTED',
+                            title: getStarted,
                             clr: LightColors.KDarkYellow2,
                             tapEvent: () {},
                           ),
@@ -258,7 +258,7 @@ class Jumbotron extends StatelessWidget {
                           SizedBox(width: 10),
 
                           MainButton(
-                            title: 'WATCH VIDEO',
+                            title: watchVideo,
                             clr: Color(0xFF2b478b),
                             tapEvent: () {},
                           )
@@ -272,7 +272,7 @@ class Jumbotron extends StatelessWidget {
             if (isDesktop(context) || isTab(context))
               Expanded(
 
-                child: Image.network('https://firebasestorage.googleapis.com/v0/b/flutter-bf503.appspot.com/o/Landing%20Page%2F1.png?alt=media&token=5c564a9e-21ea-4b99-8dee-c1c4d1d5c6f6',height: size.height * 0.7,),
+                child: Image.network(firebaseLink,height: size.height * 0.7,),
               )
           ],
         )
@@ -280,22 +280,7 @@ class Jumbotron extends StatelessWidget {
   }
 }
 
-class MainButton extends StatelessWidget{
-  final String? title;
-  final VoidCallback? tapEvent;
-  final Color? clr;
-  MainButton({
-    this.title,this.tapEvent,this.clr
-  });
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: tapEvent, child: Text1(data: "$title", max: 12, min: 11,clr: Colors.white,
-    ),
-        style: ElevatedButton.styleFrom(primary: clr,shape: StadiumBorder())
-    );
-  }
 
-}
 
 class Jumbotron2 extends StatelessWidget {
   @override
@@ -311,7 +296,7 @@ class Jumbotron2 extends StatelessWidget {
           children: <Widget>[
             if (isDesktop(context) || isTab(context))
               Expanded(
-                child: Image.network('https://firebasestorage.googleapis.com/v0/b/flutter-bf503.appspot.com/o/Landing%20Page%2F2.1.png?alt=media&token=7bb99dd6-b8ac-4bbf-995a-e2cfc352b7d1',height: size.height * 0.7,),
+                child: Image.network(fireBaseLink2,height: size.height * 0.7,),
               ),
             SizedBox(width: 20,),
 
@@ -323,10 +308,10 @@ class Jumbotron2 extends StatelessWidget {
                     crossAxisAlignment: !isMobile(context) ? CrossAxisAlignment.end:CrossAxisAlignment.center,
                     children: <Widget>[
                       if (isMobile(context))
-                        Image.network('https://firebasestorage.googleapis.com/v0/b/flutter-bf503.appspot.com/o/Landing%20Page%2F2.1.png?alt=media&token=7bb99dd6-b8ac-4bbf-995a-e2cfc352b7d1',height: size.height * 0.3,),
+                        Image.network(fireBaseLink3,height: size.height * 0.3,),
 
                       SelectableText(
-                        'Save Your Time',
+                        saveTime,
 
                         style: TextStyle(
                             fontSize: isDesktop(context) ? 60 : 32,
@@ -336,7 +321,7 @@ class Jumbotron2 extends StatelessWidget {
                       ),
                       //SizedBox(height: 10),
                       SelectableText(
-                        'Get Puja Samagri',
+                        getSamagri,
 
                         style: TextStyle(
                             color: LightColors.KDarkYellow2,
@@ -348,7 +333,7 @@ class Jumbotron2 extends StatelessWidget {
 
                       SizedBox(height: 10),
                       SelectableText(
-                        'At Your Doorstep',
+                        dorrStep,
 
                         style: TextStyle(
                             fontSize: isDesktop(context) ? 60 : 32,
@@ -359,7 +344,7 @@ class Jumbotron2 extends StatelessWidget {
 
                       SizedBox(height: 10),
                       SelectableText(
-                        'Free shipment for all your essential puja items.',
+                        shipMent,
                         //textAlign: isMobile(context)?TextAlign.center:TextAlign.end,
                         style: TextStyle(
                             fontSize: isDesktop(context) ? 36 : 18,

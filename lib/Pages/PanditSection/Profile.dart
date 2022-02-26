@@ -47,7 +47,7 @@ class Profile extends StatelessWidget{
                                   return InkWell(
                                     onTap: (){
                                       Get.defaultDialog(
-                                          title: 'Profile Pic',
+                                          title: profilePic,
                                           content: Image.network("${pandDetailController.userModel.value.image}",fit: BoxFit.fill,)
                                       );
                                     },
@@ -162,7 +162,7 @@ class Profile extends StatelessWidget{
                                                           );
 
                                                         },
-                                                        child: MiniBox(icon: true, FirstText: "Puja Snaps", SecondText: "4 photos",iconData: CupertinoIcons.camera,))),
+                                                        child: MiniBox(icon: true, FirstText: pujaSnaps, SecondText: fourPhotos,iconData: CupertinoIcons.camera,))),
                                                 Expanded(
                                                     flex: 1,
                                                     child: InkWell(
@@ -171,10 +171,10 @@ class Profile extends StatelessWidget{
                                                               color: Colors.white,
                                                               padding: EdgeInsets.all(10),
                                                               alignment: Alignment.center,
-                                                              child:Text1(data: "Comming soon", max: 12, min: 11)
+                                                              child:Text1(data: commingSoon, max: 12, min: 11)
                                                           ));
                                                         },
-                                                        child: MiniBox(icon: true, FirstText: "Sort Video", SecondText: "0 video",iconData: CupertinoIcons.videocam_circle,))),
+                                                        child: MiniBox(icon: true, FirstText: sortVideo, SecondText: video,iconData: CupertinoIcons.videocam_circle,))),
 
                                                 Expanded(
                                                     flex: 1,
@@ -188,7 +188,7 @@ class Profile extends StatelessWidget{
                                                               enableDrag: false
                                                           );
                                                         },
-                                                        child: MiniBox(icon: true, FirstText: "Read Reviews", SecondText: "${pandDetailController.userModel.value.reviewers} reviews",iconData: Icons.rate_review,)):SizedBox()),
+                                                        child: MiniBox(icon: true, FirstText: readReview, SecondText: "${pandDetailController.userModel.value.reviewers} reviews",iconData: Icons.rate_review,)):SizedBox()),
 
                                               ],
                                             ),
@@ -207,7 +207,7 @@ class Profile extends StatelessWidget{
                                       children:[
                                         Row(
                                           children: [
-                                            Text1(data:"OFFER",max: 12,min: 10,clr: Colors.white,),
+                                            Text1(data:offer,max: 12,min: 10,clr: Colors.white,),
                                             SizedBox(width:5),
                                             Container(width:width*0.15,height:1,color:Colors.white54)
                                           ],
@@ -222,7 +222,7 @@ class Profile extends StatelessWidget{
                                                   width:1,height:height*0.18,color:Colors.white54),
                                               Column(
                                                   children:[
-                                                    offers(width,"No offer's right now"),
+                                                    offers(width,noOffer),
                                                   ]
                                               )
 
@@ -266,16 +266,16 @@ class Profile extends StatelessWidget{
                               flex: ResponsiveWidget.isSmallScreen(context)?1:2,
                               child: Obx((){
                                 return StreamBuilder<QuerySnapshot>(
-                                    stream: detailSideMenu.select.value.selected=="All"?FirebaseFirestore.instance.collection("Avaliable_pundit/${pandDetailController.userModel.value.uid}/puja_offering").where("offer" , isEqualTo:"${detailSideMenu1.select.value.selected}").snapshots():
+                                    stream: detailSideMenu.select.value.selected==all?FirebaseFirestore.instance.collection("Avaliable_pundit/${pandDetailController.userModel.value.uid}/puja_offering").where("offer" , isEqualTo:"${detailSideMenu1.select.value.selected}").snapshots():
                                     FirebaseFirestore.instance.collection("Avaliable_pundit/${pandDetailController.userModel.value.uid}/puja_offering").where("type" , isEqualTo:"${detailSideMenu.select.value.selected}").where("offer" , isEqualTo:"${detailSideMenu1.select.value.selected}").snapshots(),
                                     builder: (context, snapshot) {
 
 
                                       if(snapshot.data == null){
-                                        return Center(child:Text("Loading services"));
+                                        return Center(child:Text(loadingServices));
                                       }
                                       if(snapshot.data!.docs.isEmpty){
-                                        return Center(child: Text1(data: "Nothing to show", max: 14, min: 12),);
+                                        return Center(child: Text1(data: showNothing, max: 14, min: 12),);
                                       }
                                       final servicess = snapshot.data!.docs.reversed;
 
@@ -403,33 +403,7 @@ class Profile extends StatelessWidget{
   }
 
 }
-class MiniBox extends StatelessWidget{
-  final IconData? iconData;
-  final bool icon;
-  final String FirstText;
-  final String SecondText;
-  MiniBox({ this.iconData, required this.icon,required this.FirstText,required this.SecondText});
-  @override
-  Widget build(BuildContext context) {
-    return  Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
 
-              icon?Icon(iconData,size:12,color:Colors.grey,):SizedBox(),
-
-              icon?SizedBox(width:5):SizedBox(),
-              Expanded(child: Text1(data: "$FirstText",max: ResponsiveWidget.isSmallScreen(context)?10:12,min: 8,clr: Colors.grey,weight: FontWeight.w600,),flex: 1,)
-            ],),
-          SizedBox(height:5),
-          Text1(data: "$SecondText",max: ResponsiveWidget.isSmallScreen(context)?10:8,min: 7,clr: Colors.grey,weight: FontWeight.w100),
-        ]
-    );
-  }
-
-}
 
 class DetailSideMenu extends GetxController{
   final String? uid;
@@ -473,16 +447,12 @@ class DetailSideMenu extends GetxController{
 }
 
 
-class DetailSelectedItem {
-  String selected = "All";
-  int? item;
-  DetailSelectedItem({required this.selected, this.item});
-}
+
 
 class DetailSideMenu1 extends GetxController{
   // final String value;
   // DetailSideMenu({required this.value});
-  var select = DetailSelectedItem(selected: "Physical",item: 0).obs;
+  var select = DetailSelectedItem(selected: physical,item: 0).obs;
   var items = 0.obs;
   updateSelected(String value){
     select.update((val) {
@@ -499,8 +469,8 @@ class DetailSideMenu1 extends GetxController{
 
 
 class DetailSelectedItem1 {
-  String selected = "Physical";
-  String? dselected = "Online";
+  String selected = physical;
+  String? dselected = online;
   int? item;
   DetailSelectedItem1({required this.selected,this.dselected, this.item});
 }
@@ -528,7 +498,7 @@ Widget serviceCard(double height, BuildContext context, double width,String puja
                           SizedBox(width:5),
                           Icon(Icons.star,size: 13,color: Colors.orangeAccent,),
                           SizedBox(width:5),
-                          Text1(max: 13,min: 13,data: "BestSeller",clr:Colors.orangeAccent,),
+                          Text1(max: 13,min: 13,data: bestSeller,clr:Colors.orangeAccent,),
                         ],
                       ),
                       SizedBox(height:10),

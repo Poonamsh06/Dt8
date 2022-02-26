@@ -71,7 +71,7 @@ class Booking extends StatelessWidget{
                 children: [
                   Icon(CupertinoIcons.map_pin_ellipse,color:bookingDetailController.bookingModel.value.payment!?Colors.orangeAccent: Colors.grey,),
                   SizedBox(width: 10,),
-                  Text1(data: "Confirmation", max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
+                  Text1(data:Confirmation, max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
                   SizedBox(width: 10,),
                   InkWell(
                       onTap: (){
@@ -85,7 +85,7 @@ class Booking extends StatelessWidget{
                 children: [
                   Icon(CupertinoIcons.map_pin_ellipse,color: Colors.grey,),
                   SizedBox(width: 10,),
-                  Text1(data: "Samagri Delivery", max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
+                  Text1(data:SamagriDelivery, max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
                 ],
               ):SizedBox(),
               bookingDetailController.bookingModel.value.samagri!?PaddedDottedLine2():SizedBox(),
@@ -93,7 +93,7 @@ class Booking extends StatelessWidget{
                 children: [
                   Icon(CupertinoIcons.map_pin_ellipse,color: Colors.grey,),
                   SizedBox(width: 10,),
-                  Text1(data: "Completed", max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
+                  Text1(data: completed, max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
                 ],
               ),
               PaddedDottedLine2(),
@@ -101,7 +101,7 @@ class Booking extends StatelessWidget{
                 children: [
                   Icon(CupertinoIcons.map_pin_ellipse,color: Colors.grey,),
                   SizedBox(width: 10,),
-                  Text1(data: "Rate Now", max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
+                  Text1(data: rateNow, max: 14, min: 12,clr: Colors.black54,weight: FontWeight.w400,),
                 ],
               ),
 
@@ -115,7 +115,7 @@ class Booking extends StatelessWidget{
          padding:  EdgeInsets.only(top: height*0.05,left: width*0.06,right: width*0.06),
          child: Column(
            children: [
-              Text1(data: "Orders", max: 24, min: 22,clr: Colors.black,weight: FontWeight.bold,),
+              Text1(data: orders, max: 24, min: 22,clr: Colors.black,weight: FontWeight.bold,),
              SizedBox(height: 20,),
 
              GetX<BookingController>(
@@ -197,7 +197,7 @@ class Booking extends StatelessWidget{
                                             bookingDetailController.initializePanditModel(bookingModal.bookingId,bookingModal.clientuid!);
                                             openDraw();
                                           },
-                                          child: Text1(data: "VIEW DETAIL", max: 12, min: 10,weight: FontWeight.w800,clr: Colors.orangeAccent,))
+                                          child: Text1(data: viewDetail, max: 12, min: 10,weight: FontWeight.w800,clr: Colors.orangeAccent,))
 
                                     ],
                                   ))

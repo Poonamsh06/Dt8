@@ -56,7 +56,7 @@ class _PanditHomeState extends State<PanditHome> {
                                   children: [
                                     //  ResponsiveWidget.isSmallScreen(context)?Expanded(child: Text1(max: 9, data: "${locationController.location.value.address}", min: 8, clr: Colors.black54,)):Text1(max: 9, data: "${locationController.location.value.address}", min: 8, clr: Colors.black54,),
                                     //SizedBox(width:5),
-                                    Text1(max: 12, data: "India", min: 11,weight:FontWeight.bold,clr:Colors.black),
+                                    Text1(max: 12, data: india, min: 11,weight:FontWeight.bold,clr:Colors.black),
                                     SizedBox(width:5),
                                     Icon(Icons.home,color:LightColors.kDarkYellow,size:12)
                                   ],
@@ -79,7 +79,7 @@ class _PanditHomeState extends State<PanditHome> {
                   ],):Row(
                     children: [
                       SizedBox(width: 20,),
-                      ModifiedTextIcon(iconColor: Colors.black54,icondata: LineIcons.search, max: 12, data: 'Search', min: 8,color: Colors.black54,weight: FontWeight.bold,),
+                      ModifiedTextIcon(iconColor: Colors.black54,icondata: LineIcons.search, max: 12, data: search, min: 8,color: Colors.black54,weight: FontWeight.bold,),
                       SizedBox(width: 20,),
                       InkWell(
                         onTap: (){
@@ -87,7 +87,7 @@ class _PanditHomeState extends State<PanditHome> {
                           Get.to(Account());
 
                         },
-                        child: ModifiedTextIcon(iconColor: Colors.black54,icondata: LineIcons.user, max: 12, data: 'Sign In', min: 8,color: Colors.black54,weight: FontWeight.bold),
+                        child: ModifiedTextIcon(iconColor: Colors.black54,icondata: LineIcons.user, max: 12, data: signIn, min: 8,color: Colors.black54,weight: FontWeight.bold),
                       ),
 
                       SizedBox(width: 20,),
@@ -118,7 +118,7 @@ class _PanditHomeState extends State<PanditHome> {
                         //  SizedBox(width:10),
                         Expanded(
                             flex: 1,
-                            child: TopBar(name:'Calender',image:'https://firebasestorage.googleapis.com/v0/b/swastik13-8242d.appspot.com/o/NewAppFiles%2Ftopbars%2FOnline%20calendar-amico%20(1).png?alt=media&token=46e017ce-63eb-42b7-a8b5-281bc2e1d850',tap:'calender')),
+                            child: TopBar(name:calender,image:link,tap:calender)),
                         SizedBox(width:10),
                         //  Expanded(
                         //      flex: 1,
@@ -126,17 +126,17 @@ class _PanditHomeState extends State<PanditHome> {
                         SizedBox(width:10),
                         Expanded(
                             flex: 1,
-                            child: TopBar(name:'Pujan Vidhi',image:'https://firebasestorage.googleapis.com/v0/b/swastik13-8242d.appspot.com/o/NewAppFiles%2Ftopbars%2FProcessing-rafiki%20(2).png?alt=media&token=dc2c3e8a-22f7-4ac3-bb5d-58d02fbab3e9',tap:'pujanvidhi')),
+                            child: TopBar(name:pujanVidhi,image:googleApis,tap:'pujanvidhi')),
                         SizedBox(height:10),
                         Expanded(
                             flex: 1,
-                            child: TopBar(name:'Facts/Article',image: 'https://firebasestorage.googleapis.com/v0/b/swastik13-8242d.appspot.com/o/NewAppFiles%2Ftopbars%2FSharing%20articles-rafiki.png?alt=media&token=51fde7f6-940a-4ba0-b915-16b5d33c24e6', tap:'article')),
+                            child: TopBar(name:factsArtical,image: googleApis2, tap:'article')),
 
                         SizedBox(height:10),
 
                         Expanded(
                             flex: 1,
-                            child: TopBar(name:'Muhurat',image: 'https://firebasestorage.googleapis.com/v0/b/swastik13-8242d.appspot.com/o/NewAppFiles%2Ftopbars%2FTime%20management-bro.png?alt=media&token=9b57c040-c94b-42da-b3e4-6b0d1a793f7d',tap:'muhurat')),
+                            child: TopBar(name:'Muhurat',image: googleapis3,tap:'muhurat')),
 
 
                       ],
@@ -201,7 +201,7 @@ class _PanditHomeState extends State<PanditHome> {
                       SizedBox(height: 20,),
                       Padding(
                         padding:EdgeInsets.only(left:ResponsiveWidget.isSmallScreen(context)? 0: width*0.1,right: ResponsiveWidget.isSmallScreen(context)? 0:width*0.1,),
-                        child: customHeading(context,'Purohit','Near you...'),
+                        child: customHeading(context,purohit,nearYou),
                       ),
                       SizedBox(height: 20,),
                       Padding(
@@ -651,25 +651,3 @@ class PanditCard extends StatelessWidget{
 
 
 
-class ModifiedTextIcon extends StatelessWidget{
-  String data;
-  double max;
-  Color? color;
-  double min;
-  FontWeight? weight;
-  IconData icondata;
-  Color? iconColor;
-  ModifiedTextIcon({this.iconColor, required this.icondata,required this.max,required this.data,required this. min,this.color,this.weight});
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Icon(icondata,color: iconColor,),
-        SizedBox(width:5),
-        AutoSizeText('$data',maxFontSize: max,minFontSize: min,style: GoogleFonts.aBeeZee(color: color,fontWeight: weight,letterSpacing: 1),),
-      ],
-    );
-  }
-
-}
